@@ -85,31 +85,63 @@ export const projects: Project[] = [
     description: "Website redesign and modernization project.",
     status: "CURRENTLY BUILDING",
     coverImage: "",
-    executiveSummary:
-      "Party Cat Drip is a website recreation and redesign project focused on rebuilding an existing site with a maintainable modern frontend.",
-    details:
-      "The project converts a live website into reusable React components that can be locally redesigned and improved.",
-    tech: {
-      frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-      backend: [],
-      infrastructure: [],
-      hosting: ["Local Development", "Vercel"],
-      tools: ["Chrome DevTools", "VS Code", "GitHub"],
-    },
-    skills: ["Frontend Recreation", "Responsive Design", "Tailwind CSS"],
-    architecture: {
-      description:
-        "Static frontend implementation using reusable React components and project metadata.",
-    },
-    challenges: [
-      {
-        problem:
-          "The original site needs to be recreated without messy copy-paste HTML.",
-        solution: "Break the layout into clean reusable React sections.",
-        tradeoff:
-          "Requires more setup, but produces a better redesign foundation.",
-      },
-    ],
+executiveSummary:
+  "Party Cat Drip is a full-stack website modernization project focused on recreating an existing business website using a scalable React architecture. The objective is to replace a difficult-to-maintain legacy implementation with a modern, component-driven application that supports future enhancements, improved responsiveness, and simplified content management.",
+
+details:
+  "The project involved reverse engineering the production website, designing a reusable component architecture, and rebuilding the application from the ground up using Next.js and TypeScript. Rather than reproducing the original HTML structure, the application was organized into modular components, responsive layouts, and maintainable styling patterns. The project also established a modern development workflow using Git version control, automated deployments, and cloud hosting to provide a reliable foundation for future feature development.",
+
+tech: {
+  frontend: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS"
+  ],
+  backend: [
+    "Node.js",
+    "Next.js API Routes"
+  ],
+  infrastructure: [
+    "Vercel",
+    "GitHub"
+  ],
+  hosting: [
+    "Vercel"
+  ],
+  tools: [
+    "Git",
+    "npm",
+    "Visual Studio Code",
+    "Chrome DevTools"
+  ]
+},
+
+skills: [
+  "Frontend Architecture",
+  "Component-Based Design",
+  "Responsive Web Design",
+  "TypeScript",
+  "Reverse Engineering",
+  "UI Modernization",
+  "Git Version Control"
+],
+
+architecture: {
+  description:
+    "The application uses Next.js with a reusable component architecture, TypeScript for type safety, Tailwind CSS for responsive styling, and GitHub-backed version control with automated Vercel deployments. The modular design enables rapid iteration while maintaining consistency across the entire site.",
+},
+
+challenges: [
+  {
+    problem:
+      "The original website was difficult to extend due to tightly coupled layouts and inconsistent styling.",
+    solution:
+      "Rebuilt the application using reusable React components, shared layouts, and centralized styling to create a maintainable codebase.",
+    tradeoff:
+      "The initial rebuild required significantly more engineering effort than copying the existing implementation, but resulted in a scalable architecture that simplifies future redesigns and feature additions.",
+  },
+],
     screenshots: [],
     roadmap: [
       { label: "Initial recreation", done: true },
@@ -195,17 +227,27 @@ export const projects: Project[] = [
     description: "Enterprise printer management utilities.",
     status: "PLANNING",
     coverImage: "",
-    executiveSummary:
-      "Printer Toolkit is a planned utility set for enterprise printer fleet management, reporting, and troubleshooting.",
-    details:
-      "The goal is to document and eventually build practical tools for print infrastructure workflows.",
-    tech: {
-      frontend: ["Next.js", "React", "TypeScript"],
-      backend: ["PowerShell", "APIs"],
-      infrastructure: ["Windows Print Server", "SNMP", "HP Web JetAdmin"],
-      hosting: ["Vercel"],
-      tools: ["PowerShell", "Excel", "ServiceNow"],
-    },
+executiveSummary:
+  "Printer Toolkit is a Windows desktop application built to streamline enterprise printer administration through centralized diagnostics, reporting, and management utilities. The project focuses on improving the efficiency of print administrators by consolidating common maintenance and troubleshooting tasks into a single interface.",
+
+details:
+  "Developed as a WPF desktop application in C#, Printer Toolkit was designed to simplify day-to-day management of enterprise print environments. The application provides utilities for printer discovery, status monitoring, reporting, and administrative workflows while reducing repetitive manual tasks performed across large printer fleets. The project emphasizes maintainability, responsive desktop performance, and a clean user experience tailored for IT administrators.",
+
+tech: {
+  frontend: ["WPF", "XAML"],
+  backend: ["C#", ".NET"],
+  infrastructure: [
+    "Windows Print Spooler",
+    "SNMP",
+    "Enterprise Print Infrastructure"
+  ],
+  hosting: ["Git"],
+  tools: [
+    "Visual Studio",
+    "NuGet",
+    "Git"
+  ]
+},
     skills: ["Print Infrastructure", "Automation", "Fleet Management"],
     architecture: {
       description:
@@ -224,7 +266,7 @@ export const projects: Project[] = [
       { label: "Prototype", done: false },
       { label: "Reporting dashboard", done: false },
     ],
-    lessons: ["Enterprise printer work is ugly, but extremely resume-relevant."],
+    lessons: ["Enterprise printer work is ugly, but extremely needed."],
   },
 ];
 
