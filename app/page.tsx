@@ -76,11 +76,7 @@ export default function Home() {
         </h1>
 
         <p className="mt-8 max-w-xl text-2xl leading-relaxed text-zinc-400">
-          Experiments.
-          <br />
-          Tools.
-          <br />
-          Things I'm building.
+          Experiments and things I'm building.
         </p>
 
         {projectGroups.map((group) => (
