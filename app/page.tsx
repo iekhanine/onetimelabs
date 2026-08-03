@@ -1,6 +1,6 @@
 import "./page.css";
 
-interface Project {
+interface Product {
   name: string;
   description: string;
   url: string;
@@ -8,101 +8,185 @@ interface Project {
   category: string;
 }
 
-const projects: Project[] = [
+const products: Product[] = [
   {
     name: "OTLES",
-    description: "OneTime Labs Engineering Standards.",
+    description:
+      "Technical documentation platform for IT teams, operations, and enterprise organizations.",
     url: "https://otles.onetimelabs.net",
-    status: "Active Development",
-    category: "Engineering Standard",
+    status: "Active",
+    category: "Platform",
   },
   {
     name: "PCCR",
-    description: "Printer Compliance & Configuration Reporter.",
+    description:
+      "Printer Compliance & Configuration Reporter for enterprise print environments.",
     url: "https://pccr.onetimelabs.net",
-    status: "Active Development",
+    status: "Active",
     category: "Enterprise Software",
   },
   {
     name: "OTL Licensing",
-    description: "Software licensing platform.",
+    description:
+      "Self-hosted software licensing, activation, and entitlement platform.",
     url: "https://licensing.onetimelabs.net",
-    status: "Active Development",
+    status: "Active",
     category: "Platform",
   },
   {
-    name: "UnfilteredLog",
-    description: "Anonymous writing platform.",
-    url: "http://www.unfilteredlog.com",
-    status: "Planning",
-    category: "Research",
-  },
-  {
     name: "Printer Toolkit",
-    description: "Enterprise printer utilities.",
+    description:
+      "Utilities for enterprise printer administration and troubleshooting.",
     url: "#",
-    status: "Planning",
-    category: "Research",
+    status: "Research",
+    category: "Labs",
   },
   {
     name: "Discord Infrastructure",
-    description: "Automation and community tooling.",
+    description:
+      "Automation, moderation, and infrastructure tools for online communities.",
     url: "#",
-    status: "Planning",
-    category: "Research",
+    status: "Research",
+    category: "Labs",
   },
 ];
 
 export default function Home() {
   return (
     <main className="page">
-      <header className="hero">
-        <p className="eyebrow">ONETIMELABS.NET</p>
 
-        <h1>OneTime Labs</h1>
+      <header className="hero">
+
+        <p className="eyebrow">
+          ONETIMELABS.NET
+        </p>
+
+        <h1>
+          OneTime Labs
+        </h1>
 
         <p className="lead">
-          Engineering software built from real operational problems.
+          Professional software built from real operational experience.
         </p>
+
+        <p className="intro">
+          OneTime Labs creates practical software for IT professionals,
+          operations teams, and technical organizations. Every product
+          begins as a solution to a real-world problem before becoming
+          something we share with others.
+        </p>
+<div className="heroActions">
+
+  <a
+    href="https://otles.onetimelabs.net"
+    className="primaryButton"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    See It In Action
+  </a>
+
+  <a
+    href="/alpha"
+    className="secondaryButton"
+  >
+    Apply for Alpha
+  </a>
+
+</div>
       </header>
 
-      <section className="projects">
-        {projects.map((project) => (
-          <a
-            key={project.name}
-            href={project.url}
-            className="card"
-            target={project.url.startsWith("http") ? "_blank" : undefined}
-            rel="noopener noreferrer"
-          >
-            <div className="cardTop">
-              <span className="category">
-                {project.category}
-              </span>
+      <section className="philosophy">
 
-              <span className="status">
-                {project.status}
-              </span>
-            </div>
+        <h2>
+          Our Philosophy
+        </h2>
 
-            <h2>{project.name}</h2>
+        <p>
+          We believe professional software should be transparent,
+          maintainable, and available without forcing recurring
+          subscriptions. Whenever practical, our products are designed
+          to be purchased once, deployed where you need them,
+          and owned by the people who use them.
+        </p>
 
-            <p>{project.description}</p>
+      </section>
 
-            <div className="cardFooter">
-              <span>Open Project</span>
+      <section>
 
-              <span>→</span>
-            </div>
-          </a>
-        ))}
+        <div className="section-header">
+
+          <h2>Products</h2>
+
+          <span>
+            Active and in-development software projects from OneTime Labs.
+          </span>
+
+        </div>
+
+        <div className="projects">
+
+          {products.map((product) => (
+            <a
+              key={product.name}
+              href={product.url}
+              className="card"
+              target={
+                product.url.startsWith("http")
+                  ? "_blank"
+                  : undefined
+              }
+              rel="noopener noreferrer"
+            >
+              <div className="cardTop">
+
+                <span className="category">
+                  {product.category}
+                </span>
+
+<span
+  className={`status ${product.status
+    .toLowerCase()
+    .replace(/\s+/g, "-")}`}
+>
+  {product.status}
+</span>
+
+              </div>
+
+              <h3>{product.name}</h3>
+
+              <p>{product.description}</p>
+
+              <div className="cardFooter">
+
+                <span>
+                  Open Project
+                </span>
+
+                <span>→</span>
+
+              </div>
+
+            </a>
+          ))}
+
+        </div>
+
       </section>
 
       <footer>
-        <span>Engineering software. Built deliberately.</span>
 
-        <span>© 2026 OneTime Labs</span>
+        <span>
+          I had an idea once.
+        </span>
+
+        <span>
+          © 2026 OneTime Labs
+        </span>
+
       </footer>
+
     </main>
   );
 }

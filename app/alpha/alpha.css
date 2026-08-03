@@ -1,0 +1,105 @@
+.alpha-page {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #eef3f8,
+            #f8fafc
+        );
+
+    overflow: hidden;
+}
+
+.alpha-backdrop {
+
+    position: absolute;
+
+    inset: 0;
+
+    backdrop-filter: blur(8px);
+}
+
+.alpha-dialog {
+
+    position: relative;
+
+    z-index: 1;
+
+    width: min(600px, calc(100% - 40px));
+
+    padding: 42px;
+
+    background: white;
+
+    border: 1px solid #dbe5ef;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 24px 60px rgba(0,0,0,.12);
+
+    text-align: center;
+}
+
+.alpha-badge {
+
+    display: inline-block;
+
+    padding: 6px 14px;
+
+    margin-bottom: 24px;
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: .08em;
+}
+
+.alpha-dialog h1 {
+
+    margin: 0 0 18px;
+
+    font-size: 42px;
+}
+
+.alpha-dialog p {
+
+    color: #667085;
+
+    line-height: 1.8;
+
+    margin-bottom: 18px;
+}
+
+.alpha-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    margin: 36px 0 20px;
+
+    flex-wrap: wrap;
+}
+
+.alpha-dialog small {
+
+    color: #98a2b3;
+}

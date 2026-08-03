@@ -1,13 +1,16 @@
+import "./globals.css";
+
 export const metadata = {
   title: "OneTime Labs",
-  description: "Engineering software built from real operational problems.",
+  description:
+    "Professional software built from real operational experience.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
       <body>{children}</body>

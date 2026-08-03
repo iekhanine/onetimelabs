@@ -1,173 +1,410 @@
 :root {
-  --bg: #eef3f8;
-  --surface: #fff;
-  --surface-alt: #f7f9fc;
 
-  --border: #d7e0ea;
+    --bg:#f5f7fb;
 
-  --primary: #0096d6;
-  --primary-dark: #0077b6;
+    --surface:#ffffff;
 
-  --text: #1f2937;
-  --muted: #667085;
+    --surface-alt:#f8fafc;
 
-  --radius: 14px;
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --border:#dbe5ef;
+
+    --text:#1f2937;
+
+    --muted:#667085;
+
+    --primary:#0a7fd1;
+
+    --primary-dark:#0867aa;
+
+    --radius:12px;
+
+    --shadow:
+        0 10px 28px rgba(0,0,0,.06);
 }
 
-/* ==========================================================================
-   Global
-   ========================================================================== */
+/* ========================================================== */
 
-* {
-  box-sizing: border-box;
+*{
+
+    box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
+body{
 
-  font-family: "Segoe UI", Arial, sans-serif;
+    margin:0;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+        "Segoe UI Variable Text",
+        "Segoe UI",
+        sans-serif;
 }
 
-/* ==========================================================================
-   Layout
-   ========================================================================== */
+.page{
 
-.page {
-  max-width: 1200px;
-  margin: auto;
-  padding: 56px 28px 80px;
+    width:min(1150px,calc(100% - 48px));
+
+    margin:auto;
+
+    padding:72px 0;
 }
 
-/* ==========================================================================
-   Hero
-   ========================================================================== */
+/* ========================================================== */
 
-.hero {
-  margin-bottom: 56px;
+.hero{
+
+    margin-bottom:72px;
 }
 
-.eyebrow {
-  color: var(--primary);
+.eyebrow{
 
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.35em;
+    margin:0;
+
+    color:var(--primary);
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    letter-spacing:.28em;
+
+    text-transform:uppercase;
 }
 
-h1 {
-  margin: 0.25rem 0 1rem;
+.hero h1{
 
-  font-size: 4rem;
+    margin:12px 0;
+
+    font-size:58px;
+
+    font-weight:700;
 }
 
-.lead {
-  max-width: 760px;
+.lead{
 
-  color: var(--muted);
+    margin:0;
 
-  font-size: 1.25rem;
-  line-height: 1.8;
+    font-size:24px;
+
+    color:#374151;
 }
 
-/* ==========================================================================
-   Project Grid
-   ========================================================================== */
+.intro{
 
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
+    max-width:760px;
+
+    margin-top:24px;
+
+    color:var(--muted);
+
+    line-height:1.9;
+
+    font-size:17px;
 }
 
-.card {
-  padding: 24px;
+/* ========================================================== */
 
-  color: inherit;
-  text-decoration: none;
+.philosophy{
 
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+    margin-bottom:72px;
 
-  box-shadow: var(--shadow);
+    padding:34px;
 
-  transition: 0.18s ease;
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary);
+.philosophy h2{
+
+    margin-top:0;
 }
 
-/* ==========================================================================
-   Card Header / Footer
-   ========================================================================== */
+.philosophy p{
 
-.cardTop,
-.cardFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    margin-bottom:0;
+
+    line-height:1.9;
+
+    color:var(--muted);
 }
 
-.category {
-  color: var(--primary);
+/* ========================================================== */
 
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-bottom:26px;
+}
+
+.section-header h2{
+
+    margin:0;
+}
+
+.section-header span{
+
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+/* ========================================================== */
+
+.projects{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
+
+    gap:22px;
+}
+
+.card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    text-decoration:none;
+
+    color:inherit;
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:24px;
+
+    transition:.18s;
+
+    box-shadow:var(--shadow);
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:var(--primary);
+}
+
+.cardTop{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.category{
+
+    color:var(--primary);
+
+    text-transform:uppercase;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:.05em;
 }
 
 .status {
-  padding: 4px 10px;
+    padding: 5px 10px;
 
-  color: var(--primary-dark);
-  background: #e8f5ff;
+    border-radius: 999px;
 
-  border-radius: 999px;
-
-  font-size: 0.75rem;
+    font-size: 12px;
+    font-weight: 600;
 }
 
+.status.active {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.status.planning {
+    color: #92400e;
+    background: #fef3c7;
+}
+
+.status.research {
+    color: #1d4ed8;
+    background: #dbeafe;
+}
+
+.status.pending {
+    color: #9a3412;
+    background: #ffedd5;
+}
+
+.status.coming-soon {
+    color: #6b21a8;
+    background: #f3e8ff;
+}
+
+.status.archived {
+    color: #6b7280;
+    background: #f3f4f6;
+}
+
+.card h3{
+
+    margin:18px 0 10px;
+
+    font-size:26px;
+}
+
+.card p{
+
+    flex:1;
+
+    margin:0;
+
+    color:var(--muted);
+
+    line-height:1.7;
+}
+
+.cardFooter{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:24px;
+
+    padding-top:18px;
+
+    border-top:1px solid var(--border);
+
+    font-weight:600;
+}
+
+/* ========================================================== */
+
+footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:72px;
+
+    padding-top:28px;
+
+    border-top:1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+/* ========================================================== */
+
+@media(max-width:900px){
+
+    .hero h1{
+
+        font-size:44px;
+    }
+
+    .lead{
+
+        font-size:20px;
+    }
+
+    .section-header,
+    footer{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+    }
+}
 /* ==========================================================================
-   Card Content
+   Hero Buttons
    ========================================================================== */
 
-.card h2 {
-  margin: 18px 0 10px;
+.heroActions {
+
+    display: flex;
+
+    gap: 16px;
+
+    margin-top: 36px;
+
+    flex-wrap: wrap;
 }
 
-.card p {
-  min-height: 72px;
+.primaryButton,
+.secondaryButton {
 
-  color: var(--muted);
-  line-height: 1.6;
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: .18s ease;
 }
 
-.cardFooter {
-  margin-top: 20px;
-  padding-top: 18px;
+.primaryButton {
 
-  border-top: 1px solid var(--border);
+    color: white;
 
-  font-weight: 600;
+    background: var(--primary);
+
+    border: 1px solid var(--primary);
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+.primaryButton:hover {
 
-footer {
-  display: flex;
-  justify-content: space-between;
+    background: var(--primary-dark);
 
-  margin-top: 56px;
-  padding-top: 24px;
+    border-color: var(--primary-dark);
+}
 
-  color: var(--muted);
+.secondaryButton {
 
-  border-top: 1px solid var(--border);
+    color: var(--text);
+
+    background: white;
+
+    border: 1px solid var(--border);
+}
+
+.secondaryButton:hover {
+
+    background: var(--surface-alt);
 }
