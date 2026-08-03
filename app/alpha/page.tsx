@@ -1,4 +1,4 @@
-// @ts-expect-error - Next.js handles global CSS imports
+
 import "./alpha.css";
 
 export default function AlphaPage() {
