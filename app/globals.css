@@ -48,3 +48,18 @@ select {
 a {
   color: inherit;
 }
+
+.legal-page {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 40px;
+  line-height: 1.6;
+}
+
+.legal-page h1 {
+  margin-bottom: 10px;
+}
+
+.legal-page h2 {
+  margin-top: 32px;
+}
