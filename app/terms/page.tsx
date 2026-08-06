@@ -1,58 +1,130 @@
 export default function TermsPage() {
   return (
-    <main className="legal-page">
-      <h1>Terms of Service</h1>
+    <main
+      style={{
+        maxWidth: "900px",
+        margin: "60px auto",
+        padding: "40px",
+        lineHeight: "1.7",
+        fontFamily: "Arial, Helvetica, sans-serif",
+      }}
+    >
+      <header
+        style={{
+          borderBottom: "1px solid #ddd",
+          marginBottom: "32px",
+          paddingBottom: "20px",
+        }}
+      >
+        <h1>
+          OneTime Labs Terms of Service
+        </h1>
 
-      <p>
-        Effective Date: August 6, 2026
-      </p>
+        <p>
+          Effective Date: August 6, 2026
+        </p>
+      </header>
 
-      <h2>Agreement</h2>
 
-      <p>
-        By accessing OneTime Labs services, you agree to these
-        Terms of Service.
-      </p>
+      <Section title="1. Agreement">
+        <p>
+          By accessing or using OneTime Labs services,
+          you agree to these Terms of Service.
+        </p>
+      </Section>
 
-      <h2>Use of Services</h2>
 
-      <p>
-        Users may use OneTime Labs software only for lawful
-        purposes and according to applicable licensing
-        agreements.
-      </p>
+      <Section title="2. Use of Services">
+        <p>
+          OneTime Labs provides software tools designed
+          to help organizations manage engineering,
+          documentation, licensing, and operational
+          workflows.
+        </p>
 
-      <h2>Accounts</h2>
+        <p>
+          Users agree to use OneTime Labs services only
+          for lawful purposes.
+        </p>
+      </Section>
 
-      <p>
-        Users are responsible for maintaining the security of
-        their accounts and access credentials.
-      </p>
 
-      <h2>Ownership</h2>
+      <Section title="3. Accounts">
+        <p>
+          Users are responsible for maintaining the
+          security of their accounts and protecting
+          authentication credentials.
+        </p>
+      </Section>
 
-      <p>
-        OneTime Labs software, documentation, trademarks, and
-        intellectual property remain the property of OneTime
-        Labs unless otherwise agreed.
-      </p>
 
-      <h2>Changes</h2>
+      <Section title="4. Ownership">
+        <p>
+          OneTime Labs software, trademarks, documentation,
+          and intellectual property remain the property of
+          OneTime Labs unless otherwise agreed.
+        </p>
+      </Section>
 
-      <p>
-        OneTime Labs may update services, features, or these
-        Terms as the platform evolves.
-      </p>
 
-      <h2>Contact</h2>
+      <Section title="5. Customer Data">
+        <p>
+          Customers retain ownership of content they create
+          and store using OneTime Labs services.
+        </p>
 
-      <p>
-        Questions may be directed to:
-      </p>
+        <p>
+          OneTime Labs uses customer data only as necessary
+          to provide requested services.
+        </p>
+      </Section>
 
-      <p>
-        support@onetimelabs.net
-      </p>
+
+      <Section title="6. Service Changes">
+        <p>
+          OneTime Labs may update, improve, or modify
+          services as products evolve.
+        </p>
+      </Section>
+
+
+      <Section title="7. Contact">
+        <p>
+          Questions regarding these Terms may be sent to:
+        </p>
+
+        <p>
+          support@onetimelabs.net
+        </p>
+      </Section>
+
     </main>
+  );
+}
+
+
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section
+      style={{
+        marginBottom: "36px",
+      }}
+    >
+      <h2
+        style={{
+          marginBottom: "12px",
+        }}
+      >
+        {title}
+      </h2>
+
+      {children}
+    </section>
   );
 }

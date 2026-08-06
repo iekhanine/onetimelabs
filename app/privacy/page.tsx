@@ -1,61 +1,211 @@
 export default function PrivacyPage() {
   return (
-    <main className="legal-page">
-      <h1>Privacy Policy</h1>
+    <main
+      style={{
+        maxWidth: "900px",
+        margin: "60px auto",
+        padding: "40px",
+        lineHeight: "1.7",
+        fontFamily: "Arial, Helvetica, sans-serif",
+      }}
+    >
+      <header
+        style={{
+          borderBottom: "1px solid #ddd",
+          marginBottom: "32px",
+          paddingBottom: "20px",
+        }}
+      >
+        <h1>
+          OneTime Labs Privacy Policy
+        </h1>
 
-      <p>
-        Effective Date: August 6, 2026
-      </p>
+        <p>
+          Effective Date: August 6, 2026
+        </p>
+      </header>
 
-      <h2>Overview</h2>
 
-      <p>
-        OneTime Labs provides software products and services
-        designed to help organizations manage engineering
-        standards, licensing, documentation, and operational
-        workflows.
-      </p>
+      <Section title="1. Introduction">
+        <p>
+          OneTime Labs ("OneTime Labs", "we", "our", or
+          "us") develops software products and engineering
+          platforms designed around transparency, ownership,
+          and customer-controlled solutions.
+        </p>
 
-      <h2>Information We Collect</h2>
+        <p>
+          This Privacy Policy explains how we collect,
+          use, protect, and process information when you
+          access OneTime Labs websites, applications,
+          and services.
+        </p>
+      </Section>
 
-      <p>
-        When you sign in using Google authentication, OneTime
-        Labs may receive information provided by Google,
-        including your name, email address, and profile image.
-      </p>
 
-      <p>
-        This information is used to create and manage your
-        account, authenticate your identity, and provide access
-        to authorized OneTime Labs services.
-      </p>
+      <Section title="2. Information We Collect">
+        <p>
+          Depending on the services you use, OneTime Labs
+          may collect:
+        </p>
 
-      <h2>Google Authentication</h2>
+        <ul>
+          <li>Name</li>
+          <li>Email address</li>
+          <li>Profile information provided by authentication providers</li>
+          <li>Authentication identifiers</li>
+          <li>Organization and workspace memberships</li>
+          <li>Application configuration information</li>
+        </ul>
 
-      <p>
-        OneTime Labs uses Google OAuth only for identity
-        verification and account access. We do not sell,
-        rent, or share Google user information with third
-        parties.
-      </p>
+        <p>
+          This information allows us to authenticate users,
+          provide access-controlled services, and maintain
+          application functionality.
+        </p>
+      </Section>
 
-      <h2>Data Storage</h2>
 
-      <p>
-        Account and application data are stored using secure
-        cloud infrastructure with authentication and
-        authorization controls.
-      </p>
+      <Section title="3. Google Authentication">
+        <p>
+          OneTime Labs supports authentication through
+          Google OAuth.
+        </p>
 
-      <h2>Contact</h2>
+        <p>
+          When you sign in with Google, Google may provide
+          limited account information such as your name,
+          email address, profile image, and authentication
+          identifiers.
+        </p>
 
-      <p>
-        Questions about this Privacy Policy may be directed to:
-      </p>
+        <p>
+          Google account information is used only for:
+        </p>
 
-      <p>
-        support@onetimelabs.net
-      </p>
+        <ul>
+          <li>Verifying your identity</li>
+          <li>Creating and maintaining your account</li>
+          <li>Maintaining secure login sessions</li>
+          <li>Associating you with authorized organizations</li>
+        </ul>
+
+        <p>
+          OneTime Labs does not sell Google user data,
+          use Google user data for advertising, or create
+          advertising profiles.
+        </p>
+      </Section>
+
+
+      <Section title="4. Organizations and Workspaces">
+        <p>
+          OneTime Labs applications may use organizations,
+          users, roles, and workspaces to control access
+          to software and information.
+        </p>
+
+        <p>
+          Workspace information is used to provide secure
+          separation between customers and authorized users.
+        </p>
+      </Section>
+
+
+      <Section title="5. Customer Content">
+        <p>
+          Some OneTime Labs products allow users to create,
+          store, and manage documents, engineering standards,
+          configurations, and operational information.
+        </p>
+
+        <p>
+          Customer content is used only to provide the
+          requested service. OneTime Labs does not sell,
+          publish, or disclose private customer content.
+        </p>
+      </Section>
+
+
+      <Section title="6. Licensing Information">
+        <p>
+          Certain OneTime Labs products may collect licensing
+          information such as product identifiers, activation
+          records, and software version information.
+        </p>
+
+        <p>
+          This information is used to validate licenses,
+          maintain product security, and provide support.
+        </p>
+      </Section>
+
+
+      <Section title="7. Data Security">
+        <p>
+          OneTime Labs uses reasonable technical safeguards
+          including authentication controls, authorization
+          policies, encrypted connections, and restricted
+          administrative access.
+        </p>
+      </Section>
+
+
+      <Section title="8. Data Sharing">
+        <p>
+          OneTime Labs does not sell personal information.
+        </p>
+
+        <p>
+          Information may only be shared when required to:
+        </p>
+
+        <ul>
+          <li>Provide requested services</li>
+          <li>Operate required infrastructure</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+      </Section>
+
+
+      <Section title="9. Contact">
+        <p>
+          Questions regarding this Privacy Policy may be
+          sent to:
+        </p>
+
+        <p>
+          support@onetimelabs.net
+        </p>
+      </Section>
+
     </main>
+  );
+}
+
+
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section
+      style={{
+        marginBottom: "36px",
+      }}
+    >
+      <h2
+        style={{
+          marginBottom: "12px",
+        }}
+      >
+        {title}
+      </h2>
+
+      {children}
+    </section>
   );
 }
