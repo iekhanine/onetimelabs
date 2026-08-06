@@ -1,4 +1,3 @@
-
 import "./page.css";
 
 interface Product {
@@ -13,7 +12,7 @@ const products: Product[] = [
   {
     name: "OTLES",
     description:
-      "Technical documentation platform for IT teams, operations, and enterprise organizations.",
+      "Engineering documentation and standards platform that allows organizations to create, manage, and share controlled technical documentation.",
     url: "https://otles.onetimelabs.net",
     status: "Active",
     category: "Platform",
@@ -29,7 +28,7 @@ const products: Product[] = [
   {
     name: "OTL Licensing",
     description:
-      "Self-hosted software licensing, activation, and entitlement platform.",
+      "Software licensing, activation, and entitlement platform designed for managing product access.",
     url: "https://licensing.onetimelabs.net",
     status: "Active",
     category: "Platform",
@@ -71,31 +70,61 @@ export default function Home() {
         </p>
 
         <p className="intro">
-          OneTime Labs creates practical software for IT professionals,
-          operations teams, and technical organizations. Every product
-          begins as a solution to a real-world problem before becoming
-          something we share with others.
+          OneTime Labs creates practical software platforms for IT
+          professionals, operations teams, and technical organizations.
+          Every product begins as a solution to a real-world problem
+          before becoming something we share with others.
         </p>
-<div className="heroActions">
 
-  <a
-    href="https://otles.onetimelabs.net"
-    className="primaryButton"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    See It In Action
-  </a>
+        <div className="heroActions">
 
-  <a
-    href="/alpha"
-    className="secondaryButton"
-  >
-    Apply for Alpha
-  </a>
+          <a
+            href="https://otles.onetimelabs.net"
+            className="primaryButton"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            See It In Action
+          </a>
 
-</div>
+          <a
+            href="/alpha"
+            className="secondaryButton"
+          >
+            Apply for Alpha
+          </a>
+
+        </div>
+
       </header>
+
+
+      <section className="platform">
+
+        <h2>
+          The OneTime Labs Platform
+        </h2>
+
+        <p>
+          OneTime Labs provides secure software platforms for
+          engineering organizations, technical teams, and enterprise
+          environments.
+        </p>
+
+        <p>
+          A OneTime Labs account allows authorized users to access
+          applications, manage organization memberships, and work
+          within secure application workspaces.
+        </p>
+
+        <p>
+          Authentication is used to verify user identity and provide
+          controlled access to authorized services, documentation,
+          licensing systems, and operational tools.
+        </p>
+
+      </section>
+
 
       <section className="philosophy">
 
@@ -113,11 +142,14 @@ export default function Home() {
 
       </section>
 
+
       <section>
 
         <div className="section-header">
 
-          <h2>Products</h2>
+          <h2>
+            Products
+          </h2>
 
           <span>
             Active and in-development software projects from OneTime Labs.
@@ -125,9 +157,11 @@ export default function Home() {
 
         </div>
 
+
         <div className="projects">
 
           {products.map((product) => (
+
             <a
               key={product.name}
               href={product.url}
@@ -139,25 +173,36 @@ export default function Home() {
               }
               rel="noopener noreferrer"
             >
+
               <div className="cardTop">
 
                 <span className="category">
                   {product.category}
                 </span>
 
-<span
-  className={`status ${product.status
-    .toLowerCase()
-    .replace(/\s+/g, "-")}`}
->
-  {product.status}
-</span>
+
+                <span
+                  className={`status ${
+                    product.status
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")
+                  }`}
+                >
+                  {product.status}
+                </span>
 
               </div>
 
-              <h3>{product.name}</h3>
 
-              <p>{product.description}</p>
+              <h3>
+                {product.name}
+              </h3>
+
+
+              <p>
+                {product.description}
+              </p>
+
 
               <div className="cardFooter">
 
@@ -165,28 +210,70 @@ export default function Home() {
                   Open Project
                 </span>
 
-                <span>→</span>
+                <span>
+                  →
+                </span>
 
               </div>
 
             </a>
+
           ))}
 
         </div>
 
       </section>
 
+
+      <section className="authentication">
+
+        <h2>
+          Account Access
+        </h2>
+
+        <p>
+          OneTime Labs uses secure authentication to verify user
+          identity and provide access to authorized applications.
+          Users may be assigned to organizations and workspaces
+          based on their permissions.
+        </p>
+
+        <p>
+          OneTime Labs does not sell personal information or use
+          account data for advertising purposes.
+        </p>
+
+      </section>
+
+
       <footer>
+
+        <div>
+
+          <a href="/privacy">
+            Privacy Policy
+          </a>
+
+          {" | "}
+
+          <a href="/terms">
+            Terms of Service
+          </a>
+
+        </div>
+
 
         <span>
           I had an idea once.
         </span>
+
 
         <span>
           © 2026 OneTime Labs
         </span>
 
       </footer>
+
 
     </main>
   );
