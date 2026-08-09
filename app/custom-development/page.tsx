@@ -197,11 +197,47 @@ export default function CustomDevelopment() {
         </section>
 
         {/* ===================================================
-            ENGAGEMENT MODEL 006
+            TECHNOLOGY 006
+            =================================================== */}
+        <section className="custom-section custom-technology-section">
+          <div className="custom-section-kicker">
+            <span>03</span>
+            <p>TECHNOLOGY</p>
+          </div>
+
+          <div className="custom-heading-row">
+            <div>
+              <h2>Technology chosen around the problem.</h2>
+              <p>
+                The stack should support the application, not dictate it.
+                OneTime Labs works with modern web, automation, and data
+                technologies selected around the requirements of the project.
+              </p>
+            </div>
+          </div>
+
+          <div className="custom-terms-grid">
+            <Term
+              title="Application Development"
+              text="React · Next.js · TypeScript · JavaScript · C# · .NET"
+            />
+            <Term
+              title="Backend & Data"
+              text="PostgreSQL · SQL · Supabase · REST APIs · ASP.NET Core · REST API"
+            />
+            <Term
+              title="Automation & Scripting"
+              text="Python · PowerShell"
+            />
+          </div>
+        </section>
+
+        {/* ===================================================
+            ENGAGEMENT MODEL 007
             =================================================== */}
         <section className="custom-section custom-process-section">
           <div className="custom-section-kicker">
-            <span>03</span>
+            <span>04</span>
             <p>HOW IT WORKS</p>
           </div>
 
@@ -241,14 +277,14 @@ export default function CustomDevelopment() {
         </section>
 
         {/* ===================================================
-            PRICING 007
+            PRICING 008
             =================================================== */}
         <section
           className="custom-section custom-pricing-section"
           id="pricing"
         >
           <div className="custom-section-kicker">
-            <span>04</span>
+            <span>05</span>
             <p>STARTING PRICES</p>
           </div>
 
@@ -321,7 +357,7 @@ export default function CustomDevelopment() {
         </section>
 
         {/* ===================================================
-            OWNERSHIP 008
+            OWNERSHIP 009
             =================================================== */}
         <section className="custom-ownership">
           <div className="custom-ownership-copy">
@@ -354,11 +390,11 @@ export default function CustomDevelopment() {
         </section>
 
         {/* ===================================================
-            SCOPE CHANGES 009
+            SCOPE CHANGES 010
             =================================================== */}
         <section className="custom-section custom-terms-section">
           <div className="custom-section-kicker">
-            <span>05</span>
+            <span>06</span>
             <p>PROJECT MODEL</p>
           </div>
 
@@ -391,7 +427,7 @@ export default function CustomDevelopment() {
         </section>
 
         {/* ===================================================
-            CTA 010
+            CTA 011
             =================================================== */}
         <section className="custom-cta-section">
           <div>
@@ -415,7 +451,7 @@ export default function CustomDevelopment() {
       </main>
 
       {/* =====================================================
-          FOOTER 011
+          FOOTER 012
           ===================================================== */}
       <footer className="custom-footer">
         <div className="custom-footer-brand">
@@ -442,7 +478,7 @@ export default function CustomDevelopment() {
 }
 
 /* ==========================================================
-   COMPONENTS 012
+   COMPONENTS 013
    ========================================================== */
 
 type CapabilityProps = {
