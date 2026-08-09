@@ -37,13 +37,14 @@ export default function App() {
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="#products">Products</a>
+          <a href="/custom-development">Custom Development</a>
           <a href="#solutions">Solutions</a>
           <a href="#company">Company</a>
           <a href="#documentation">Documentation</a>
         </nav>
 
-        <a className="header-cta desktop-cta" href="#products">
-          Explore Products
+        <a className="header-cta desktop-cta" href="/custom-development">
+          Build Something
           <ArrowRight size={15} />
         </a>
 
@@ -61,6 +62,9 @@ export default function App() {
           <nav className="mobile-nav" aria-label="Mobile navigation">
             <a href="#products" onClick={() => setMenuOpen(false)}>
               Products
+            </a>
+            <a href="/custom-development" onClick={() => setMenuOpen(false)}>
+              Custom Development
             </a>
             <a href="#solutions" onClick={() => setMenuOpen(false)}>
               Solutions
@@ -100,8 +104,8 @@ export default function App() {
                 <ArrowRight size={16} />
               </a>
 
-              <a className="button button-light" href="#company">
-                About OneTime Labs
+              <a className="button button-light" href="/custom-development">
+                Build Something Custom
               </a>
             </div>
           </div>
@@ -162,7 +166,34 @@ export default function App() {
         </section>
 
         {/* ===================================================
-            PRODUCTS 006
+            CUSTOM DEVELOPMENT 006
+            =================================================== */}
+        <section className="custom-development-band">
+          <div className="custom-development-band-copy">
+            <p className="eyebrow">CUSTOM DEVELOPMENT</p>
+            <h2>Your process doesn't have to fit someone else's software.</h2>
+            <p>
+              Have an internal workflow, spreadsheet, reporting process, or
+              operational problem that deserves a real tool? OneTime Labs can
+              design and build it around the way your team actually works.
+            </p>
+          </div>
+
+          <div className="custom-development-band-action">
+            <Code2 size={30} strokeWidth={1.4} />
+            <p>
+              Purpose-built internal tools, workflow applications, dashboards,
+              automation, integrations, and business software.
+            </p>
+            <a className="text-link" href="/custom-development">
+              Custom Development
+              <ArrowRight size={15} />
+            </a>
+          </div>
+        </section>
+
+        {/* ===================================================
+            PRODUCTS 007
             =================================================== */}
         <section className="section products-section" id="products">
           <div className="section-kicker">
@@ -209,104 +240,19 @@ export default function App() {
                 <span>OTML</span>
               </div>
 
-              <a className="text-link" href="#documentation">
+              <a
+                className="text-link"
+                href="http://otles.onetimelabs.net"
+              >
                 Explore OTLES
                 <ArrowRight size={15} />
               </a>
             </div>
           </article>
-
-{/* ===================================================
-    PRODUCT PORTFOLIO 007A
-    =================================================== */}
-
-<div className="product-portfolio-header">
-  <p>MORE FROM ONETIME LABS</p>
-</div>
-
-<div className="product-grid">
-
-  <article className="product-card">
-    <div className="product-card-header">
-      <span>01</span>
-      <Boxes size={20} />
-    </div>
-
-    <div>
-      <h3>PCCR</h3>
-      <p className="product-card-type">
-        Printer Configuration & Compliance Reporting
-      </p>
-
-      <p className="product-card-description">
-        Analyze enterprise printer configuration data, identify
-        compliance issues, and produce actionable reporting.
-      </p>
-    </div>
-
-    <a className="product-card-link" href="http://pccr.onetimelabs.net">
-      View Product
-      <ArrowRight size={14} />
-    </a>
-  </article>
-
-
-  <article className="product-card">
-    <div className="product-card-header">
-      <span>02</span>
-      <Check size={20} />
-    </div>
-
-    <div>
-      <h3>TASKS</h3>
-      <p className="product-card-type">
-        Operational Task Management
-      </p>
-
-      <p className="product-card-description">
-        Lightweight operational task tracking designed around
-        technical teams and repeatable workflows. Added tasks 
-        are hosted on localStorage within your browser, no 
-        external database needed.
-      </p>
-    </div>
-
-    <a className="product-card-link" href="/products/tasks">
-      View Product
-      <ArrowRight size={14} />
-    </a>
-  </article>
-
-
-  <article className="product-card product-card-coming">
-    <div className="product-card-header">
-      <span>03</span>
-      <Code2 size={20} />
-    </div>
-
-    <div>
-      <h3>Coming Next</h3>
-      <p className="product-card-type">
-        OneTime Labs
-      </p>
-
-      <p className="product-card-description">
-        New focused tools are currently being developed inside
-        OneTime Labs.
-      </p>
-    </div>
-
-    <span className="product-card-status">
-      IN DEVELOPMENT
-    </span>
-  </article>
-
-</div>
-
         </section>
 
         {/* ===================================================
-            SOLUTIONS 007
+            SOLUTIONS 008
             =================================================== */}
         <section className="section solutions-section" id="solutions">
           <div className="section-kicker">
@@ -352,7 +298,7 @@ export default function App() {
         </section>
 
         {/* ===================================================
-            OWNERSHIP 008
+            OWNERSHIP 009
             =================================================== */}
         <section className="ownership-section">
           <div className="ownership-copy">
@@ -390,12 +336,14 @@ export default function App() {
         </section>
 
         {/* ===================================================
-            DOCUMENTATION 009
+            DOCUMENTATION 010
             =================================================== */}
         <section className="section docs-section" id="documentation">
           <div className="docs-card">
             <div>
-              <p className="eyebrow">OneTime Labs: Enterprise Standards (OTLES)</p>
+              <p className="eyebrow">
+                OneTime Labs: Enterprise Standards (OTLES)
+              </p>
               <h2>Built by engineers.</h2>
               <p>
                 Product guides, architecture notes, deployment information,
@@ -403,7 +351,10 @@ export default function App() {
               </p>
             </div>
 
-            <a className="button button-light-on-dark" href="https://otles.onetimelabs.net">
+            <a
+              className="button button-light-on-dark"
+              href="http://otles.onetimelabs.net"
+            >
               See it in Action
               <ArrowRight size={16} />
             </a>
@@ -412,7 +363,7 @@ export default function App() {
       </main>
 
       {/* =====================================================
-          FOOTER 010
+          FOOTER 011
           ===================================================== */}
       <footer className="site-footer">
         <div className="footer-brand">
@@ -425,6 +376,7 @@ export default function App() {
 
         <div className="footer-links">
           <a href="#products">Products</a>
+          <a href="/custom-development">Custom Development</a>
           <a href="#solutions">Solutions</a>
           <a href="#company">Company</a>
           <a href="#documentation">Documentation</a>
@@ -439,7 +391,7 @@ export default function App() {
 }
 
 /* ==========================================================
-   COMPONENT 011
+   COMPONENT 012
    Solution card
    ========================================================== */
 
