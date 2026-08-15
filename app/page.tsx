@@ -1,422 +1,87 @@
-"use client";
-
 import {
-  ArrowRight,
-  BookOpen,
-  Boxes,
-  Building2,
-  Check,
-  Code2,
-  Menu,
-  Server,
-  ShieldCheck,
-  X,
+  BookOpenText, ChevronDown, Gauge, KeyRound, LockKeyhole,
+  PackageOpen, Power, Radio, Wrench,
 } from "lucide-react";
-import { useState } from "react";
-
+import { getToolkits } from "../lib/toolkits/service";
+import type { ToolkitRecord } from "../lib/toolkits/types";
 import "./page.css";
 
-/* ==========================================================
-   APP 001
-   OneTime Labs corporate website
-   ========================================================== */
+// ==========================================================
+// HEADER 001 — PRIMARY PRODUCTS
+// ==========================================================
 
-export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
+const products = [
+  { name: "OTLES", category: "DOCUMENTATION", description: "Technical documentation platform", href: "https://otles.onetimelabs.net", icon: BookOpenText, accent: "cyan", status: "ONLINE" },
+  { name: "LICENSING", category: "ACTIVATION + SEATS", description: "Software licensing and activation", href: "https://licensing.onetimelabs.net", icon: KeyRound, accent: "amber", status: "ONLINE" },
+] as const;
 
+// ==========================================================
+// PRODUCT BUTTON 002 — HARDWARE KEY
+// ==========================================================
+
+function ProductButton({ product }: { product: (typeof products)[number] }) {
+  const Icon = product.icon;
   return (
-    <div className="site-shell">
-      {/* =====================================================
-          HEADER 002
-          ===================================================== */}
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="OneTime Labs home">
-          <span className="brand-mark">OTL</span>
-          <span className="brand-name">OneTime Labs</span>
-        </a>
-
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#products">Products</a>
-          <a href="/custom-development">Custom Development</a>
-          <a href="#solutions">Solutions</a>
-          <a href="#company">Company</a>
-          <a href="#documentation">Documentation</a>
-        </nav>
-
-        <a className="header-cta desktop-cta" href="/custom-development">
-          Build Something
-          <ArrowRight size={15} />
-        </a>
-
-        <button
-          className="menu-button"
-          type="button"
-          aria-label="Toggle navigation"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((value) => !value)}
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-
-        {menuOpen && (
-          <nav className="mobile-nav" aria-label="Mobile navigation">
-            <a href="#products" onClick={() => setMenuOpen(false)}>
-              Products
-            </a>
-            <a href="/custom-development" onClick={() => setMenuOpen(false)}>
-              Custom Development
-            </a>
-            <a href="#solutions" onClick={() => setMenuOpen(false)}>
-              Solutions
-            </a>
-            <a href="#company" onClick={() => setMenuOpen(false)}>
-              Company
-            </a>
-            <a href="#documentation" onClick={() => setMenuOpen(false)}>
-              Documentation
-            </a>
-          </nav>
-        )}
-      </header>
-
-      <main id="top">
-        {/* ===================================================
-            HERO 003
-            =================================================== */}
-        <section className="hero">
-          <div className="hero-copy">
-            <p className="eyebrow">INDEPENDENT SOFTWARE ENGINEERING</p>
-
-            <h1>
-              Software built
-              <br />
-              to be <em>yours.</em>
-            </h1>
-
-            <p className="hero-description">
-              OneTime Labs builds practical software for teams that want
-              control over their tools, their data, and their infrastructure.
-            </p>
-
-            <div className="hero-actions">
-              <a className="button button-dark" href="#products">
-                Explore Products
-                <ArrowRight size={16} />
-              </a>
-
-              <a className="button button-light" href="/custom-development">
-                Build Something Custom
-              </a>
-            </div>
-          </div>
-
-          <div className="hero-principle" aria-label="OneTime Labs principle">
-            <span className="principle-number">01</span>
-            <div>
-              <p className="principle-label">THE PRINCIPLE</p>
-              <p className="principle-statement">
-                Buy it.
-                <br />
-                Deploy it.
-                <br />
-                <strong>Own it.</strong>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ===================================================
-            TRUST STRIP 004
-            =================================================== */}
-        <section className="trust-strip" aria-label="Product principles">
-          <span><Check size={14} /> Self-hosted options</span>
-          <span><Check size={14} /> Perpetual licensing</span>
-          <span><Check size={14} /> Your infrastructure</span>
-          <span><Check size={14} /> No forced subscription</span>
-        </section>
-
-        {/* ===================================================
-            PHILOSOPHY 005
-            =================================================== */}
-        <section className="section philosophy-section" id="company">
-          <div className="section-kicker">
-            <span>02</span>
-            <p>BUILT DIFFERENTLY</p>
-          </div>
-
-          <div className="philosophy-grid">
-            <h2>
-              We don't think every piece of software needs to become a
-              monthly bill.
-            </h2>
-
-            <div className="body-copy">
-              <p>
-                OneTime Labs develops focused software designed around
-                ownership rather than dependency.
-              </p>
-              <p>
-                Our products solve specific operational problems without
-                turning the customer into a permanent subscriber. Where
-                practical, applications can run in your environment and keep
-                your data under your control.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ===================================================
-            CUSTOM DEVELOPMENT 006
-            =================================================== */}
-        <section className="custom-development-band">
-          <div className="custom-development-band-copy">
-            <p className="eyebrow">CUSTOM DEVELOPMENT</p>
-            <h2>Your process doesn't have to fit someone else's software.</h2>
-            <p>
-              Have an internal workflow, spreadsheet, reporting process, or
-              operational problem that deserves a real tool? OneTime Labs can
-              design and build it around the way your team actually works.
-            </p>
-          </div>
-
-          <div className="custom-development-band-action">
-            <Code2 size={30} strokeWidth={1.4} />
-            <p>
-              Purpose-built internal tools, workflow applications, dashboards,
-              automation, integrations, and business software.
-            </p>
-            <a className="text-link" href="/custom-development">
-              Custom Development
-              <ArrowRight size={15} />
-            </a>
-          </div>
-        </section>
-
-        {/* ===================================================
-            PRODUCTS 007
-            =================================================== */}
-        <section className="section products-section" id="products">
-          <div className="section-kicker">
-            <span>03</span>
-            <p>PRODUCTS</p>
-          </div>
-
-          <div className="section-heading-row">
-            <div>
-              <h2>Purpose-built software.</h2>
-              <p>
-                Focused tools for real operational work. No platform theater.
-              </p>
-            </div>
-          </div>
-
-          <article className="featured-product">
-            <div className="product-identity">
-              <div className="product-icon">
-                <BookOpen size={27} strokeWidth={1.5} />
-              </div>
-
-              <div>
-                <p className="product-label">FLAGSHIP PRODUCT</p>
-                <h3>OTLES</h3>
-                <p className="product-name">
-                  Operational &amp; Technical Library Engineering System
-                </p>
-              </div>
-            </div>
-
-            <div className="product-description">
-              <p>
-                Structured documentation for technical and operational teams.
-                Organize knowledge, maintain revisions, control access, and
-                publish consistent documentation without building another
-                sprawling wiki.
-              </p>
-
-              <div className="product-tags">
-                <span>Structured docs</span>
-                <span>Revision history</span>
-                <span>Organization access</span>
-                <span>OTML</span>
-              </div>
-
-              <a
-                className="text-link"
-                href="http://otles.onetimelabs.net"
-              >
-                Explore OTLES
-                <ArrowRight size={15} />
-              </a>
-            </div>
-          </article>
-        </section>
-
-        {/* ===================================================
-            SOLUTIONS 008
-            =================================================== */}
-        <section className="section solutions-section" id="solutions">
-          <div className="section-kicker">
-            <span>04</span>
-            <p>SOLUTIONS</p>
-          </div>
-
-          <div className="section-heading-row">
-            <div>
-              <h2>Built around the problem.</h2>
-              <p>
-                Not every operational problem needs another enormous platform.
-              </p>
-            </div>
-          </div>
-
-          <div className="solution-grid">
-            <SolutionCard
-              icon={<BookOpen size={22} />}
-              number="01"
-              title="Technical Documentation"
-              text="Structured, versioned operational knowledge without the wiki sprawl."
-            />
-            <SolutionCard
-              icon={<Boxes size={22} />}
-              number="02"
-              title="IT Operations"
-              text="Focused tools designed around the workflows infrastructure teams actually use."
-            />
-            <SolutionCard
-              icon={<Server size={22} />}
-              number="03"
-              title="Self-Hosted Software"
-              text="Keep applications and business data within infrastructure you control."
-            />
-            <SolutionCard
-              icon={<Code2 size={22} />}
-              number="04"
-              title="Custom Engineering"
-              text="Purpose-built internal tooling when off-the-shelf software is the wrong fit."
-            />
-          </div>
-        </section>
-
-        {/* ===================================================
-            OWNERSHIP 009
-            =================================================== */}
-        <section className="ownership-section">
-          <div className="ownership-copy">
-            <p className="eyebrow">THE ONETIME MODEL</p>
-            <h2>Ownership should still be an option.</h2>
-            <p>
-              Software that performs a defined job shouldn't necessarily
-              require an indefinite monthly payment to keep doing that job.
-            </p>
-          </div>
-
-          <div className="ownership-points">
-            <div>
-              <ShieldCheck size={21} />
-              <span>
-                <strong>Control</strong>
-                Your software. Your environment.
-              </span>
-            </div>
-            <div>
-              <Server size={21} />
-              <span>
-                <strong>Deployment</strong>
-                Self-host where practical.
-              </span>
-            </div>
-            <div>
-              <Building2 size={21} />
-              <span>
-                <strong>Licensing</strong>
-                Clear terms without forced SaaS.
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* ===================================================
-            DOCUMENTATION 010
-            =================================================== */}
-        <section className="section docs-section" id="documentation">
-          <div className="docs-card">
-            <div>
-              <p className="eyebrow">
-                OneTime Labs: Enterprise Standards (OTLES)
-              </p>
-              <h2>Built by engineers.</h2>
-              <p>
-                Product guides, architecture notes, deployment information,
-                and technical references belong in one predictable place.
-              </p>
-            </div>
-
-            <a
-              className="button button-light-on-dark"
-              href="http://otles.onetimelabs.net"
-            >
-              See it in Action
-              <ArrowRight size={16} />
-            </a>
-          </div>
-        </section>
-      </main>
-
-      {/* =====================================================
-          FOOTER 011
-          ===================================================== */}
-      <footer className="site-footer">
-        <div className="footer-brand">
-          <span className="brand-mark">OTL</span>
-          <div>
-            <strong>OneTime Labs</strong>
-            <p>Software built to be yours.</p>
-          </div>
-        </div>
-
-        <div className="footer-links">
-          <a href="#products">Products</a>
-          <a href="/custom-development">Custom Development</a>
-          <a href="#solutions">Solutions</a>
-          <a href="#company">Company</a>
-          <a href="#documentation">Documentation</a>
-        </div>
-
-        <p className="copyright">
-          © {new Date().getFullYear()} OneTime Labs.
-        </p>
-      </footer>
+    <div className="product-well">
+      <a className={`product-key product-key--${product.accent}`} href={product.href} aria-label={`Open ${product.name}`}>
+        <div className="product-key__topline"><span className="product-key__status"><span className={`status-led status-led--${product.accent}`} />{product.status}</span><span>OPEN ↗</span></div>
+        <div className="product-key__center"><Icon className="product-key__icon" strokeWidth={1.65} /><div><strong className="product-key__name">{product.name}</strong><span className="product-key__category">{product.category}</span></div></div>
+        <span className="product-key__description">{product.description}</span>
+      </a>
     </div>
   );
 }
 
-/* ==========================================================
-   COMPONENT 012
-   Solution card
-   ========================================================== */
+// ==========================================================
+// TOOLKITS 003 — DROPDOWN PRODUCT KEY
+// ==========================================================
 
-type SolutionCardProps = {
-  icon: React.ReactNode;
-  number: string;
-  title: string;
-  text: string;
-};
-
-function SolutionCard({
-  icon,
-  number,
-  title,
-  text,
-}: SolutionCardProps) {
+function ToolkitsButton({ toolkits }: { toolkits: ToolkitRecord[] }) {
   return (
-    <article className="solution-card">
-      <div className="solution-card-top">
-        <span className="solution-icon">{icon}</span>
-        <span className="solution-number">{number}</span>
-      </div>
+    <div className="product-well toolkit-well">
+      <details className="toolkit-selector">
+        <summary className="product-key product-key--green">
+          <div className="product-key__topline"><span className="product-key__status"><span className="status-led status-led--green" />{toolkits.length ? `${toolkits.length} INSTALLED` : "READY"}</span><span className="toolkit-select">SELECT <ChevronDown size={12} /></span></div>
+          <div className="product-key__center"><Wrench className="product-key__icon" strokeWidth={1.65} /><div><strong className="product-key__name">TOOLKITS</strong><span className="product-key__category">IT + ENGINEERING</span></div></div>
+          <span className="product-key__description">Operational and engineering tools</span>
+        </summary>
+        <div className="toolkit-dropdown">
+          <div className="toolkit-dropdown__header"><div><span>TOOLKIT SELECTOR</span><strong>INSTALLED MODULES</strong></div><b>{String(toolkits.length).padStart(2, "0")}</b></div>
+          {toolkits.length ? <div className="toolkit-dropdown__list">{toolkits.map((t) => <a key={t.id} className={`toolkit-dropdown__item toolkit-accent--${t.accent}`} href={t.url}><i /><span><strong>{t.name}</strong><small>{t.category}</small></span><em>OPEN ↗</em></a>)}</div> : <div className="toolkit-empty"><PackageOpen size={18} /><div><strong>NO MODULES INSTALLED</strong><span>Catalog ready for Platform.</span></div></div>}
+        </div>
+      </details>
+    </div>
+  );
+}
 
-      <h3>{title}</h3>
-      <p>{text}</p>
-    </article>
+// ==========================================================
+// TOOLKIT BAY 004 — DYNAMIC MODULES
+// ==========================================================
+
+function ToolkitBay({ toolkits }: { toolkits: ToolkitRecord[] }) {
+  return (
+    <section className="toolkit-bay" aria-labelledby="toolkit-bay-title">
+      <header className="toolkit-bay__header"><div><span>MODULE BAY // TK-01</span><h2 id="toolkit-bay-title">TOOLKITS</h2></div><div><span>INSTALLED</span><strong>{String(toolkits.length).padStart(2, "0")}</strong></div></header>
+      {toolkits.length ? <div className="toolkit-bay__grid">{toolkits.map((t) => <div key={t.id} className={`toolkit-module-well toolkit-accent--${t.accent}`}><a className="toolkit-module" href={t.url}><div className="toolkit-module__top"><span><i />{t.category}</span><span>OPEN ↗</span></div><strong>{t.name}</strong><p>{t.description}</p></a></div>)}</div> : <div className="toolkit-bay__empty"><PackageOpen size={22} /><div><strong>NO TOOLKITS INSTALLED</strong><span>BAY READY // PLATFORM CATALOG INTERFACE AVAILABLE</span></div></div>}
+    </section>
+  );
+}
+
+// ==========================================================
+// PAGE 005 — ONE TIME LABS PRODUCT DECK
+// ==========================================================
+
+export default async function Home() {
+  const toolkits = await getToolkits();
+  return (
+    <main className="site-shell">
+      <section className="control-panel" aria-label="OneTime Labs product launcher">
+        <div className="panel-screw panel-screw--tl" /><div className="panel-screw panel-screw--tr" /><div className="panel-screw panel-screw--bl" /><div className="panel-screw panel-screw--br" />
+        <header className="panel-header"><div className="brand-block"><div className="brand-block__title-row"><Power size={18} /><h1>OneTime Labs</h1><span className="header-online"><i />ONLINE</span></div><p>SOFTWARE + ENGINEERING TOOLS</p></div><div className="panel-id"><span>OTL // PRODUCT SYSTEM</span><strong>DECK-01</strong></div></header>
+        <section className="deck-display"><div className="deck-display__screen"><div><strong>SELECT A PRODUCT</strong></div><div className="screen-right"><span>MODE</span><strong>OWNERSHIP</strong></div></div><div className="deck-display__indicators"><i className="active" /><i className="active" /><i className="active" /><i /></div></section>
+        <section className="product-grid" aria-label="OneTime Labs products">{products.map((p) => <ProductButton key={p.name} product={p} />)}<ToolkitsButton toolkits={toolkits} /></section>
+        <ToolkitBay toolkits={toolkits} />
+      </section>
+    </main>
   );
 }
