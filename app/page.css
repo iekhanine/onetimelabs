@@ -907,7 +907,19 @@ a.product-key:focus-visible {
   .product-grid { grid-template-columns: 1fr; }
   .product-well { min-height: 126px; }
   .product-key { min-height: 110px; }
-  .toolkit-dropdown { position: static; width: 100%; margin-top: 10px; }
+  .toolkit-dropdown {
+  position: absolute;
+
+  top: calc(100% + 10px);
+  right: 0;
+  left: 0;
+
+  width: 100%;
+
+  margin-top: 0;
+
+  z-index: 100;
+}
   .toolkit-bay__grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 

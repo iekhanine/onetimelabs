@@ -13,9 +13,9 @@ export const localToolkits: ToolkitRecord[] = [
   slug: "network-toolkit",
   category: "IT",
   description: "Network diagnostics and administration tools.",
-  url: "#",
+  url: "/toolkits/network",
   status: "active",
-  accent: "cyan",
+  accent: "green",
   sortOrder: 10,
 },
 
@@ -25,7 +25,7 @@ export const localToolkits: ToolkitRecord[] = [
   slug: "metrology-toolkit",
   category: "METROLOGY",
   description: "Measurement, tolerance, and calibration utilities.",
-  url: "#",
+  url: "/toolkits/metrology",
   status: "active",
   accent: "green",
   sortOrder: 20,
@@ -51,7 +51,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "Hashing, certificates, encoding, and security utilities.",
   url: "#",
   status: "active",
-  accent: "red",
+  accent: "violet",
   sortOrder: 40,
 },
 
@@ -63,7 +63,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "HVAC, electrical, maintenance, and facility utilities.",
   url: "#",
   status: "active",
-  accent: "amber",
+  accent: "violet",
   sortOrder: 50,
 },
 
@@ -75,7 +75,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "JSON, Base64, UUID, regex, and developer utilities.",
   url: "#",
   status: "active",
-  accent: "cyan",
+  accent: "violet",
   sortOrder: 60,
 },
 
@@ -87,7 +87,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "CSV, JSON, text, conversion, and data inspection tools.",
   url: "#",
   status: "active",
-  accent: "green",
+  accent: "violet",
   sortOrder: 70,
 },
 
@@ -99,7 +99,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "Operational planning, workflow, and field utilities.",
   url: "#",
   status: "active",
-  accent: "amber",
+  accent: "violet",
   sortOrder: 80,
 },
 
@@ -123,7 +123,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "Asset lifecycle, inventory, normalization, and audit utilities.",
   url: "#",
   status: "active",
-  accent: "cyan",
+  accent: "violet",
   sortOrder: 100,
 },
 
@@ -135,7 +135,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "Practical calculators and utilities for field technicians.",
   url: "#",
   status: "active",
-  accent: "green",
+  accent: "violet",
   sortOrder: 110,
 },
 
@@ -147,7 +147,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "Voltage, current, resistance, power, and electrical calculations.",
   url: "#",
   status: "active",
-  accent: "amber",
+  accent: "violet",
   sortOrder: 120,
 },
 
@@ -171,7 +171,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "Time zones, timestamps, durations, dates, and scheduling tools.",
   url: "#",
   status: "active",
-  accent: "cyan",
+  accent: "violet",
   sortOrder: 140,
 },
 
@@ -183,7 +183,7 @@ export const localToolkits: ToolkitRecord[] = [
   description: "Engineering, scientific, storage, and unit conversions.",
   url: "#",
   status: "active",
-  accent: "green",
+  accent: "violet",
   sortOrder: 150,
 },
 {
