@@ -8,6 +8,17 @@ import type { ToolkitRecord } from "./types";
 
 export const localToolkits: ToolkitRecord[] = [
 {
+  id: "metronome",
+  name: "METRONOME",
+  slug: "metronome",
+  category: "AUDIO + TIMING",
+  description: "Tempo reference with tap tempo, meter selection, audible click, and visual beat indication.",
+  url: "/tools/metronome",
+  status: "active",
+  accent: "green",
+  sortOrder: 0,
+},
+{
   id: "network-toolkit",
   name: "NETWORK TOOLKIT",
   slug: "network-toolkit",
