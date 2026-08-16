@@ -77,7 +77,7 @@ export default async function Home() {
     <main className="site-shell">
       <section className="control-panel" aria-label="OneTime Labs product launcher">
         <div className="panel-screw panel-screw--tl" /><div className="panel-screw panel-screw--tr" /><div className="panel-screw panel-screw--bl" /><div className="panel-screw panel-screw--br" />
-        <header className="panel-header"><div className="brand-block"><div className="brand-block__title-row"><Power size={18} /><h1>OneTime Labs</h1><span className="header-online"><i />ONLINE</span></div><p>SOFTWARE + ENGINEERING TOOLS</p></div><div className="panel-id"><span>OTL // PRODUCT SYSTEM</span><strong>DECK-01</strong></div></header>
+        <header className="panel-header"><div className="brand-block"><div className="brand-block__title-row"><Power size={18} /><h1>OneTime Labs</h1><span className="header-online"><i />ONLINE</span></div><p>SOFTWARE + TOOLS</p></div><div className="panel-id"><span>OTL // PRODUCT SYSTEM</span><strong>DECK-01</strong></div></header>
         <section className="deck-display"><div className="deck-display__screen"><div><strong>SELECT A PRODUCT</strong></div><div className="screen-right"><span>MODE</span><strong>OWNERSHIP</strong></div></div><div className="deck-display__indicators"><i className="active" /><i className="active" /><i className="active" /><i /></div></section>
         <section className="product-grid" aria-label="OneTime Labs products">{products.map((p) => <ProductButton key={p.name} product={p} />)}<ToolkitsButton toolkits={toolkits} /></section>
         <ToolkitBay toolkits={toolkits} />
