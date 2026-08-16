@@ -1,0 +1,330 @@
+/* ==========================================================
+   ARCADE 001 — GLOBAL SHELL
+   ========================================================== */
+
+:root {
+  --arcade-bg: #080a0b;
+  --arcade-panel: #181b1d;
+  --arcade-text: #e7eaeb;
+  --arcade-muted: #747d81;
+  --amber: #ffbf55;
+  --green: #67dc93;
+  --cyan: #56d8ef;
+  --violet: #ae8cff;
+  --red: #ef7272;
+  --mono: "SFMono-Regular", "Cascadia Code", Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #080a0b;
+  color: var(--arcade-text);
+}
+
+.arcade-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 50% -20%, rgba(255,191,85,.07), transparent 42%),
+    linear-gradient(180deg, #0d1011, #070809);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+
+/* ==========================================================
+   ARCADE 002 — HARDWARE ENCLOSURE
+   ========================================================== */
+
+.arcade-panel {
+  width: min(1120px, 100%);
+  padding: 24px;
+  border: 1px solid #33383b;
+  border-radius: 9px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.007) 0, rgba(255,255,255,.007) 1px, transparent 1px, transparent 3px),
+    #181b1d;
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.58),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+
+/* ==========================================================
+   HEADER 003 — MODULE ID
+   ========================================================== */
+
+.arcade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 0 3px 16px;
+  border-bottom: 1px solid #2b2f32;
+}
+
+.arcade-kicker {
+  color: #61696d;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .14em;
+}
+
+.arcade-header h1 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 6px 0 4px;
+  font-family: var(--mono);
+  font-size: 20px;
+  letter-spacing: .04em;
+}
+
+.arcade-header h1 svg {
+  color: var(--amber);
+}
+
+.arcade-header p {
+  margin: 0;
+  color: #778084;
+  font-size: 10px;
+}
+
+.arcade-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 11px;
+  border: 1px solid #303538;
+  border-radius: 3px;
+  background: #111416;
+  color: #8e9699;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .08em;
+  text-decoration: none;
+}
+
+
+/* ==========================================================
+   DISPLAY 004 — LCD PROGRAM STRIP
+   ========================================================== */
+
+.arcade-display {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 14px 0;
+  padding: 11px 16px;
+  border: 1px solid #080a0a;
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,.016) 0, rgba(255,255,255,.016) 1px, transparent 1px, transparent 4px),
+    #100e09;
+  box-shadow:
+    inset 0 3px 10px rgba(0,0,0,.86),
+    inset 0 0 0 1px rgba(255,191,85,.05);
+}
+
+.arcade-display div:last-child {
+  text-align: right;
+}
+
+.arcade-display span {
+  display: block;
+  margin-bottom: 4px;
+  color: #75603e;
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: .16em;
+}
+
+.arcade-display strong {
+  color: #d8b978;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .11em;
+  text-shadow: 0 0 9px rgba(255,191,85,.14);
+}
+
+
+/* ==========================================================
+   PROGRAM GRID 005 — RECESSED WELLS
+   ========================================================== */
+
+.arcade-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.arcade-well {
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid #090a0b;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #0b0d0e, #151819 40%, #090a0b);
+  box-shadow:
+    inset 0 4px 9px rgba(0,0,0,.88),
+    0 1px 0 rgba(255,255,255,.025);
+}
+
+
+/* ==========================================================
+   PROGRAM KEY 006 — PHYSICAL GAME BUTTON
+   ========================================================== */
+
+.arcade-key {
+  --accent: var(--amber);
+  --rgb: 255, 191, 85;
+
+  min-height: 154px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid #353a3d;
+  border-radius: 3px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(var(--rgb),.075), transparent 46%),
+    linear-gradient(180deg, #25292b, #1b1e20 56%, #151719);
+  color: var(--arcade-text);
+  text-decoration: none;
+  box-shadow:
+    0 5px 0 #090a0b,
+    0 7px 9px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.09);
+  transition: transform 110ms ease, border-color 130ms ease, filter 130ms ease;
+}
+
+.arcade-key:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--rgb),.45);
+  filter: brightness(1.06);
+}
+
+.arcade-key:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 1px 0 #090a0b,
+    inset 0 2px 7px rgba(0,0,0,.5);
+}
+
+.arcade-key--green { --accent: var(--green); --rgb: 103,220,147; }
+.arcade-key--cyan { --accent: var(--cyan); --rgb: 86,216,239; }
+.arcade-key--violet { --accent: var(--violet); --rgb: 174,140,255; }
+.arcade-key--red { --accent: var(--red); --rgb: 239,114,114; }
+.arcade-key--amber { --accent: var(--amber); --rgb: 255,191,85; }
+
+.arcade-key__top,
+.arcade-key__open {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #687074;
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: .1em;
+}
+
+.arcade-key__top span:first-child,
+.arcade-key__open {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.arcade-key__top i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px rgba(var(--rgb),.75);
+}
+
+.arcade-key__body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.arcade-key__body > svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.arcade-key__body strong {
+  display: block;
+  margin-bottom: 5px;
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: .035em;
+}
+
+.arcade-key__body p {
+  margin: 0;
+  color: #747c80;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+
+/* ==========================================================
+   RESPONSIVE 007 — MOBILE
+   ========================================================== */
+
+@media (max-width: 820px) {
+  .arcade-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .arcade-shell {
+    display: block;
+    padding: 0;
+  }
+
+  .arcade-panel {
+    min-height: 100vh;
+    padding: 18px 14px;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  .arcade-header {
+    align-items: flex-start;
+  }
+
+  .arcade-header p {
+    max-width: 220px;
+  }
+
+  .arcade-back {
+    padding: 8px;
+    font-size: 0;
+  }
+
+  .arcade-display div:last-child {
+    display: none;
+  }
+
+  .arcade-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .arcade-key {
+    min-height: 120px;
+  }
+}

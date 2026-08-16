@@ -1,6 +1,6 @@
 import {
-  BookOpenText, ChevronDown, Gauge, KeyRound, LockKeyhole,
-  PackageOpen, Power, Radio, Wrench,
+  BookOpenText, ChevronDown, Gamepad2,
+  PackageOpen, Power, Wrench,
 } from "lucide-react";
 import { getToolkits } from "../lib/toolkits/service";
 import type { ToolkitRecord } from "../lib/toolkits/types";
@@ -12,7 +12,7 @@ import "./page.css";
 
 const products = [
   { name: "OTLES", category: "DOCUMENTATION", description: "Technical documentation platform", href: "https://otles.onetimelabs.net", icon: BookOpenText, accent: "cyan", status: "ONLINE" },
-  { name: "LICENSING", category: "ACTIVATION + SEATS", description: "Software licensing and activation", href: "https://licensing.onetimelabs.net", icon: KeyRound, accent: "amber", status: "ONLINE" },
+  { name: "ARCADE", category: "GAMES + EXPERIMENTS", description: "Games, puzzles, and interactive experiments", href: "/arcade", icon: Gamepad2, accent: "amber", status: "ONLINE" },
 ] as const;
 
 // ==========================================================
@@ -77,8 +77,8 @@ export default async function Home() {
     <main className="site-shell">
       <section className="control-panel" aria-label="OneTime Labs product launcher">
         <div className="panel-screw panel-screw--tl" /><div className="panel-screw panel-screw--tr" /><div className="panel-screw panel-screw--bl" /><div className="panel-screw panel-screw--br" />
-        <header className="panel-header"><div className="brand-block"><div className="brand-block__title-row"><Power size={18} /><h1>OneTime Labs</h1><span className="header-online"><i />ONLINE</span></div><p>SOFTWARE + TOOLS</p></div><div className="panel-id"><span>OTL // PRODUCT SYSTEM</span><strong>DECK-01</strong></div></header>
-        <section className="deck-display"><div className="deck-display__screen"><div><strong>SELECT A PRODUCT</strong></div><div className="screen-right"><span>MODE</span><strong>OWNERSHIP</strong></div></div><div className="deck-display__indicators"><i className="active" /><i className="active" /><i className="active" /><i /></div></section>
+        <header className="panel-header"><div className="brand-block"><div className="brand-block__title-row"><Power size={18} /><h1>OneTime Labs</h1><span className="header-online"><i />ONLINE</span></div><p>SOFTWARE + ENGINEERING TOOLS</p></div><div className="panel-id"><span>OTL // PRODUCT SYSTEM</span><strong>DECK-01</strong></div></header>
+        <section className="deck-display"><div className="deck-display__screen"><div><span>PRODUCT DECK</span><strong>SELECT A PRODUCT</strong></div><div className="screen-right"><span>MODE</span><strong>OWNERSHIP</strong></div></div><div className="deck-display__indicators"><i className="active" /><i className="active" /><i className="active" /><i /></div></section>
         <section className="product-grid" aria-label="OneTime Labs products">{products.map((p) => <ProductButton key={p.name} product={p} />)}<ToolkitsButton toolkits={toolkits} /></section>
         <ToolkitBay toolkits={toolkits} />
       </section>
