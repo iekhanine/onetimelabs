@@ -32,42 +32,42 @@ const toolkitItems = [
     category: "EMAIL UTILITY",
     description:
       "Paste email content and parse the useful details.",
-    href: `${TOOLKITS_URL}#mail-parser`,
+    href: "/toolkits/mail-parser",
   },
   {
     name: "ARCADE",
     category: "GAMING",
     description:
       "Games and interactive experiments.",
-    href: `${TOOLKITS_URL}#arcade`,
+    href: "/toolkits/arcade",
   },
   {
     name: "METROLOGY",
     category: "MEASUREMENT",
     description:
       "Measurement and calibration utilities.",
-    href: `${TOOLKITS_URL}#metrology`,
+    href: "/toolkits/metrology",
   },
   {
     name: "IT OPERATIONS",
     category: "SYSTEMS",
     description:
       "Operational utilities for infrastructure and support.",
-    href: `${TOOLKITS_URL}#it-operations`,
+    href: "/toolkits/it-operations",
   },
   {
     name: "HVAC FIELD",
     category: "FACILITIES",
     description:
       "Field tools for HVAC and maintenance work.",
-    href: `${TOOLKITS_URL}#hvac-field`,
+    href: "/toolkits/hvac-field",
   },
   {
     name: "NETWORK",
     category: "NETWORKING",
     description:
       "Network utilities and diagnostics.",
-    href: `${TOOLKITS_URL}#network`,
+    href: "/toolkits/network",
   },
 ] as const;
 
@@ -261,7 +261,7 @@ export default function Home() {
           <div className="product-well product-well--primary">
             <a
               className="product-key product-key--violet"
-              href={`${TOOLKITS_URL}#mail-parser`}
+              href="/toolkits/mail-parser"
             >
               <div className="product-key__topline">
                 <span className="product-key__status">
@@ -370,7 +370,7 @@ export default function Home() {
               </div>
 
               <a
-                href={TOOLKITS_URL}
+                href="/toolkits"
                 className="toolkits-menu__all"
               >
                 OPEN TOOLKITS ↗
