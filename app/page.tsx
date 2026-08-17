@@ -1,13 +1,22 @@
 import {
-  BookOpenText, ChevronDown, Gamepad2,
-  PackageOpen, Power, Wrench,
+  BookOpenText,
+  Boxes,
+  ChevronDown,
+  Gauge,
+  Gamepad2,
+  PackageOpen,
+  Power,
+  RefreshCw,
+  Rocket,
+  Wrench,
 } from "lucide-react";
 import { getToolkits } from "../lib/toolkits/service";
 import type { ToolkitRecord } from "../lib/toolkits/types";
+import HomeInquiryForm from "./HomeInquiryForm";
 import "./page.css";
 
 // ==========================================================
-// HEADER 001 — PRIMARY PRODUCTS
+// HEADER 001 - PRIMARY PRODUCTS
 // ==========================================================
 
 const products = [
@@ -15,8 +24,35 @@ const products = [
   { name: "ARCADE", category: "GAMES + EXPERIMENTS", description: "Games, puzzles, and interactive experiments", href: "/arcade", icon: Gamepad2, accent: "amber", status: "ONLINE" },
 ] as const;
 
+const services = [
+  {
+    number: "01",
+    title: "Custom Development",
+    description: "Web applications built around your actual workflow instead of forcing your business into an existing SaaS product.",
+    icon: Boxes,
+  },
+  {
+    number: "02",
+    title: "Internal Tools",
+    description: "Dashboards, portals, asset systems, administrative applications, reporting systems, and purpose-built operational software.",
+    icon: Gauge,
+  },
+  {
+    number: "03",
+    title: "Process Modernization",
+    description: "Replace Excel, Access, PDFs, paper forms, shared drives, email chains, and repetitive manual work with software built for the job.",
+    icon: RefreshCw,
+  },
+  {
+    number: "04",
+    title: "Rapid Prototyping",
+    description: "Turn a business problem or software idea into a functional prototype that can be demonstrated, tested, and refined quickly.",
+    icon: Rocket,
+  },
+] as const;
+
 // ==========================================================
-// PRODUCT BUTTON 002 — HARDWARE KEY
+// PRODUCT BUTTON 002 - HARDWARE KEY
 // ==========================================================
 
 function ProductButton({ product }: { product: (typeof products)[number] }) {
@@ -33,7 +69,7 @@ function ProductButton({ product }: { product: (typeof products)[number] }) {
 }
 
 // ==========================================================
-// TOOLKITS 003 — DROPDOWN PRODUCT KEY
+// TOOLKITS 003 - DROPDOWN PRODUCT KEY
 // ==========================================================
 
 function ToolkitsButton({ toolkits }: { toolkits: ToolkitRecord[] }) {
@@ -55,7 +91,7 @@ function ToolkitsButton({ toolkits }: { toolkits: ToolkitRecord[] }) {
 }
 
 // ==========================================================
-// TOOLKIT BAY 004 — DYNAMIC MODULES
+// TOOLKIT BAY 004 - DYNAMIC MODULES
 // ==========================================================
 
 function ToolkitBay({ toolkits }: { toolkits: ToolkitRecord[] }) {
@@ -68,17 +104,81 @@ function ToolkitBay({ toolkits }: { toolkits: ToolkitRecord[] }) {
 }
 
 // ==========================================================
-// PAGE 005 — ONE TIME LABS PRODUCT DECK
+// PAGE 005 - ONETIME LABS
 // ==========================================================
 
 export default async function Home() {
   const toolkits = await getToolkits();
+
   return (
     <main className="site-shell">
-      <section className="control-panel" aria-label="OneTime Labs product launcher">
+      <section className="control-panel" aria-label="OneTime Labs">
         <div className="panel-screw panel-screw--tl" /><div className="panel-screw panel-screw--tr" /><div className="panel-screw panel-screw--bl" /><div className="panel-screw panel-screw--br" />
-        <header className="panel-header"><div className="brand-block"><div className="brand-block__title-row"><Power size={18} /><h1>OneTime Labs</h1><span className="header-online"><i />ONLINE</span></div><p>SOFTWARE + ENGINEERING TOOLS</p></div><div className="panel-id"><span>OTL // PRODUCT SYSTEM</span><strong>DECK-01</strong></div></header>
-        <section className="deck-display"><div className="deck-display__screen"><div><span>PRODUCT DECK</span><strong>SELECT A PRODUCT</strong></div><div className="screen-right"><span>MODE</span><strong>OWNERSHIP</strong></div></div><div className="deck-display__indicators"><i className="active" /><i className="active" /><i className="active" /><i /></div></section>
+
+        <header className="panel-header">
+          <div className="brand-block"><div className="brand-block__title-row"><Power size={18} /><h1>OneTime Labs</h1><span className="header-online"><i />ONLINE</span></div><p>SOFTWARE DEVELOPMENT + ENGINEERING</p></div>
+          <div className="panel-id"><span>OTL // DEVELOPMENT SYSTEM</span><strong>DECK-01</strong></div>
+        </header>
+
+        <section className="company-hero" aria-labelledby="company-hero-title">
+          <div className="company-hero__copy">
+            <span className="section-label">CUSTOM SOFTWARE // BUSINESS SYSTEMS</span>
+            <h2 id="company-hero-title">OneNote? Excel?<br />There’s a better way...</h2>
+            <p>Still running processes through spreadsheets, email, OneNote or “that one file everyone uses”? 
+              We build tools streamlining your existing documents. Custom web applications, internal tools, workflow automation, 
+              and purpose-built software for businesses that have outgrown spreadsheets, paper processes, and off-the-shelf platforms.
+              </p>
+              <h1 id="services-title">No subscriptions. We build it. You own it.</h1>
+            <div className="company-hero__actions">
+              <a className="primary-cta" href="#project-inquiry">START A PROJECT</a>
+              <a className="email-cta" href="mailto:inquiry@onetimelabs.net">inquiry@onetimelabs.net</a>
+            </div>
+          </div>
+          <aside className="company-hero__aside">
+            <span>OPERATING PRINCIPLE // 001</span>
+            <strong>Have a convoluted process?</strong>
+            <p>Let's fix it.</p>
+          </aside>
+        </section>
+
+        <section className="services-section" aria-labelledby="services-title">
+          <header className="section-header">
+            <div><span className="section-label">WHAT WE DO // 01</span><h2 id="services-title">Custom Internal Tools</h2></div>
+            <p>We design practical systems around how a business actually operates, then make the workflow simpler, faster, and easier to own.</p>
+          </header>
+          <div className="services-grid">
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <article className="service-card" key={service.title}>
+                  <div className="service-card__top"><span>{service.number}</span><Icon size={20} strokeWidth={1.5} /></div>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="project-inquiry" id="project-inquiry" aria-labelledby="project-inquiry-title">
+          <div className="project-inquiry__intro">
+            <span className="section-label">PROJECT INQUIRY // 02</span>
+            <h2 id="project-inquiry-title">Got something in mind?</h2>
+            <p>Tell us what's broken, annoying, manual, repetitive, or held together by a spreadsheet.</p>
+            <div className="project-inquiry__email">Prefer email? <a href="mailto:inquiry@onetimelabs.net">inquiry@onetimelabs.net</a></div>
+          </div>
+          <HomeInquiryForm />
+        </section>
+
+        <section className="products-intro" aria-labelledby="products-title">
+          <div>
+            <span className="section-label">EXPLORE ONETIME LABS // 03</span>
+            <h2 id="products-title">Products we have built:</h2>
+          </div>
+          <p>We build software for businesses, and our own products demonstrate the same practical engineering approach.</p>
+        </section>
+
+        <section className="deck-display"><div className="deck-display__screen"><div><strong>SELECT A PRODUCT</strong></div><div className="screen-right"><span>MODE</span><strong>OWNERSHIP</strong></div></div><div className="deck-display__indicators"><i className="active" /><i className="active" /><i className="active" /><i /></div></section>
         <section className="product-grid" aria-label="OneTime Labs products">{products.map((p) => <ProductButton key={p.name} product={p} />)}<ToolkitsButton toolkits={toolkits} /></section>
         <ToolkitBay toolkits={toolkits} />
       </section>
