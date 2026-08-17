@@ -4,7 +4,7 @@ import {
 
 import {
   getNetworkTool,
-} from "../../../../lib/network/tools";
+} from "../../../lib/network/tools";
 
 import NetworkInstrument from "./NetworkInstrument";
 

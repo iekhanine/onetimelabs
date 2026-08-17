@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getMetrologyTool } from "../../../../lib/metrology/tools";
+import { getMetrologyTool } from "../../../lib/metrology/tools";
 import MetrologyInstrument from "./MetrologyInstrument";
 import "./tool.css";
 

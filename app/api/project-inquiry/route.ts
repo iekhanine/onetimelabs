@@ -30,7 +30,6 @@ type ProjectInquiry = {
   audience?: unknown;
   currentTool?: unknown;
   additionalDetails?: unknown;
-  problem?: unknown;
 };
 
 function clean(value: unknown, maxLength = 5000) {
@@ -115,14 +114,12 @@ export async function POST(request: Request) {
     const audience = clean(body.audience, 100);
     const currentTool = clean(body.currentTool, 500);
     const additionalDetails = clean(body.additionalDetails);
-    const problem = clean(body.problem);
-    const isCompactInquiry = Boolean(problem);
 
-    if (!name || !email || (!problem && (!currentProcess || !desiredOutcome))) {
+    if (!name || !email || !currentProcess || !desiredOutcome) {
       return NextResponse.json(
         {
           error:
-            "Name, email, and project details are required.",
+            "Name, email, current process, and desired outcome are required.",
         },
         { status: 400 },
       );
@@ -138,16 +135,7 @@ export async function POST(request: Request) {
     }
 
     const subjectCompany = company || "No company";
-    const subject = `New Project Inquiry - ${subjectCompany} - ${name}`;
-
-    const compactDetailsHtml = isCompactInquiry
-      ? `<h2 style="font-size:17px;margin:0 0 10px;">What are they trying to fix?</h2>
-        <div style="white-space:pre-wrap;background:#f3f1eb;padding:18px;margin-bottom:30px;line-height:1.6;">${escapeHtml(problem)}</div>`
-      : `<h2 style="font-size:17px;margin:0 0 10px;">What are they doing today?</h2>
-        <div style="white-space:pre-wrap;background:#f3f1eb;padding:18px;margin-bottom:26px;line-height:1.6;">${escapeHtml(currentProcess)}</div>
-
-        <h2 style="font-size:17px;margin:0 0 10px;">What would they rather have happen?</h2>
-        <div style="white-space:pre-wrap;background:#f3f1eb;padding:18px;margin-bottom:30px;line-height:1.6;">${escapeHtml(desiredOutcome)}</div>`;
+    const subject = `New Project Inquiry — ${subjectCompany} — ${name}`;
 
     const html = `
       <div style="font-family:Arial,Helvetica,sans-serif;max-width:760px;margin:0 auto;color:#171716;">
@@ -178,7 +166,11 @@ export async function POST(request: Request) {
           </tr>
         </table>
 
-        ${compactDetailsHtml}
+        <h2 style="font-size:17px;margin:0 0 10px;">What are they doing today?</h2>
+        <div style="white-space:pre-wrap;background:#f3f1eb;padding:18px;margin-bottom:26px;line-height:1.6;">${escapeHtml(currentProcess)}</div>
+
+        <h2 style="font-size:17px;margin:0 0 10px;">What would they rather have happen?</h2>
+        <div style="white-space:pre-wrap;background:#f3f1eb;padding:18px;margin-bottom:30px;line-height:1.6;">${escapeHtml(desiredOutcome)}</div>
 
         <h2 style="font-size:17px;margin:0 0 14px;">Project Details</h2>
         <table style="width:100%;border-collapse:collapse;margin-bottom:30px;">
@@ -218,9 +210,11 @@ Company: ${display(company)}
 Email: ${email}
 Role / Title: ${display(role)}
 
-${isCompactInquiry
-  ? `WHAT ARE THEY TRYING TO FIX?\n${problem}`
-  : `WHAT ARE THEY DOING TODAY?\n${currentProcess}\n\nWHAT WOULD THEY RATHER HAVE HAPPEN?\n${desiredOutcome}`}
+WHAT ARE THEY DOING TODAY?
+${currentProcess}
+
+WHAT WOULD THEY RATHER HAVE HAPPEN?
+${desiredOutcome}
 
 PROJECT DETAILS
 Budget: ${display(budgetLabel(budget))}

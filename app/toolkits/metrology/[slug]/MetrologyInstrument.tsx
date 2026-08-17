@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import { ArrowLeft, RotateCcw, Ruler } from "lucide-react";
-import type { MetrologyTool } from "../../../../lib/metrology/tools";
+import type { MetrologyTool } from "../../../lib/metrology/tools";
 
 type Values = Record<string,string>;
 const num=(v:string)=>Number(v);

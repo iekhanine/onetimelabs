@@ -7,7 +7,7 @@ import {
 
 import {
   arcadeGames,
-} from "../../lib/arcade/games";
+} from "../lib/arcade/games";
 
 import "./arcade.css";
 

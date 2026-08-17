@@ -16,7 +16,7 @@ import {
 
 import type {
   ArcadeGame,
-} from "../../../lib/arcade/games";
+} from "../../lib/arcade/games";
 
 
 // ==========================================================

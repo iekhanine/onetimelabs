@@ -13,7 +13,7 @@ import {
 
 import type {
   NetworkTool,
-} from "../../../../lib/network/tools";
+} from "../../../lib/network/tools";
 
 
 // ==========================================================

@@ -118,6 +118,15 @@ export default function MailParserPanel() {
 
     <div className="mail-display"><div><span>PROCESSING MODE</span><strong>LOCAL BROWSER</strong></div><div><span>STORAGE</span><strong>NONE</strong></div><div><span>NETWORK</span><strong>NOT REQUIRED</strong></div></div>
 
+    <section className="mail-howto" aria-label="How to copy an email for parsing">
+      <strong>HOW TO COPY AN EMAIL</strong>
+      <ol>
+        <li><b>Best result:</b> open the message&apos;s original/source view. In Gmail: three-dot menu → <b>Show original</b> → <b>Copy to clipboard</b>.</li>
+        <li>If you do not have a source view, copy the visible message including the From, To, Subject, date, and body.</li>
+        <li>Paste everything into SOURCE INPUT below, then press <b>PARSE MESSAGE</b>.</li>
+      </ol>
+    </section>
+
     <section className="mail-input-card"><div className="mail-section-title"><div><FileText size={15}/><span>SOURCE INPUT</span></div><small>GMAIL // SHOW ORIGINAL</small></div><textarea value={source} onChange={e=>setSource(e.target.value)} placeholder={'Paste the complete Gmail “Show original” message here...'} spellCheck={false}/><div className="mail-actions"><button className="mail-primary" disabled={!canParse} onClick={runParser}>PARSE MESSAGE</button><button className="mail-secondary" onClick={reset}><RotateCcw size={13}/> CLEAR</button></div>{error && <div className="mail-error">{error}</div>}</section>
 
     {parsed && <div className="mail-results">
