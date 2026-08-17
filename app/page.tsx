@@ -16,8 +16,6 @@ import {
   useState,
 } from "react";
 
-import HomeInquiryForm from "./HomeInquiryForm";
-
 import "./page.css";
 
 
@@ -25,13 +23,52 @@ import "./page.css";
 // HEADER 001 — EXISTING PRODUCT DESTINATIONS
 // ==========================================================
 
+const TOOLKITS_URL =
+  "https://toolkits.onetimelabs.net";
+
 const toolkitItems = [
-  { name: "ARCADE", category: "GAMING", description: "Games, puzzles, reflex tests, and interactive experiments.", href: "/arcade" },
-  { name: "METROLOGY", category: "MEASUREMENT", description: "Calibration, tolerance, uncertainty, conversion, and measurement tools.", href: "/toolkits/metrology" },
-  { name: "NETWORK", category: "NETWORKING", description: "IP addressing, subnetting, performance, and network reference tools.", href: "/toolkits/network" },
-  { name: "METRONOME", category: "TIMING", description: "Browser-based tempo and timing utility.", href: "/toolkits/metronome" },
-  { name: "IT OPERATIONS", category: "SYSTEMS", description: "Operational utilities for infrastructure and support.", href: "/toolkits/it-operations" },
-  { name: "HVAC FIELD", category: "FACILITIES", description: "Field utilities for HVAC and maintenance work.", href: "/toolkits/hvac-field" },
+  {
+    name: "MAIL PARSER",
+    category: "EMAIL UTILITY",
+    description:
+      "Paste email content and parse the useful details.",
+    href: `${TOOLKITS_URL}#mail-parser`,
+  },
+  {
+    name: "ARCADE",
+    category: "GAMING",
+    description:
+      "Games and interactive experiments.",
+    href: `${TOOLKITS_URL}#arcade`,
+  },
+  {
+    name: "METROLOGY",
+    category: "MEASUREMENT",
+    description:
+      "Measurement and calibration utilities.",
+    href: `${TOOLKITS_URL}#metrology`,
+  },
+  {
+    name: "IT OPERATIONS",
+    category: "SYSTEMS",
+    description:
+      "Operational utilities for infrastructure and support.",
+    href: `${TOOLKITS_URL}#it-operations`,
+  },
+  {
+    name: "HVAC FIELD",
+    category: "FACILITIES",
+    description:
+      "Field tools for HVAC and maintenance work.",
+    href: `${TOOLKITS_URL}#hvac-field`,
+  },
+  {
+    name: "NETWORK",
+    category: "NETWORKING",
+    description:
+      "Network utilities and diagnostics.",
+    href: `${TOOLKITS_URL}#network`,
+  },
 ] as const;
 
 
@@ -137,15 +174,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-inquiry-panel" aria-label="Project inquiry form">
-          <div className="home-inquiry-panel__heading">
-            <span>START A PROJECT</span>
-            <strong>Tell me what needs fixing.</strong>
-            <p>You do not need a finished specification. Describe the current process and what you wish happened instead.</p>
-          </div>
-          <HomeInquiryForm />
-        </section>
-
 
         {/* ==================================================
             DISPLAY 005 — PRODUCT DECK
@@ -233,7 +261,7 @@ export default function Home() {
           <div className="product-well product-well--primary">
             <a
               className="product-key product-key--violet"
-              href="/mail-parser"
+              href={`${TOOLKITS_URL}#mail-parser`}
             >
               <div className="product-key__topline">
                 <span className="product-key__status">
@@ -342,10 +370,10 @@ export default function Home() {
               </div>
 
               <a
-                href="/toolkits"
+                href={TOOLKITS_URL}
                 className="toolkits-menu__all"
               >
-                OPEN TOOLKITS →
+                OPEN TOOLKITS ↗
               </a>
             </div>
 
@@ -370,7 +398,7 @@ export default function Home() {
                     </p>
 
                     <small>
-                      OPEN →
+                      OPEN ↗
                     </small>
                   </a>
                 ),

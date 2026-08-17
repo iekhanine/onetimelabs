@@ -1,27 +1,2 @@
-import { ArrowLeft, Ruler } from "lucide-react";
-import { metrologyTools } from "../../lib/metrology/tools";
-import "./metrology.css";
-
-export default function MetrologyPage() {
-  return (
-    <main className="metrology-shell">
-      <section className="metrology-panel">
-        <header className="metrology-header">
-          <div><span>ONETIME LABS // TOOLKIT MODULE</span><h1><Ruler size={20} /> METROLOGY</h1><p>Measurement, calibration, tolerance, uncertainty, and conversion utilities.</p></div>
-          <a href="/toolkits"><ArrowLeft size={14} /> TOOLKITS</a>
-        </header>
-        <div className="metrology-display"><span>INSTRUMENT LIBRARY</span><strong>{String(metrologyTools.length).padStart(2,"0")} TOOLS ONLINE</strong></div>
-        <section className="metrology-grid">
-          {metrologyTools.map((tool, index) => (
-            <a className="metrology-key" href={`/toolkits/metrology/${tool.slug}`} key={tool.slug}>
-              <div><span>{tool.category}</span><small>MT-{String(index+1).padStart(2,"0")}</small></div>
-              <strong>{tool.name}</strong>
-              <p>{tool.description}</p>
-              <em>OPEN TOOL →</em>
-            </a>
-          ))}
-        </section>
-      </section>
-    </main>
-  );
-}
+import "../page.css";
+export default function Page(){return <main className="tool-page"><div className="tool-shell"><a className="tool-back" href="/">← OneTime Labs</a><p className="tool-kicker">TOOLKITS / METROLOGY</p><h1>METROLOGY</h1><p>Measurement and calibration utilities.</p><section className="tool-card"><h2>METROLOGY Toolkit</h2><p>Focused tools for metrology workflows, calibration records, measurement calculations, and inspection work.</p><p>This is a real local page on onetimelabs.net and is ready for the first utility we add to it.</p><div className="tool-actions"><a className="tool-action" href="/">Back to Product Deck</a><a className="tool-action" href="/custom-development/contact">Request a Tool</a></div></section></div></main>}

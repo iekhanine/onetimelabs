@@ -4,7 +4,7 @@ import {
 
 import {
   getArcadeGame,
-} from "../../lib/arcade/games";
+} from "../../../lib/arcade/games";
 
 import ArcadeGamePanel from "./ArcadeGamePanel";
 

@@ -1,5 +1,2 @@
-import { redirect } from "next/navigation";
-
-export default function ToolkitArcadeRedirect() {
-  redirect("/arcade");
-}
+import "../page.css";
+export default function Page(){return <main className="tool-page"><div className="tool-shell"><a className="tool-back" href="/">← OneTime Labs</a><p className="tool-kicker">TOOLKITS / ARCADE</p><h1>ARCADE</h1><p>Gaming and interactive experiments.</p><section className="tool-card"><h2>ARCADE Toolkit</h2><p>A home for small games, prototypes, and interactive ideas built under OneTime Labs.</p><p>This is a real local page on onetimelabs.net and is ready for the first utility we add to it.</p><div className="tool-actions"><a className="tool-action" href="/">Back to Product Deck</a><a className="tool-action" href="/custom-development/contact">Request a Tool</a></div></section></div></main>}

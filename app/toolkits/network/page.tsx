@@ -1,27 +1,2 @@
-import { ArrowLeft, Network } from "lucide-react";
-import { networkTools } from "../../lib/network/tools";
-import "./network.css";
-
-export default function NetworkPage() {
-  return (
-    <main className="network-shell">
-      <section className="network-panel">
-        <header className="network-header">
-          <div><span>ONETIME LABS // TOOLKIT MODULE</span><h1><Network size={20} /> NETWORK</h1><p>Addressing, subnetting, transport, performance, and network reference utilities.</p></div>
-          <a href="/toolkits"><ArrowLeft size={14} /> TOOLKITS</a>
-        </header>
-        <div className="network-display"><span>INSTRUMENT LIBRARY</span><strong>{String(networkTools.length).padStart(2,"0")} TOOLS ONLINE</strong></div>
-        <section className="network-grid">
-          {networkTools.map((tool, index) => (
-            <a className="network-key" href={`/toolkits/network/${tool.slug}`} key={tool.slug}>
-              <div><span>{tool.category}</span><small>NW-{String(index+1).padStart(2,"0")}</small></div>
-              <strong>{tool.name}</strong>
-              <p>{tool.description}</p>
-              <em>OPEN TOOL →</em>
-            </a>
-          ))}
-        </section>
-      </section>
-    </main>
-  );
-}
+import "../page.css";
+export default function Page(){return <main className="tool-page"><div className="tool-shell"><a className="tool-back" href="/">← OneTime Labs</a><p className="tool-kicker">TOOLKITS / NETWORK</p><h1>NETWORK</h1><p>Network diagnostics and utilities.</p><section className="tool-card"><h2>NETWORK Toolkit</h2><p>Focused networking tools for address planning, diagnostics, documentation, and troubleshooting.</p><p>This is a real local page on onetimelabs.net and is ready for the first utility we add to it.</p><div className="tool-actions"><a className="tool-action" href="/">Back to Product Deck</a><a className="tool-action" href="/custom-development/contact">Request a Tool</a></div></section></div></main>}
