@@ -141,15 +141,14 @@ export default function Home() {
             </span>
 
             <h2>
-              We build software for companies.
+              Custom Software Solutions, that you keep forever. 
             </h2>
 
             <p>
               OneTime Labs designs and builds custom web
               applications, internal tools, workflow systems,
               dashboards, automation, documentation platforms,
-              and purpose-built business software around the
-              way your organization actually works.
+              and purpose-built business software around your organizations existing processes.
             </p>
           </div>
 
