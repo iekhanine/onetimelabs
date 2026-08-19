@@ -414,7 +414,7 @@ export default function Home() {
         <section className="secondary-strip">
           <a
             className="secondary-product"
-            href="https://licensing.onetimelabs.net"
+            href="#"
           >
             <KeyRound
               size={16}
