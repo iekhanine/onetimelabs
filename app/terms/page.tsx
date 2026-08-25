@@ -1,130 +1,27 @@
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+
+export const metadata = { title: "Terms" };
+
 export default function TermsPage() {
   return (
-    <main
-      style={{
-        maxWidth: "900px",
-        margin: "60px auto",
-        padding: "40px",
-        lineHeight: "1.7",
-        fontFamily: "Arial, Helvetica, sans-serif",
-      }}
-    >
-      <header
-        style={{
-          borderBottom: "1px solid #ddd",
-          marginBottom: "32px",
-          paddingBottom: "20px",
-        }}
-      >
-        <h1>
-          OneTime Labs Terms of Service
-        </h1>
-
-        <p>
-          Effective Date: August 6, 2026
-        </p>
-      </header>
-
-
-      <Section title="1. Agreement">
-        <p>
-          By accessing or using OneTime Labs services,
-          you agree to these Terms of Service.
-        </p>
-      </Section>
-
-
-      <Section title="2. Use of Services">
-        <p>
-          OneTime Labs provides software tools designed
-          to help organizations manage engineering,
-          documentation, licensing, and operational
-          workflows.
-        </p>
-
-        <p>
-          Users agree to use OneTime Labs services only
-          for lawful purposes.
-        </p>
-      </Section>
-
-
-      <Section title="3. Accounts">
-        <p>
-          Users are responsible for maintaining the
-          security of their accounts and protecting
-          authentication credentials.
-        </p>
-      </Section>
-
-
-      <Section title="4. Ownership">
-        <p>
-          OneTime Labs software, trademarks, documentation,
-          and intellectual property remain the property of
-          OneTime Labs unless otherwise agreed.
-        </p>
-      </Section>
-
-
-      <Section title="5. Customer Data">
-        <p>
-          Customers retain ownership of content they create
-          and store using OneTime Labs services.
-        </p>
-
-        <p>
-          OneTime Labs uses customer data only as necessary
-          to provide requested services.
-        </p>
-      </Section>
-
-
-      <Section title="6. Service Changes">
-        <p>
-          OneTime Labs may update, improve, or modify
-          services as products evolve.
-        </p>
-      </Section>
-
-
-      <Section title="7. Contact">
-        <p>
-          Questions regarding these Terms may be sent to:
-        </p>
-
-        <p>
-          support@onetimelabs.net
-        </p>
-      </Section>
-
-    </main>
-  );
-}
-
-
-function Section({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section
-      style={{
-        marginBottom: "36px",
-      }}
-    >
-      <h2
-        style={{
-          marginBottom: "12px",
-        }}
-      >
-        {title}
-      </h2>
-
-      {children}
-    </section>
+    <>
+      <SiteHeader />
+      <main className="legal-page shell">
+        <h1>OneTime Labs Terms of Use</h1>
+        <p className="legal-meta">Effective August 6, 2026</p>
+        <h2>1. Use of OneTime Labs services</h2>
+        <p>You may use OneTime Labs websites and software only in accordance with applicable law and the license or access terms supplied with the applicable product.</p>
+        <h2>2. Product availability</h2>
+        <p>Products, demonstrations, alpha features, pricing, and availability may change as software is developed and released.</p>
+        <h2>3. Accounts and access</h2>
+        <p>You are responsible for maintaining the security of credentials and license information associated with your account or organization.</p>
+        <h2>4. Intellectual property</h2>
+        <p>Unless a product license states otherwise, OneTime Labs retains ownership of its software, branding, documentation, and related intellectual property.</p>
+        <h2>5. Contact</h2>
+        <p>Questions about these terms may be sent to <a href="mailto:inquiry@onetimelabs.net">inquiry@onetimelabs.net</a>.</p>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
