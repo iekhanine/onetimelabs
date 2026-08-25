@@ -26,6 +26,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const product = getProduct(slug);
   if (!product) notFound();
 
+  const showcaseVideo =
+    product.showcaseVideo ??
+    (product.slug === "tasks" ? "/videos/tasks-showcase.mp4" : undefined);
+
   return (
     <>
       <SiteHeader />
@@ -52,9 +56,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
         <section className="product-showreel">
           <div className="shell">
-            {product.showcaseVideo ? (
+            {showcaseVideo ? (
               <ProductVideo
-                src={product.showcaseVideo}
+                src={showcaseVideo}
                 poster={product.screenshot}
                 label={`${product.name} / product showcase`}
                 className="product-video--detail"

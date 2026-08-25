@@ -197,8 +197,19 @@ h1, h2, h3 { letter-spacing: -.055em; }
 .utility-copy p { max-width: 540px; color: #4d5f51; font-size: 18px; line-height: 1.65; }
 .utility-proof { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0; }
 .utility-proof span { padding: 8px 10px; border: 1px solid rgba(22,22,22,.14); border-radius: 999px; font-size: 11px; font-weight: 800; }
-.utility-visual { padding: 9px; border: 1px solid rgba(22,22,22,.18); border-radius: 18px; background: #fff; box-shadow: 0 20px 60px rgba(22,22,22,.10); }
+.utility-visual {
+  overflow: hidden;
+  border: 1px solid rgba(22,22,22,.18);
+  border-radius: 18px;
+  background: #0f0f0f;
+  box-shadow: 0 20px 60px rgba(22,22,22,.10);
+}
 .utility-visual img { width: 100%; border-radius: 11px; }
+.utility-visual .product-video {
+  border: 0;
+  border-radius: 17px;
+  box-shadow: none;
+}
 
 /* NOTES */
 .notes-section { padding: 100px 0; }

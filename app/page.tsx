@@ -125,7 +125,11 @@ export default function Home() {
               </div>
             </div>
             <div className="utility-visual">
-              <img src={tasks.screenshot} alt={tasks.screenshotAlt} />
+              <ProductVideo
+                src="/videos/tasks-showcase.mp4"
+                poster={tasks.screenshot}
+                label="Tasks / showcase"
+              />
             </div>
           </div>
         </section>
