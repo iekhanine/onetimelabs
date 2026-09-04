@@ -422,3 +422,1539 @@ h1, h2, h3 { letter-spacing: -.055em; }
   .inquiry-form__row { grid-template-columns: 1fr; }
   .inquiry-form__footer { align-items: flex-start; flex-direction: column; }
 }
+
+
+/* ==========================================================
+   HOME PORTFOLIO 1000 — PRODUCT SITE REDESIGN
+   ========================================================== */
+
+.portfolio-home {
+  --portfolio-navy: #12283a;
+  --portfolio-blue: #2f6f9f;
+  --portfolio-ink: #17212b;
+  --portfolio-muted: #65727d;
+  --portfolio-line: #d9e0e6;
+  --portfolio-soft: #eef3f6;
+  --portfolio-page: #f7f8f9;
+  color: var(--portfolio-ink);
+  background: var(--portfolio-page);
+}
+
+.portfolio-kicker {
+  display: inline-flex;
+  align-items: center;
+  color: var(--portfolio-blue);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.portfolio-kicker--light {
+  color: #9fc1d8;
+}
+
+.portfolio-hero {
+  border-bottom: 1px solid var(--portfolio-line);
+  background: #fff;
+}
+
+.portfolio-hero__grid {
+  min-height: 410px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(330px, .7fr);
+  gap: 70px;
+  align-items: center;
+  padding: 64px 0;
+}
+
+.portfolio-hero h1 {
+  max-width: 780px;
+  margin: 12px 0 16px;
+  font-size: clamp(42px, 5vw, 66px);
+  line-height: .98;
+  letter-spacing: -.052em;
+}
+
+.portfolio-hero p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.portfolio-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.portfolio-button {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 15px;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 760;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.portfolio-button--primary {
+  color: #fff;
+  background: var(--portfolio-navy);
+  border-color: var(--portfolio-navy);
+}
+
+.portfolio-button--primary:hover {
+  background: #0b1d2a;
+  border-color: #0b1d2a;
+}
+
+.portfolio-button--secondary {
+  color: #3f4d58;
+  background: #fff;
+}
+
+.portfolio-button--secondary:hover {
+  color: var(--portfolio-navy);
+  border-color: #aebbc5;
+}
+
+.portfolio-hero__summary {
+  border: 1px solid var(--portfolio-line);
+  border-radius: 7px;
+  background: #fbfcfd;
+}
+
+.portfolio-summary-row {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 15px;
+  border-bottom: 1px solid #e7ebee;
+}
+
+.portfolio-summary-row:last-child {
+  border-bottom: 0;
+}
+
+.portfolio-summary-row span {
+  color: #7b8791;
+  font-size: 10px;
+}
+
+.portfolio-summary-row strong {
+  color: #35434e;
+  font-size: 10px;
+  text-align: right;
+}
+
+.portfolio-section {
+  padding: 76px 0;
+  border-bottom: 1px solid var(--portfolio-line);
+}
+
+.portfolio-section--soft {
+  background: var(--portfolio-soft);
+}
+
+.portfolio-section__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, .62fr);
+  gap: 54px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.portfolio-section__heading h2 {
+  max-width: 760px;
+  margin: 9px 0 0;
+  font-size: clamp(30px, 3.5vw, 47px);
+  line-height: 1.04;
+  letter-spacing: -.045em;
+}
+
+.portfolio-section__heading > p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.portfolio-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.portfolio-grid--featured {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.portfolio-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portfolio-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 21px;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(18, 40, 58, .025);
+}
+
+.portfolio-card--compact {
+  padding: 19px;
+}
+
+.portfolio-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.portfolio-card__icon,
+.family-panel__icon,
+.project-feature__icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  color: #315f7e;
+  background: #edf3f7;
+  border: 1px solid #d8e4eb;
+}
+
+.portfolio-card__labels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.portfolio-card__category,
+.project-feature__meta > span:first-child {
+  color: #7b8791;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.product-status {
+  min-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 7px;
+  border-radius: 999px;
+  color: #267153;
+  background: #edf8f3;
+  border: 1px solid #cce7da;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.product-status--development {
+  color: #8b6300;
+  background: #fff8e6;
+  border-color: #ead6a4;
+}
+
+.portfolio-card h3 {
+  margin: 18px 0 7px;
+  font-size: 21px;
+  letter-spacing: -.035em;
+}
+
+.portfolio-card > p {
+  min-height: 63px;
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.portfolio-card--compact > p {
+  min-height: 78px;
+}
+
+.portfolio-card__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 17px;
+}
+
+.portfolio-card__features span {
+  padding: 6px 7px;
+  color: #586672;
+  background: #f6f8f9;
+  border: 1px solid #e1e6ea;
+  border-radius: 4px;
+  font-size: 8px;
+  font-weight: 720;
+}
+
+.portfolio-card__footer {
+  margin-top: auto;
+  padding-top: 19px;
+}
+
+.portfolio-card__footer a,
+.family-panel__intro > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #285f86;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.portfolio-card__footer a:hover,
+.family-panel__intro > a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.family-panel {
+  overflow: hidden;
+  border: 1px solid #cfd9df;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.family-panel__intro {
+  min-height: 150px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #dde4e8;
+}
+
+.family-panel__intro h3 {
+  margin: 4px 0 5px;
+  font-size: 27px;
+}
+
+.family-panel__intro p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.family-panel__products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.family-panel__products article {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  padding: 21px 24px;
+}
+
+.family-panel__products article:first-child {
+  border-right: 1px solid #dde4e8;
+}
+
+.family-panel__products svg {
+  margin-top: 2px;
+  color: #456b86;
+}
+
+.family-panel__products h4 {
+  margin: 0 0 5px;
+  font-size: 13px;
+}
+
+.family-panel__products p {
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.portfolio-section--dark {
+  color: #f4f7f9;
+  background: #132431;
+  border-bottom-color: #263b49;
+}
+
+.platform-tech-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(380px, 1.25fr);
+  gap: 70px;
+  align-items: center;
+}
+
+.platform-tech-grid h2 {
+  margin: 8px 0 10px;
+  font-size: clamp(42px, 5vw, 66px);
+}
+
+.platform-tech-grid > div:first-child p {
+  max-width: 570px;
+  margin: 0;
+  color: #b8c6d0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.otml-example {
+  overflow: hidden;
+  border: 1px solid #344b5b;
+  border-radius: 7px;
+  background: #0d1922;
+}
+
+.otml-example__bar {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+  color: #9eb1be;
+  background: #172a37;
+  border-bottom: 1px solid #344b5b;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.otml-example pre {
+  margin: 0;
+  padding: 18px;
+  overflow: auto;
+  color: #d7e1e7;
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.project-feature {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 17px;
+  align-items: center;
+  padding: 22px;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 7px;
+  background: #fff;
+}
+
+.project-feature__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.project-feature__copy h3 {
+  margin: 6px 0 5px;
+  font-size: 22px;
+}
+
+.project-feature__copy p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.ownership-section {
+  padding: 78px 0;
+  color: #eef4f7;
+  background: #102b41;
+}
+
+.ownership-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: 80px;
+}
+
+.ownership-grid h2 {
+  max-width: 560px;
+  margin: 9px 0 0;
+  font-size: clamp(36px, 4vw, 54px);
+  line-height: 1.02;
+}
+
+.ownership-grid > div:last-child > p {
+  max-width: 650px;
+  margin: 0;
+  color: #c3d0d8;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.ownership-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 22px;
+}
+
+.ownership-points span {
+  padding: 7px 9px;
+  color: #e6eef2;
+  border: 1px solid #365267;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 720;
+}
+
+.portfolio-contact {
+  padding: 62px 0;
+  background: #fff;
+}
+
+.portfolio-contact__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.portfolio-contact h2 {
+  margin: 7px 0 6px;
+  font-size: clamp(28px, 3vw, 40px);
+}
+
+.portfolio-contact p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+@media (max-width: 980px) {
+  .portfolio-hero__grid,
+  .portfolio-section__heading,
+  .platform-tech-grid,
+  .ownership-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .portfolio-hero__grid {
+    min-height: auto;
+  }
+
+  .portfolio-grid--three {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-card--compact > p {
+    min-height: auto;
+  }
+
+  .portfolio-section__heading > p {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-hero__grid {
+    padding: 44px 0;
+  }
+
+  .portfolio-hero h1 {
+    font-size: 41px;
+  }
+
+  .portfolio-grid--featured,
+  .family-panel__products {
+    grid-template-columns: 1fr;
+  }
+
+  .family-panel__products article:first-child {
+    border-right: 0;
+    border-bottom: 1px solid #dde4e8;
+  }
+
+  .family-panel__intro,
+  .project-feature {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .family-panel__intro > a,
+  .project-feature > .portfolio-button {
+    grid-column: 1 / -1;
+    width: fit-content;
+  }
+
+  .portfolio-card > p {
+    min-height: auto;
+  }
+
+  .portfolio-contact__inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+  }
+}
+
+@media (max-width: 520px) {
+  .portfolio-section {
+    padding: 58px 0;
+  }
+
+  .portfolio-card,
+  .family-panel__intro,
+  .family-panel__products article,
+  .project-feature {
+    padding: 16px;
+  }
+
+  .portfolio-card__top {
+    flex-direction: column;
+  }
+
+  .portfolio-card__labels {
+    justify-content: flex-start;
+  }
+
+  .family-panel__intro,
+  .project-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-hero__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .portfolio-button {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================
+   HOME PORTFOLIO 1100 — COMPACT PRODUCT CATALOG
+   Replaces oversized landing-page hierarchy with a denser,
+   product-first layout.
+   ========================================================== */
+
+.portfolio-hero__grid {
+  min-height: 0;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, .6fr);
+  gap: 36px;
+  padding: 34px 0 30px;
+}
+
+.portfolio-hero h1 {
+  max-width: 720px;
+  margin: 7px 0 8px;
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.portfolio-hero p {
+  max-width: 760px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.portfolio-hero__actions {
+  margin-top: 16px;
+}
+
+.portfolio-button {
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: 10px;
+}
+
+.portfolio-hero__summary {
+  align-self: stretch;
+}
+
+.portfolio-summary-row {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.portfolio-summary-row span,
+.portfolio-summary-row strong {
+  font-size: 9px;
+}
+
+.portfolio-section {
+  padding: 42px 0;
+}
+
+.portfolio-section__heading {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, .72fr);
+  gap: 28px;
+  margin-bottom: 16px;
+}
+
+.portfolio-section__heading h2 {
+  max-width: 760px;
+  margin: 4px 0 0;
+  font-size: 24px;
+  line-height: 1.12;
+  letter-spacing: -.025em;
+}
+
+.portfolio-section__heading > p {
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.portfolio-kicker {
+  font-size: 8px;
+  letter-spacing: .11em;
+}
+
+.portfolio-grid {
+  gap: 9px;
+}
+
+.portfolio-card {
+  padding: 15px;
+}
+
+.portfolio-card--compact {
+  padding: 15px;
+}
+
+.portfolio-card__icon,
+.family-panel__icon,
+.project-feature__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.portfolio-card h3 {
+  margin: 12px 0 5px;
+  font-size: 16px;
+}
+
+.portfolio-card > p,
+.portfolio-card--compact > p {
+  min-height: 0;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.portfolio-card__features {
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.portfolio-card__features span {
+  padding: 5px 6px;
+  font-size: 7px;
+}
+
+.portfolio-card__footer {
+  padding-top: 13px;
+}
+
+.portfolio-card__footer a,
+.family-panel__intro > a {
+  font-size: 9px;
+}
+
+.family-panel__intro {
+  min-height: 0;
+  padding: 16px;
+}
+
+.family-panel__intro h3 {
+  margin: 2px 0 3px;
+  font-size: 20px;
+}
+
+.family-panel__intro p {
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.family-panel__products article {
+  padding: 15px 16px;
+}
+
+.family-panel__products h4 {
+  margin-bottom: 3px;
+  font-size: 11px;
+}
+
+.family-panel__products p {
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.platform-tech-grid {
+  gap: 36px;
+}
+
+.platform-tech-grid h2 {
+  margin: 5px 0 7px;
+  font-size: 28px;
+}
+
+.platform-tech-grid > div:first-child p {
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.otml-example pre {
+  padding: 14px;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.project-feature {
+  padding: 16px;
+}
+
+.project-feature__copy h3 {
+  margin: 4px 0 3px;
+  font-size: 17px;
+}
+
+.project-feature__copy p {
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.ownership-section {
+  padding: 44px 0;
+}
+
+.ownership-grid {
+  gap: 42px;
+}
+
+.ownership-grid h2 {
+  margin-top: 4px;
+  font-size: 25px;
+  line-height: 1.1;
+}
+
+.ownership-grid > div:last-child > p {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.ownership-points {
+  margin-top: 14px;
+}
+
+.ownership-points span {
+  padding: 5px 7px;
+  font-size: 8px;
+}
+
+.portfolio-contact {
+  padding: 38px 0;
+}
+
+.portfolio-contact h2 {
+  margin: 4px 0 4px;
+  font-size: 23px;
+}
+
+.portfolio-contact p {
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+@media (max-width: 980px) {
+  .portfolio-hero__grid,
+  .portfolio-section__heading,
+  .platform-tech-grid,
+  .ownership-grid {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-hero__grid {
+    padding: 28px 0 24px;
+  }
+
+  .portfolio-hero h1 {
+    font-size: 27px;
+  }
+
+  .portfolio-section {
+    padding: 34px 0;
+  }
+
+  .portfolio-section__heading h2 {
+    font-size: 21px;
+  }
+}
+
+
+/* ==========================================================
+   CONTACT 1200 — PRODUCT SITE REFRESH
+   Neutralizes the legacy orange / tan contact treatment and
+   brings the page in line with the compact OneTime Labs catalog.
+   ========================================================== */
+
+.contact-page,
+.contact-shell,
+.contact-section,
+.contact-form-section,
+.contact-riff {
+  background: #f7f8f9;
+  color: #17212b;
+}
+
+.contact-riff {
+  background: #eef3f6 !important;
+  border-top: 1px solid #d9e0e6;
+  border-bottom: 1px solid #d9e0e6;
+}
+
+.contact-riff::before,
+.contact-riff::after {
+  background: transparent !important;
+}
+
+.contact-hero,
+.contact-form-wrap,
+.contact-form-grid,
+.contact-direct,
+.contact-card,
+.contact-panel {
+  color: #17212b;
+}
+
+.contact-hero {
+  padding: 36px 0 24px !important;
+  background: #fff !important;
+  border-bottom: 1px solid #d9e0e6;
+}
+
+.contact-hero h1,
+.contact-form-copy h1,
+.contact-form-copy h2,
+.contact-riff h2 {
+  margin-top: 6px;
+  color: #17212b !important;
+  font-size: 26px !important;
+  line-height: 1.1 !important;
+  letter-spacing: -.025em !important;
+}
+
+.contact-hero p,
+.contact-form-copy > p,
+.contact-riff p,
+.contact-direct p,
+.contact-direct span,
+.contact-direct small {
+  color: #65727d !important;
+  font-size: 10px !important;
+  line-height: 1.55 !important;
+}
+
+.contact-form-section,
+.contact-form-wrap {
+  padding-top: 34px !important;
+  padding-bottom: 42px !important;
+}
+
+.contact-form-grid {
+  gap: 24px !important;
+}
+
+.contact-form,
+.contact-card,
+.contact-panel,
+.contact-direct {
+  background: #fff !important;
+  border: 1px solid #d9e0e6 !important;
+  border-radius: 7px !important;
+  box-shadow: 0 1px 2px rgba(18, 40, 58, .025) !important;
+}
+
+.contact-form {
+  padding: 18px !important;
+}
+
+.contact-form label,
+.contact-form-copy label {
+  color: #596772 !important;
+  font-size: 8px !important;
+  font-weight: 800 !important;
+  letter-spacing: .05em !important;
+  text-transform: uppercase;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  color: #17212b !important;
+  background: #fbfcfd !important;
+  border: 1px solid #cfd8df !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  font-size: 10px !important;
+}
+
+.contact-form input {
+  min-height: 34px !important;
+}
+
+.contact-form textarea {
+  min-height: 130px !important;
+  line-height: 1.5 !important;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  outline: none !important;
+  border-color: #7fa2bb !important;
+  box-shadow: 0 0 0 2px rgba(47, 111, 159, .08) !important;
+}
+
+.contact-form button,
+.contact-submit,
+.contact-riff a,
+.contact-riff button {
+  min-height: 34px !important;
+  padding: 0 12px !important;
+  color: #fff !important;
+  background: #12283a !important;
+  border: 1px solid #12283a !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
+
+.contact-form button:hover,
+.contact-submit:hover,
+.contact-riff a:hover,
+.contact-riff button:hover {
+  background: #0b1d2a !important;
+  border-color: #0b1d2a !important;
+}
+
+.contact-direct {
+  padding: 16px !important;
+}
+
+.contact-direct strong,
+.contact-direct h3,
+.contact-card h3,
+.contact-panel h3 {
+  color: #26333e !important;
+  font-size: 12px !important;
+}
+
+.contact-direct a,
+.contact-card a,
+.contact-panel a {
+  color: #285f86 !important;
+}
+
+.contact-direct a:hover,
+.contact-card a:hover,
+.contact-panel a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-riff .eyebrow,
+.contact-form-copy .eyebrow,
+.contact-hero .eyebrow {
+  color: #2f6f9f !important;
+  font-size: 8px !important;
+  font-weight: 850 !important;
+  letter-spacing: .11em !important;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .contact-hero {
+    padding: 28px 0 20px !important;
+  }
+
+  .contact-hero h1,
+  .contact-form-copy h1,
+  .contact-form-copy h2,
+  .contact-riff h2 {
+    font-size: 22px !important;
+  }
+
+  .contact-form-section,
+  .contact-form-wrap {
+    padding-top: 26px !important;
+    padding-bottom: 34px !important;
+  }
+}
+
+
+/* ==========================================================
+   CONTACT 1210 — FULL CONTACT PAGE OVERRIDE
+   Covers legacy simple-hero and InquiryForm classes that were
+   not targeted by the first contact refresh.
+   ========================================================== */
+
+.simple-hero.simple-hero--contact {
+  padding: 30px 0 24px !important;
+  color: #17212b !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #d9e0e6 !important;
+}
+
+.simple-hero--contact .simple-hero__inner {
+  max-width: 820px !important;
+}
+
+.simple-hero--contact .eyebrow {
+  color: #2f6f9f !important;
+  font-size: 8px !important;
+  font-weight: 850 !important;
+  letter-spacing: .11em !important;
+  text-transform: uppercase !important;
+}
+
+.simple-hero--contact h1 {
+  margin: 6px 0 7px !important;
+  color: #17212b !important;
+  font-size: 28px !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.025em !important;
+}
+
+.simple-hero--contact p {
+  max-width: 720px !important;
+  margin: 0 !important;
+  color: #65727d !important;
+  font-size: 11px !important;
+  line-height: 1.55 !important;
+}
+
+.section.contact-form-section {
+  padding: 32px 0 44px !important;
+  background: #f7f8f9 !important;
+}
+
+.contact-form-layout {
+  grid-template-columns: minmax(240px, .72fr) minmax(0, 1.28fr) !important;
+  gap: 32px !important;
+}
+
+.contact-form-copy {
+  position: sticky;
+  top: 86px;
+}
+
+.contact-form-copy .eyebrow {
+  color: #2f6f9f !important;
+  font-size: 8px !important;
+  font-weight: 850 !important;
+  letter-spacing: .11em !important;
+  text-transform: uppercase !important;
+}
+
+.contact-form-copy h2 {
+  margin: 6px 0 8px !important;
+  color: #17212b !important;
+  font-size: 22px !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.02em !important;
+}
+
+.contact-form-copy > p {
+  max-width: 480px !important;
+  margin: 0 !important;
+  color: #65727d !important;
+  font-size: 10px !important;
+  line-height: 1.6 !important;
+}
+
+.contact-direct {
+  margin-top: 20px !important;
+  padding: 14px !important;
+  display: grid !important;
+  gap: 4px !important;
+  color: #17212b !important;
+  background: #ffffff !important;
+  border: 1px solid #d9e0e6 !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+
+.contact-direct span {
+  margin-top: 7px !important;
+  color: #7b8791 !important;
+  font-size: 7px !important;
+  font-weight: 850 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+}
+
+.contact-direct span:first-child {
+  margin-top: 0 !important;
+}
+
+.contact-direct strong {
+  color: #2f3d48 !important;
+  font-size: 10px !important;
+  font-weight: 750 !important;
+}
+
+.inquiry-form {
+  position: relative;
+  display: grid;
+  gap: 12px !important;
+  padding: 18px !important;
+  color: #17212b !important;
+  background: #ffffff !important;
+  border: 1px solid #d9e0e6 !important;
+  border-radius: 7px !important;
+  box-shadow: 0 1px 2px rgba(18, 40, 58, .025) !important;
+}
+
+.inquiry-form__row {
+  gap: 10px !important;
+}
+
+.inquiry-form label {
+  gap: 5px !important;
+}
+
+.inquiry-form label > span {
+  color: #596772 !important;
+  font-size: 8px !important;
+  font-weight: 800 !important;
+  letter-spacing: .05em !important;
+  text-transform: uppercase !important;
+}
+
+.inquiry-form label small {
+  color: #8a96a0 !important;
+  font-size: 7px !important;
+  font-weight: 650 !important;
+}
+
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+  width: 100%;
+  color: #17212b !important;
+  background: #fbfcfd !important;
+  border: 1px solid #cfd8df !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-size: 10px !important;
+}
+
+.inquiry-form input,
+.inquiry-form select {
+  min-height: 34px !important;
+  padding: 0 9px !important;
+}
+
+.inquiry-form textarea {
+  min-height: 125px !important;
+  padding: 9px !important;
+  resize: vertical;
+  line-height: 1.5 !important;
+}
+
+.inquiry-form input:focus,
+.inquiry-form select:focus,
+.inquiry-form textarea:focus {
+  border-color: #7fa2bb !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(47, 111, 159, .08) !important;
+}
+
+.inquiry-form__footer {
+  gap: 12px !important;
+  padding-top: 2px !important;
+}
+
+.inquiry-form__footer p {
+  color: #7b8791 !important;
+  font-size: 8px !important;
+  line-height: 1.45 !important;
+}
+
+.inquiry-form button,
+.inquiry-form__footer button {
+  min-height: 34px !important;
+  padding: 0 12px !important;
+  color: #ffffff !important;
+  background: #12283a !important;
+  border: 1px solid #12283a !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+}
+
+.inquiry-form button:hover,
+.inquiry-form__footer button:hover {
+  background: #0b1d2a !important;
+  border-color: #0b1d2a !important;
+}
+
+.inquiry-form__error {
+  margin: 0 !important;
+  padding: 8px 9px !important;
+  color: #9b352f !important;
+  background: #fff5f4 !important;
+  border: 1px solid #e5bfbc !important;
+  border-radius: 5px !important;
+  font-size: 8px !important;
+}
+
+.inquiry-success {
+  padding: 24px !important;
+  color: #17212b !important;
+  background: #ffffff !important;
+  border: 1px solid #d9e0e6 !important;
+  border-radius: 7px !important;
+  box-shadow: 0 1px 2px rgba(18, 40, 58, .025) !important;
+}
+
+.inquiry-success h2 {
+  margin: 6px 0 7px !important;
+  color: #17212b !important;
+  font-size: 22px !important;
+  line-height: 1.12 !important;
+}
+
+.inquiry-success p {
+  max-width: 570px !important;
+  margin: 0 0 16px !important;
+  color: #65727d !important;
+  font-size: 10px !important;
+  line-height: 1.55 !important;
+}
+
+@media (max-width: 820px) {
+  .contact-form-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-form-copy {
+    position: static !important;
+  }
+
+  .simple-hero.simple-hero--contact {
+    padding: 24px 0 20px !important;
+  }
+
+  .simple-hero--contact h1 {
+    font-size: 24px !important;
+  }
+}
+
+
+/* ==========================================================
+   CONTACT 1220 — LEFT ALIGN CONTACT INTRO
+   ========================================================== */
+
+.simple-hero--contact,
+.simple-hero--contact .simple-hero__inner {
+  text-align: left !important;
+}
+
+.simple-hero--contact .simple-hero__inner {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.simple-hero--contact .eyebrow,
+.simple-hero--contact h1,
+.simple-hero--contact p {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+
+/* ==========================================================
+   CONTACT 1230 — ALIGN INTRO TO PAGE SHELL
+   Keep text left-aligned, but use the same centered shell
+   gutter as the inquiry section below.
+   ========================================================== */
+
+.simple-hero--contact .simple-hero__inner {
+  width: min(var(--shell), calc(100% - 48px)) !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  text-align: left !important;
+}
+
+.simple-hero--contact .eyebrow,
+.simple-hero--contact h1,
+.simple-hero--contact p {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+
+/* ==========================================================
+   CONTACT 1240 — SUCCESS STATE COLOR FIX
+   Prevent legacy global eyebrow/accent orange from leaking
+   into the "Message sent" confirmation state.
+   ========================================================== */
+
+.inquiry-success .eyebrow,
+.inquiry-success .eyebrow--light,
+.inquiry-success [class*="eyebrow"] {
+  color: #2f6f9f !important;
+}
+
+.inquiry-success h2,
+.inquiry-success strong {
+  color: #17212b !important;
+}
+
+.inquiry-success a {
+  color: #285f86 !important;
+}
+
+.inquiry-success svg {
+  color: #2f6f9f !important;
+}
+
+
+/* ==========================================================
+   CONTACT 1250 — STRUCTURAL SUCCESS ALIGNMENT
+   The left intro and direct-email card are separate grid rows.
+   Normal form spans both rows. Success state moves into row 2,
+   so it aligns exactly with the direct-email card without any
+   hard-coded vertical margin.
+   ========================================================== */
+
+.contact-form-layout {
+  display: grid !important;
+  grid-template-columns: minmax(240px, .72fr) minmax(0, 1.28fr) !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 32px !important;
+  row-gap: 20px !important;
+  align-items: start !important;
+}
+
+.contact-form-intro {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
+
+.contact-form-intro .eyebrow {
+  color: #2f6f9f !important;
+  font-size: 8px !important;
+  font-weight: 850 !important;
+  letter-spacing: .11em !important;
+  text-transform: uppercase !important;
+}
+
+.contact-form-intro h2 {
+  margin: 6px 0 8px !important;
+  color: #17212b !important;
+  font-size: 22px !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.02em !important;
+}
+
+.contact-form-intro > p {
+  max-width: 480px !important;
+  margin: 0 !important;
+  color: #65727d !important;
+  font-size: 10px !important;
+  line-height: 1.6 !important;
+}
+
+.contact-form-layout > .contact-direct {
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+  margin-top: 0 !important;
+}
+
+.contact-form-stage {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  min-width: 0 !important;
+  align-self: start !important;
+}
+
+/* When InquiryForm renders its success view, align that view with
+   the direct-email card on the left. */
+.contact-form-stage:has(.inquiry-success) {
+  grid-row: 2 !important;
+}
+
+/* Explicitly remove the previous hard-coded success offset. */
+.inquiry-success {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 820px) {
+  .contact-form-layout {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    row-gap: 18px !important;
+  }
+
+  .contact-form-intro,
+  .contact-form-layout > .contact-direct,
+  .contact-form-stage,
+  .contact-form-stage:has(.inquiry-success) {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+}
+
+
+/* ==========================================================
+   CONTACT 1260 — SUCCESS CARD BOTTOM ALIGNMENT
+   Keep the success state spanning the full two-row contact grid,
+   then anchor it to the bottom. This aligns the bottom edge of
+   the success card with the bottom edge of the direct-email card.
+   ========================================================== */
+
+.contact-form-stage:has(.inquiry-success) {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: end !important;
+}
+
+.inquiry-success {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 820px) {
+  .contact-form-stage:has(.inquiry-success) {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    align-self: stretch !important;
+  }
+}

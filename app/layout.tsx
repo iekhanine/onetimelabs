@@ -5,14 +5,15 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://onetimelabs.net"),
   title: {
-    default: "OneTime Labs | Less pitch. More product.",
+    default: "OneTime Labs | Purpose-Built Software",
     template: "%s | OneTime Labs",
   },
   description:
-    "OneTime Labs builds focused software products including OneTime Menu, OTLES, ROFFLE, and Tasks.",
+    "OneTime Labs builds enterprise software, venue and display platforms, entertainment products, and purpose-built applications around real workflows.",
   openGraph: {
     title: "OneTime Labs",
-    description: "Less pitch. More product.",
+    description:
+      "Enterprise software, venue platforms, entertainment products, and custom applications built around real workflows.",
     url: "https://onetimelabs.net",
     siteName: "OneTime Labs",
     type: "website",
