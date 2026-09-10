@@ -110,40 +110,57 @@ export default function Home() {
         <section className="portfolio-hero">
           <div className="shell portfolio-hero__grid">
             <div>
-              <span className="portfolio-kicker">OneTime Labs</span>
-              <h1>Products, platforms, and custom software.</h1>
+              <span className="portfolio-kicker">
+                OneTime Labs / Engineering Portfolio
+              </span>
+
+              <h1>
+                Software architecture &amp; engineering.
+              </h1>
+
               <p>
-                Enterprise tools, venue software, entertainment platforms, and custom development.
-                Built and operated under the OneTime Labs umbrella.
+                OneTime Labs designs and builds purpose-built operational software:
+                documentation systems, geospatial platforms, licensing infrastructure,
+                governance tools, and other applications built around real workflows.
               </p>
 
               <div className="portfolio-hero__actions">
-                <a className="portfolio-button portfolio-button--primary" href="#enterprise">
-                  Explore products
+                <a
+                  className="portfolio-button portfolio-button--primary"
+                  href="#enterprise"
+                >
+                  View selected work
                   <ArrowRight size={14} />
                 </a>
-                <Link className="portfolio-button portfolio-button--secondary" href="/custom-development">
-                  Custom development
+
+                <Link
+                  className="portfolio-button portfolio-button--secondary"
+                  href="/custom-development"
+                >
+                  Custom engineering
                 </Link>
               </div>
             </div>
 
             <div className="portfolio-hero__summary">
               <div className="portfolio-summary-row">
-                <span>Enterprise software</span>
-                <strong>6 products</strong>
+                <span>Flagship systems</span>
+                <strong>4</strong>
               </div>
+
               <div className="portfolio-summary-row">
-                <span>Venue &amp; display</span>
-                <strong>TVM platform</strong>
+                <span>Primary disciplines</span>
+                <strong>Architecture · Full stack · Data</strong>
               </div>
+
               <div className="portfolio-summary-row">
-                <span>Entertainment platforms</span>
-                <strong>3 active builds</strong>
+                <span>Delivery model</span>
+                <strong>Purpose-built · Documented · Ownable</strong>
               </div>
+
               <div className="portfolio-summary-row">
-                <span>Client / partner projects</span>
-                <strong>Active development</strong>
+                <span>Current portfolio</span>
+                <strong>OTLES · PlotMap · Licensing · ChangeOps</strong>
               </div>
             </div>
           </div>
