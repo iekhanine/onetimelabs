@@ -10,7 +10,7 @@ import {
   Code2,
   ExternalLink,
   FileCode2,
-  Gamepad2,
+  Map as MapIcon,
   MonitorPlay,
   PackageCheck,
   Radio,
@@ -145,7 +145,7 @@ export default function Home() {
             <div className="portfolio-hero__summary">
               <div className="portfolio-summary-row">
                 <span>Flagship systems</span>
-                <strong>4</strong>
+                <strong>5</strong>
               </div>
 
               <div className="portfolio-summary-row">
@@ -160,54 +160,54 @@ export default function Home() {
 
               <div className="portfolio-summary-row">
                 <span>Current portfolio</span>
-                <strong>OTLES · PlotMap · Licensing · ChangeOps</strong>
+                <strong>OTLES · PlotMap · Licensing · OTLAM · ChangeOps</strong>
               </div>
             </div>
           </div>
         </section>
 
         {/* ==========================================================
-            HOME 010 — ENTERPRISE SOFTWARE
+            HOME 010 — FLAGSHIP SYSTEMS
             ========================================================== */}
         <section className="portfolio-section" id="enterprise">
-          <div className="shell">
+          <div className="shell" id="flagship">
             <div className="portfolio-section__heading">
               <div>
-                <span className="portfolio-kicker">Enterprise software</span>
-                <h2>Enterprise software</h2>
+                <span className="portfolio-kicker">Flagship</span>
+                <h2>Flagship systems</h2>
               </div>
               <p>
-                Change management, documentation, licensing, task management, compliance reporting, and asset tools.
+                The core OneTime Labs portfolio: documentation, geospatial records,
+                licensing infrastructure, asset management, and operational governance.
               </p>
             </div>
 
             <div className="portfolio-grid portfolio-grid--featured">
               <ProductCard
-                name="ChangeOps"
-                category="Change management"
-                description="Change request and CAB governance for organizations that need a real approval process without adopting an entire ITSM suite."
-                bullets={[
-                  "Change requests & implementation plans",
-                  "CAB approval quorum & separation of duties",
-                  "Audit history & CAB summaries",
-                  "Multi-organization governance",
-                ]}
-                href="https://changeops.onetimelabs.net"
-                icon={<ClipboardCheck size={20} />}
-              />
-
-              <ProductCard
                 name="OTLES"
-                category="Documentation"
+                category="Documentation & standards"
                 description="Structured documentation and engineering standards for organizations that need more governance than a folder full of documents."
                 bullets={[
                   "Organization-based documentation",
-                  "Structured document hierarchy",
+                  "Workspace / category / document hierarchy",
                   "Revision-ready content",
                   "Built around OTML",
                 ]}
                 href="https://otles.onetimelabs.net"
                 icon={<BookOpenText size={20} />}
+              />
+
+              <ProductCard
+                name="PlotMap"
+                category="Memorial records & mapping"
+                description="A complete memorial records and interactive grounds-mapping platform combining geospatial data, public search, field verification, and operational record management."
+                bullets={[
+                  "Interactive aerial mapping",
+                  "Zones, plots & memorial records",
+                  "Public family search",
+                  "Mobile GPS field verification",
+                ]}
+                icon={<MapIcon size={20} />}
               />
 
               <ProductCard
@@ -225,39 +225,11 @@ export default function Home() {
               />
 
               <ProductCard
-                name="Tasks"
-                category="Task management"
-                description="A deliberately lightweight task manager for work that does not need a six-layer project-management ceremony."
-                bullets={[
-                  "Fast browser-based workflow",
-                  "No login required",
-                  "Simple task organization",
-                  "Immediate use",
-                ]}
-                href="https://tasks.onetimelabs.net"
-                icon={<CheckSquare2 size={20} />}
-              />
-
-              <ProductCard
-                name="PCCR"
-                category="Print compliance"
-                description="Printer Configuration Compliance Reporting turns fleet configuration exports into actionable compliance results."
-                bullets={[
-                  "Configuration compliance scoring",
-                  "Passed / failed result logic",
-                  "Unsupported & skipped handling",
-                  "Fleet-level reporting",
-                ]}
-                href="https://pccr.onetimelabs.net"
-                icon={<ShieldCheck size={20} />}
-              />
-
-              <ProductCard
                 name="OTLAM"
                 category="Asset management"
-                description="A modular asset-management platform beginning with IT assets and designed to expand into equipment, vehicles, inventory, and other operational asset classes."
+                description="A modular asset-management platform designed for IT assets and expandable into equipment, vehicles, inventory, and other operational asset classes."
                 bullets={[
-                  "IT asset registry",
+                  "Asset registry",
                   "Assignments & lifecycle history",
                   "Import / discovery foundation",
                   "Modular asset model",
@@ -265,67 +237,82 @@ export default function Home() {
                 status="In development"
                 icon={<Blocks size={20} />}
               />
+
+              <ProductCard
+                name="ChangeOps"
+                category="Change management"
+                description="Change request and CAB governance for organizations that need a real approval process without adopting an entire ITSM suite."
+                bullets={[
+                  "Change requests & implementation plans",
+                  "CAB approval quorum & separation of duties",
+                  "Audit history & CAB summaries",
+                  "Multi-organization governance",
+                ]}
+                href="https://changeops.onetimelabs.net"
+                icon={<ClipboardCheck size={20} />}
+              />
             </div>
           </div>
         </section>
 
         {/* ==========================================================
-            HOME 020 — TVM FAMILY
+            HOME 020 — TOOLS
             ========================================================== */}
         <section className="portfolio-section portfolio-section--soft" id="venue">
-          <div className="shell">
+          <div className="shell" id="tools">
             <div className="portfolio-section__heading">
               <div>
-                <span className="portfolio-kicker">Venue &amp; display</span>
-                <h2>TVM</h2>
+                <span className="portfolio-kicker">Tools</span>
+                <h2>Operational tools</h2>
               </div>
               <p>
-                Digital signage and live trivia for venues using standard TVs and web browsers.
+                Focused utilities and lightweight platforms built to solve a specific
+                operational problem without unnecessary overhead.
               </p>
             </div>
 
-            <div className="family-panel">
-              <div className="family-panel__intro">
-                <div className="family-panel__icon">
-                  <MonitorPlay size={22} />
-                </div>
-                <div>
-                  <span className="portfolio-card__category">TVM platform</span>
-                  <h3>TVM</h3>
-                  <p>
-                    A browser-managed platform for putting useful, controlled content on venue
-                    screens without proprietary display hardware.
-                  </p>
-                </div>
-                <a href="https://tvm.onetimelabs.net" target="_blank" rel="noreferrer">
-                  Open TVM
-                  <ExternalLink size={13} />
-                </a>
-              </div>
+            <div className="portfolio-grid portfolio-grid--three">
+              <ProductCard
+                name="PCCR"
+                category="Print compliance"
+                description="Printer Configuration Compliance Reporting turns fleet configuration exports into actionable compliance results."
+                bullets={[
+                  "Configuration compliance scoring",
+                  "Passed / failed result logic",
+                  "Fleet-level reporting",
+                ]}
+                href="https://pccr.onetimelabs.net"
+                icon={<ShieldCheck size={20} />}
+                compact
+              />
 
-              <div className="family-panel__products">
-                <article>
-                  <MonitorPlay size={18} />
-                  <div>
-                    <h4>Digital Signage</h4>
-                    <p>
-                      Menus, promotions, announcements, schedules, events, and rotating
-                      branded content for TVs and displays.
-                    </p>
-                  </div>
-                </article>
+              <ProductCard
+                name="Tasks"
+                category="Task management"
+                description="A deliberately lightweight task manager for work that does not need a six-layer project-management ceremony."
+                bullets={[
+                  "Fast browser-based workflow",
+                  "Simple task organization",
+                  "Immediate use",
+                ]}
+                href="https://tasks.onetimelabs.net"
+                icon={<CheckSquare2 size={20} />}
+                compact
+              />
 
-                <article>
-                  <Gamepad2 size={18} />
-                  <div>
-                    <h4>TVM Trivia</h4>
-                    <p>
-                      Live venue trivia with a public TV view, host controls, and player
-                      participation from a phone using a short session code.
-                    </p>
-                  </div>
-                </article>
-              </div>
+              <ProductCard
+                name="TVM"
+                category="Venue tools"
+                description="A browser-managed venue platform for digital displays and live trivia using standard TVs and customer devices."
+                bullets={[
+                  "Digital signage",
+                  "Live venue trivia",
+                  "Phone-based participation",
+                ]}
+                href="https://tvm.onetimelabs.net"
+                icon={<MonitorPlay size={20} />}
+                compact
+              />
             </div>
           </div>
         </section>
