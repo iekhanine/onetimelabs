@@ -1,35 +1,33 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer">
-      <div className="shell site-footer__top">
-        <div className="site-footer__statement">
-          <div className="footer-brand">
-            <img src="/brand/otl-mark.png" alt="" />
+    <footer className="otl-footer">
+      <div className="otl-shell otl-footer-grid">
+        <div className="otl-footer-brand">
+          <Image src="/brand/otl-mark.png" alt="" width={36} height={36} />
+          <div>
             <strong>OneTime Labs</strong>
+            <span>Vendor migration, managed print, enterprise consulting, and purpose-built software.</span>
           </div>
-          <p>Small studio. Real software. Built because the problem was worth fixing.</p>
         </div>
 
-        <div className="site-footer__links">
-          <Link href="/products/tvm">OneTime Menu</Link>
-          <Link href="/products/otles">OTLES</Link>
-          <Link href="/products/roffle">ROFFLE</Link>
-          <Link href="/products/tasks">Tasks</Link>
-        </div>
-
-        <div className="site-footer__links">
+        <div className="otl-footer-links">
+          <Link href="/vendor-migration">Vendor Migration</Link>
+          <Link href="/managed-print-services">Managed Print</Link>
+          <Link href="/consulting">Consulting</Link>
+          <Link href="/custom-development">Development</Link>
+          <Link href="/software">Software</Link>
+          <Link href="/experience">Experience</Link>
+          <Link href="/pricing">Pricing</Link>
           <Link href="/contact">Contact</Link>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
-          <Link href="/contact">Send an inquiry</Link>
         </div>
-      </div>
 
-      <div className="shell site-footer__bottom">
-        <span>© {new Date().getFullYear()} OneTime Labs</span>
-        <span>Build once. Own forever.</span>
+        <div className="otl-footer-copy">
+          <span>Racine, WI · Milwaukee, WI · Chicago, IL</span>
+          <span>© {new Date().getFullYear()} OneTime Labs</span>
+        </div>
       </div>
     </footer>
   );

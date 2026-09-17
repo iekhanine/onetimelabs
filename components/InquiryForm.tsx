@@ -4,17 +4,23 @@ import { FormEvent, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const productOptions = [
-  { value: "tvm", label: "OneTime Menu" },
   { value: "otles", label: "OTLES" },
-  { value: "roffle", label: "ROFFLE" },
-  { value: "tasks", label: "Tasks" },
+  { value: "changeops", label: "ChangeOps" },
+  { value: "pccr", label: "PCCR" },
+  { value: "licensing", label: "OneTime Labs Licensing" },
+  { value: "otlam", label: "OTLAM" },
+  { value: "plotmap", label: "PlotMap" },
+  { value: "creator-tools", label: "Creator / streaming tools" },
 ];
 
 const topicOptions = [
-  { value: "product", label: "Product question / demo" },
+  { value: "vendor-migration", label: "Vendor migration" },
+  { value: "managed-print", label: "Managed Print Services" },
+  { value: "consulting", label: "Enterprise consulting" },
   { value: "custom", label: "Custom software / workflow" },
-  { value: "partnership", label: "Partnership" },
+  { value: "product", label: "Software product question / demo" },
   { value: "support", label: "Product support" },
+  { value: "partnership", label: "Partnership" },
   { value: "general", label: "General inquiry" },
 ];
 
@@ -29,8 +35,8 @@ export function InquiryForm() {
   }, [searchParams]);
 
   const initialTopic = useMemo(() => {
-    const value = searchParams.get("topic") ?? "product";
-    return topicOptions.some((option) => option.value === value) ? value : "product";
+    const value = searchParams.get("topic") ?? "consulting";
+    return topicOptions.some((option) => option.value === value) ? value : "consulting";
   }, [searchParams]);
 
   const [status, setStatus] = useState<Status>("idle");

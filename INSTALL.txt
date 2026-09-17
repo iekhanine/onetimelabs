@@ -1,0 +1,26 @@
+ONE TIME LABS ENTERPRISE REDESIGN - CORRECTED PATCH
+
+IMPORTANT:
+Extract/copy the contents of THIS folder directly into the ROOT of your existing onetimelabs.net project.
+
+Example project root:
+C:\Projects\onetimelabs\
+
+After copying, these exact paths must exist:
+C:\Projects\onetimelabs\app\page.tsx
+C:\Projects\onetimelabs\app\company-store.css
+C:\Projects\onetimelabs\app\layout.tsx
+C:\Projects\onetimelabs\app\consulting\page.tsx
+C:\Projects\onetimelabs\components\SiteHeader.tsx
+C:\Projects\onetimelabs\components\SiteFooter.tsx
+
+DO NOT place this project inside an otl_site_patch or onetimelabs_redesign_corrected subfolder.
+
+Then stop the dev server and run:
+  Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue
+  npm run dev
+
+Verify the correct page file with:
+  Select-String -Path .\app\page.tsx -Pattern "consulting theater"
+
+You should see the headline source line returned.

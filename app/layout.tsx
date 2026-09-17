@@ -7,6 +7,7 @@ import type {
 } from "next";
 
 import "./globals.css";
+import "./company-store.css";
 
 
 export const metadata: Metadata = {
@@ -17,20 +18,20 @@ export const metadata: Metadata = {
 
   title: {
     default:
-      "OneTime Labs | Software Architecture & Engineering",
+      "OneTime Labs | Vendor Migration & Enterprise Consulting",
     template:
       "%s | OneTime Labs",
   },
 
   description:
-    "OneTime Labs is an independent software engineering studio building purpose-built operational platforms, including OTLES, PlotMap, software licensing infrastructure, and ChangeOps.",
+    "OneTime Labs provides vendor migration, Managed Print Services, enterprise technology consulting, ITAM/SAM expertise, architecture, and purpose-built operational software in Racine, Milwaukee, Chicago, and remotely.",
 
   openGraph: {
     title:
-      "OneTime Labs | Software Architecture & Engineering",
+      "OneTime Labs | Vendor Migration & Enterprise Consulting",
 
     description:
-      "Selected engineering work from OneTime Labs: documentation, mapping, licensing, governance, and purpose-built operational software.",
+      "Vendor migration, Managed Print Services, enterprise architecture, ITAM/SAM, and purpose-built operational software from OneTime Labs.",
 
     url:
       "https://onetimelabs.net",
