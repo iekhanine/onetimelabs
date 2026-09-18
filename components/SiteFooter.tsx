@@ -9,25 +9,23 @@ export function SiteFooter() {
           <Image src="/brand/otl-mark.png" alt="" width={36} height={36} />
           <div>
             <strong>OneTime Labs</strong>
-            <span>Vendor migration, managed print, enterprise consulting, and purpose-built software.</span>
+            <span>Vendor migration, Managed Print Services, enterprise IT consulting, and custom software.</span>
           </div>
         </div>
 
         <div className="otl-footer-links">
-          <Link href="/vendor-migration">Vendor Migration</Link>
-          <Link href="/managed-print-services">Managed Print</Link>
-          <Link href="/consulting">Consulting</Link>
-          <Link href="/custom-development">Development</Link>
+          <Link href="/consulting">Services</Link>
           <Link href="/software">Software</Link>
           <Link href="/experience">Experience</Link>
           <Link href="/pricing">Pricing</Link>
-          <Link href="/contribute">Support OTL</Link>
-          <Link href="/invest">Invest</Link>
           <Link href="/contact">Contact</Link>
+          <Link href="/contribute">Support OTL</Link>
+          <Link href="/invest">Investor Info</Link>
         </div>
 
         <div className="otl-footer-copy">
           <span>Racine, WI · Milwaukee, WI · Chicago, IL</span>
+          <span>Remote & national engagements available</span>
           <span>© {new Date().getFullYear()} OneTime Labs</span>
         </div>
       </div>

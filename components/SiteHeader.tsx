@@ -15,18 +15,9 @@ export function SiteHeader() {
           </Link>
 
           <div className="otl-header-context" aria-label="Service area">
-            <span>Racine</span><i aria-hidden="true" />
             <span>Milwaukee</span><i aria-hidden="true" />
-            <span>Chicago</span><i aria-hidden="true" />
-            <span>Remote / National</span>
-          </div>
-
-          <div className="otl-header-actions">
-            <Link href="/contact">Contact</Link>
-            <Link className="otl-header-invest-link" href="/invest">Invest</Link>
-            <a className="otl-header-store-link" href="https://store.onetimelabs.net">
-              Software Store
-            </a>
+            <span>Racine</span><i aria-hidden="true" />
+            <span>Chicago</span>
           </div>
         </div>
       </div>
@@ -40,19 +31,19 @@ export function SiteHeader() {
             <div className="otl-nav-dropdown" aria-label="Services navigation">
               <Link href="/vendor-migration">
                 <strong>Vendor Migration</strong>
-                <span>Discovery, transition, cutover, validation</span>
+                <span>Plan and execute technology provider changes</span>
               </Link>
               <Link href="/managed-print-services">
                 <strong>Managed Print Services</strong>
-                <span>Fleet, tooling, MPS transition, print architecture</span>
+                <span>Printer fleets, servers, tools, and provider transitions</span>
               </Link>
               <Link href="/consulting">
-                <strong>Enterprise Consulting</strong>
-                <span>Architecture, ITAM/SAM, CMDB, operations</span>
+                <strong>Enterprise IT Consulting</strong>
+                <span>Architecture, assets, licenses, ServiceNow, and governance</span>
               </Link>
               <Link href="/custom-development">
                 <strong>Custom Development</strong>
-                <span>Internal tools and operational software</span>
+                <span>Internal tools, workflows, dashboards, and integrations</span>
               </Link>
             </div>
           </div>
@@ -66,14 +57,14 @@ export function SiteHeader() {
               </Link>
               <Link href="/creator-tools">
                 <strong>Creator Tools</strong>
-                <span>Twitch, YouTube, OBS, broadcast utilities</span>
+                <span>Twitch, YouTube, OBS, and broadcast utilities</span>
               </Link>
             </div>
           </div>
 
           <Link href="/experience">Experience</Link>
           <Link href="/pricing">Pricing</Link>
-          <a href="https://store.onetimelabs.net">Store</a>
+          <Link href="/contact">Contact</Link>
         </div>
       </nav>
     </header>

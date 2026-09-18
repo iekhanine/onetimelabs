@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   Code2,
-  MapPin,
   Network,
   Printer,
 } from "lucide-react";
@@ -11,39 +10,40 @@ import {
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { enterpriseExperience } from "@/lib/company";
+import styles from "./home.module.css";
 
-const capabilities = [
+const services = [
   {
     href: "/vendor-migration",
     icon: Network,
     title: "Vendor Migration",
     description:
-      "Discovery, dependency mapping, transition planning, cutover, validation, documentation, and operational handoff.",
-    detail: "Plan the move without losing the operation.",
+      "Changing technology providers? We document what you have, plan the move, manage cutover, verify the new environment, and hand it back cleanly.",
+    detail: "Provider changes · platform moves · multi-site cutovers",
   },
   {
     href: "/managed-print-services",
     icon: Printer,
     title: "Managed Print Services",
     description:
-      "Enterprise print architecture, fleet assessment, PrinterLogic, Web JetAdmin, Streamline NX, print servers, and vendor transitions.",
-    detail: "Treat print like infrastructure.",
+      "We assess and improve large printer environments: devices, print servers, management tools, reporting, standards, and provider transitions.",
+    detail: "PrinterLogic · Web JetAdmin · Streamline NX · print servers",
   },
   {
     href: "/consulting",
     icon: BriefcaseBusiness,
-    title: "Enterprise Consulting",
+    title: "Enterprise IT Consulting",
     description:
-      "Architecture, ITAM, SAM, CMDB, operational governance, technical standards, project recovery, and senior implementation support.",
-    detail: "Senior technical help without the giant consultancy.",
+      "We clean up difficult IT environments: hardware and software records, licensing, ServiceNow data, technical standards, and stalled projects.",
+    detail: "ITAM · SAM · CMDB · ServiceNow · architecture",
   },
   {
     href: "/custom-development",
     icon: Code2,
-    title: "Custom Development",
+    title: "Custom Business Software",
     description:
-      "Purpose-built internal software when commercial tools are too expensive, too rigid, or simply do not fit the workflow.",
-    detail: "Build the missing piece.",
+      "When off-the-shelf software does not fit the job, we build the missing tool around the way your company actually works.",
+    detail: "Internal tools · workflows · dashboards · integrations",
   },
 ];
 
@@ -51,173 +51,132 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main className="otl-company-page">
-        <section className="otl-support-ribbon" aria-label="Support OneTime Labs">
-          <div className="otl-shell otl-support-ribbon-inner">
-            <div className="otl-support-ribbon-copy">
-              <span className="otl-support-ribbon-badge">BACK OTL</span>
-              <strong>Support the work or follow the future investment round.</strong>
-              <span>Contributions and investment interest are separate.</span>
-            </div>
-            <div className="otl-support-ribbon-actions">
-              <Link className="otl-support-ribbon-link" href="/contribute">
-                Support OTL <ArrowRight size={13} />
-              </Link>
-              <Link className="otl-support-ribbon-link otl-support-ribbon-invest" href="/invest">
-                Investor Profile <ArrowRight size={13} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="otl-hero">
-          <div className="otl-shell otl-hero-grid">
-            <div className="otl-hero-copy">
-              <span className="otl-eyebrow">ENTERPRISE CONSULTING · RACINE / MILWAUKEE / CHICAGO</span>
-              <h1>Enterprise technology transitions without the consulting theater.</h1>
-              <p>
-                OneTime Labs helps organizations change vendors, modernize managed print,
-                clean up operational technology, and build the software needed to support
-                the environment after the project team leaves.
+      <main className={styles.page}>
+        <section className={styles.hero}>
+          <div className={`otl-shell ${styles.heroInner}`}>
+            <div>
+              <span className={styles.kicker}>ENTERPRISE TECHNOLOGY CONSULTING</span>
+              <h1>…to new technology.</h1>
+              <p className={styles.heroLead}>
+                We help companies replace vendors, systems, and tools without turning the change
+                into chaos. We plan the move, do the technical work, verify it works, and leave the
+                new environment documented for the people who have to run it.
               </p>
-              <div className="otl-hero-actions">
-                <Link className="otl-button otl-button-primary" href="/vendor-migration">
-                  Explore services <ArrowRight size={14} />
+              <div className={styles.heroActions}>
+                <Link className={styles.primaryButton} href="/contact">
+                  Start a project <ArrowRight size={14} />
                 </Link>
-                <Link className="otl-button otl-button-secondary" href="/contact">
-                  Start a conversation
-                </Link>
-                <Link className="otl-button otl-button-support" href="/contribute">
-                  Support OneTime Labs <ArrowRight size={14} />
-                </Link>
-                <Link className="otl-button otl-button-invest" href="/invest">
-                  Investor Profile <ArrowRight size={14} />
+                <Link className={styles.secondaryButton} href="#services">
+                  What we do
                 </Link>
               </div>
             </div>
 
-            <div className="otl-hero-index" aria-label="OneTime Labs focus areas">
-              <div className="otl-hero-index-row">
-                <strong>Vendor Migration</strong>
-                <span>Current state → target state → cutover → handoff</span>
+            <aside className={styles.heroPanel} aria-label="Common OneTime Labs projects">
+              <div className={styles.heroPanelRow}>
+                <strong>Changing vendors?</strong>
+                <span>We map the old environment and move you to the new one.</span>
               </div>
-              <div className="otl-hero-index-row">
-                <strong>Managed Print</strong>
-                <span>Fleet · tooling · print servers · governance · MPS transition</span>
+              <div className={styles.heroPanelRow}>
+                <strong>Managed Print Services getting messy?</strong>
+                <span>We sort out the fleet, servers, tools, data, and provider model.</span>
               </div>
-              <div className="otl-hero-index-row">
-                <strong>Operational Software</strong>
-                <span>Internal tools · workflow systems · APIs · enterprise applications</span>
+              <div className={styles.heroPanelRow}>
+                <strong>Need software that does not exist?</strong>
+                <span>We build focused internal tools around the actual workflow.</span>
               </div>
-            </div>
+            </aside>
           </div>
         </section>
 
-        <section className="otl-enterprise-proof">
+        <section className={styles.services} id="services">
           <div className="otl-shell">
-            <div className="otl-proof-heading">
-              <span className="otl-eyebrow otl-eyebrow-dark">ENTERPRISE ENVIRONMENTS SUPPORTED</span>
-              <Link href="/experience">View enterprise experience <ArrowRight size={13} /></Link>
-            </div>
-            <div className="otl-logo-row" aria-label="Prior enterprise environments supported">
-              {enterpriseExperience.map((company) => <strong key={company}>{company}</strong>)}
-            </div>
-            <p className="otl-proof-note">
-              Prior professional experience and engagements. Listed organizations are not presented as current OneTime Labs clients or sponsors.
-            </p>
-          </div>
-        </section>
-
-        <div className="otl-shell otl-home-content">
-          <section className="otl-home-section">
-            <div className="otl-section-heading">
-              <div>
-                <span className="otl-eyebrow otl-eyebrow-dark">SERVICES</span>
-                <h2>Pick the problem. Go to the page.</h2>
-                <p>The homepage is the lobby now. Each capability has its own scope, process, and engagement model.</p>
-              </div>
+            <div className={styles.sectionHead}>
+              <span className="otl-eyebrow otl-eyebrow-dark">WHAT WE DO</span>
+              <h2>The problems companies bring us.</h2>
+              <p>
+                You do not need to know the consulting terminology. If a vendor, system, process,
+                or internal tool is becoming a problem, start there.
+              </p>
             </div>
 
-            <div className="otl-service-cards">
-              {capabilities.map(({ href, icon: Icon, title, description, detail }) => (
-                <Link className="otl-service-card otl-service-card-link" href={href} key={title}>
-                  <Icon size={18} />
+            <div className={styles.serviceGrid}>
+              {services.map(({ href, icon: Icon, title, description, detail }) => (
+                <Link className={styles.serviceCard} href={href} key={title}>
+                  <div className={styles.serviceIcon}><Icon size={18} /></div>
                   <h3>{title}</h3>
                   <p>{description}</p>
-                  <span>{detail} <ArrowRight size={12} /></span>
+                  <span className={styles.serviceDetail}>{detail}</span>
+                  <span className={styles.serviceLink}>Learn more <ArrowRight size={12} /></span>
                 </Link>
               ))}
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="otl-home-split">
-            <div className="otl-home-panel">
+        <section className={styles.experience}>
+          <div className={`otl-shell ${styles.experienceGrid}`}>
+            <div className={styles.experienceCopy}>
+              <span className={styles.kicker}>ENTERPRISE EXPERIENCE</span>
+              <h2>Experience from environments where mistakes get expensive.</h2>
+              <p>
+                The work behind OneTime Labs comes from large enterprise environments involving
+                thousands of users, devices, vendors, assets, licenses, locations, and support teams.
+                That experience is what we bring to smaller teams and focused enterprise projects.
+              </p>
+              <Link className={styles.experienceLink} href="/experience">
+                View enterprise experience <ArrowRight size={13} />
+              </Link>
+            </div>
+
+            <div className={styles.companyBox}>
+              <div className={styles.companyGrid} aria-label="Prior professional environments">
+                {enterpriseExperience.map((company) => <strong key={company}>{company}</strong>)}
+              </div>
+              <p className={styles.companyNote}>
+                Prior professional experience and engagements. Organizations shown are not presented
+                as current OneTime Labs clients, partners, or sponsors.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.lower}>
+          <div className={`otl-shell ${styles.lowerGrid}`}>
+            <article className={styles.infoCard}>
               <span className="otl-eyebrow otl-eyebrow-dark">SOFTWARE</span>
-              <h2>Software built from operational problems.</h2>
+              <h2>We build tools too.</h2>
               <p>
-                OTLES, ChangeOps, PCCR, licensing infrastructure, asset-management tooling,
-                geospatial systems, and creator/broadcast utilities.
+                OTLES, ChangeOps, PCCR, licensing systems, asset-management tools, and custom
+                internal applications built from real operational problems.
               </p>
-              <div className="otl-inline-links">
-                <Link href="/software">Enterprise software <ArrowRight size={13} /></Link>
-                <Link href="/creator-tools">Creator tools <ArrowRight size={13} /></Link>
-              </div>
-            </div>
-
-            <div className="otl-home-panel">
-              <span className="otl-eyebrow otl-eyebrow-dark">ENGAGEMENTS</span>
-              <h2>Clear rates. Scoped work.</h2>
-              <p>
-                Remote consulting starts at $175/hour, onsite consulting at $225/hour,
-                with project pricing available for migrations, assessments, and longer engagements.
-              </p>
-              <div className="otl-inline-links">
-                <Link href="/pricing">View pricing <ArrowRight size={13} /></Link>
-                <Link href="/contact">Request a consultation <ArrowRight size={13} /></Link>
-              </div>
-            </div>
-          </section>
-
-          <section className="otl-backing-grid" aria-label="Support and investment options">
-            <article className="otl-backing-card">
-              <span className="otl-eyebrow otl-eyebrow-dark">SUPPORT ONETIME LABS</span>
-              <h2>Help fund the next thing we build.</h2>
-              <p>Support independent development directly. This is a one-time contribution and does not purchase ownership.</p>
-              <Link className="otl-button otl-button-primary" href="/contribute">
-                Support OneTime Labs <ArrowRight size={14} />
-              </Link>
+              <Link href="/software">View software <ArrowRight size={13} /></Link>
             </article>
 
-            <article className="otl-backing-card otl-backing-card-invest">
-              <span className="otl-eyebrow otl-eyebrow-dark">INVESTOR PROFILE</span>
-              <h2>Interested in future ownership?</h2>
-              <p>Review the company, portfolio, business model, planned use of capital, risks, and register non-binding investment interest.</p>
-              <Link className="otl-button otl-button-primary" href="/invest">
-                View Investor Profile <ArrowRight size={14} />
-              </Link>
+            <article className={styles.infoCard}>
+              <span className="otl-eyebrow otl-eyebrow-dark">PRICING</span>
+              <h2>Clear rates. Scoped projects.</h2>
+              <p>
+                Remote consulting starts at <strong>$175/hour</strong>, onsite at <strong>$225/hour</strong>,
+                with fixed project pricing available for larger work.
+              </p>
+              <Link href="/pricing">View pricing <ArrowRight size={13} /></Link>
             </article>
-          </section>
+          </div>
+        </section>
 
-          <section className="otl-local-strip">
-            <MapPin size={18} />
+        <section className={styles.contact}>
+          <div className={`otl-shell ${styles.contactInner}`}>
             <div>
-              <strong>Primary onsite service area</strong>
-              <span>Racine, WI · Milwaukee, WI · Chicago, IL</span>
+              <span className={styles.kicker}>RACINE · MILWAUKEE · CHICAGO · REMOTE / NATIONAL</span>
+              <h2>Tell us what needs to change.</h2>
+              <p>Vendor, print environment, IT operations, or software—we can start with the problem.</p>
             </div>
-            <p>Remote and national enterprise engagements are welcome.</p>
-          </section>
-
-          <section className="otl-store-strip">
-            <div>
-              <span className="otl-eyebrow otl-eyebrow-dark">START HERE</span>
-              <h2>Tell us what is changing.</h2>
-              <p>Vendor problem, print problem, architecture problem, software problem. Start with the actual problem and we will scope from there.</p>
-            </div>
-            <Link className="otl-button otl-button-primary" href="/contact">
+            <Link className={styles.primaryButton} href="/contact">
               Contact OneTime Labs <ArrowRight size={14} />
             </Link>
-          </section>
-        </div>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </>
