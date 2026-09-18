@@ -52,6 +52,19 @@ export default function Home() {
     <>
       <SiteHeader />
       <main className="otl-company-page">
+        <section className="otl-support-ribbon" aria-label="Support OneTime Labs">
+          <div className="otl-shell otl-support-ribbon-inner">
+            <div className="otl-support-ribbon-copy">
+              <span className="otl-support-ribbon-badge">SUPPORT OTL</span>
+              <strong>Like what we are building?</strong>
+              <span>Help fund independent software and the next OneTime Labs project.</span>
+            </div>
+            <Link className="otl-support-ribbon-link" href="/contribute">
+              Donate / Support <ArrowRight size={13} />
+            </Link>
+          </div>
+        </section>
+
         <section className="otl-hero">
           <div className="otl-shell otl-hero-grid">
             <div className="otl-hero-copy">
@@ -68,6 +81,9 @@ export default function Home() {
                 </Link>
                 <Link className="otl-button otl-button-secondary" href="/contact">
                   Start a conversation
+                </Link>
+                <Link className="otl-button otl-button-support" href="/contribute">
+                  Support OneTime Labs <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
