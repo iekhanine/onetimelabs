@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./a220.module.css";
 
 type AcronymItem = {
@@ -11,6 +11,10 @@ type AcronymItem = {
 type AcronymSection = {
   title: string;
   items: AcronymItem[];
+};
+
+type StudyCard = AcronymItem & {
+  section: string;
 };
 
 const sections: AcronymSection[] = [
@@ -160,9 +164,29 @@ const sections: AcronymSection[] = [
   },
 ];
 
+const allCards: StudyCard[] = sections.flatMap((section) =>
+  section.items.map((item) => ({ ...item, section: section.title }))
+);
+
+function shuffled<T>(items: T[]): T[] {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 export default function A220AcronymsClient() {
+  const [mode, setMode] = useState<"reference" | "flashcards">("reference");
   const [activeSection, setActiveSection] = useState("Flight Controls");
   const [query, setQuery] = useState("");
+
+  const [studySection, setStudySection] = useState("All Systems");
+  const [studyDeck, setStudyDeck] = useState<StudyCard[]>(allCards);
+  const [cardIndex, setCardIndex] = useState(0);
+  const [revealed, setRevealed] = useState(false);
+  const [answerFirst, setAnswerFirst] = useState(false);
 
   const visibleSections = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -186,6 +210,63 @@ export default function A220AcronymsClient() {
     visibleSections[0] ??
     null;
 
+  const currentCard = studyDeck[cardIndex] ?? null;
+
+  const loadDeck = (sectionName: string, shuffle = false) => {
+    const nextDeck =
+      sectionName === "All Systems"
+        ? allCards
+        : allCards.filter((card) => card.section === sectionName);
+
+    setStudyDeck(shuffle ? shuffled(nextDeck) : [...nextDeck]);
+    setCardIndex(0);
+    setRevealed(false);
+  };
+
+  const selectStudySection = (sectionName: string) => {
+    setStudySection(sectionName);
+    loadDeck(sectionName);
+  };
+
+  const nextCard = () => {
+    if (!studyDeck.length) return;
+    setCardIndex((index) => (index + 1) % studyDeck.length);
+    setRevealed(false);
+  };
+
+  const previousCard = () => {
+    if (!studyDeck.length) return;
+    setCardIndex((index) => (index - 1 + studyDeck.length) % studyDeck.length);
+    setRevealed(false);
+  };
+
+  const shuffleDeck = () => {
+    setStudyDeck((deck) => shuffled(deck));
+    setCardIndex(0);
+    setRevealed(false);
+  };
+
+  useEffect(() => {
+    if (mode !== "flashcards") return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.tagName === "INPUT" || target?.tagName === "SELECT") return;
+
+      if (event.key === " " || event.key === "Enter") {
+        event.preventDefault();
+        setRevealed((value) => !value);
+      } else if (event.key === "ArrowRight") {
+        nextCard();
+      } else if (event.key === "ArrowLeft") {
+        previousCard();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mode, studyDeck.length]);
+
   return (
     <main className={styles.shell}>
       <section className={styles.card} aria-label="A220 acronym reference">
@@ -203,62 +284,182 @@ export default function A220AcronymsClient() {
           </div>
         </header>
 
-        <div className={styles.searchWrap}>
-          <input
-            className={styles.search}
-            type="search"
-            placeholder="Search acronym or definition…"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            aria-label="Search acronyms"
-          />
+        <div className={styles.modeBar} role="tablist" aria-label="Study mode">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mode === "reference"}
+            className={`${styles.modeButton} ${mode === "reference" ? styles.modeButtonActive : ""}`}
+            onClick={() => setMode("reference")}
+          >
+            Reference
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mode === "flashcards"}
+            className={`${styles.modeButton} ${mode === "flashcards" ? styles.modeButtonActive : ""}`}
+            onClick={() => setMode("flashcards")}
+          >
+            Flashcards
+          </button>
         </div>
 
-        <div className={styles.layout}>
-          <nav className={styles.menu} aria-label="A220 system categories">
-            {visibleSections.map((section) => (
-              <button
-                key={section.title}
-                className={`${styles.menuItem} ${
-                  currentSection?.title === section.title ? styles.active : ""
-                }`}
-                onClick={() => setActiveSection(section.title)}
-                type="button"
-              >
-                <span>{section.title}</span>
-                <span className={styles.chevron}>›</span>
-              </button>
-            ))}
-          </nav>
+        {mode === "reference" ? (
+          <>
+            <div className={styles.searchWrap}>
+              <input
+                className={styles.search}
+                type="search"
+                placeholder="Search acronym or definition…"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                aria-label="Search acronyms"
+              />
+            </div>
 
-          <section className={styles.content}>
-            {currentSection ? (
+            <div className={styles.layout}>
+              <nav className={styles.menu} aria-label="A220 system categories">
+                {visibleSections.map((section) => (
+                  <button
+                    key={section.title}
+                    className={`${styles.menuItem} ${
+                      currentSection?.title === section.title ? styles.active : ""
+                    }`}
+                    onClick={() => setActiveSection(section.title)}
+                    type="button"
+                  >
+                    <span>{section.title}</span>
+                    <span className={styles.chevron}>›</span>
+                  </button>
+                ))}
+              </nav>
+
+              <section className={styles.content}>
+                {currentSection ? (
+                  <>
+                    <div className={styles.sectionHeading}>
+                      <div>
+                        <p className={styles.sectionLabel}>SYSTEM</p>
+                        <h2>{currentSection.title}</h2>
+                      </div>
+                      <span className={styles.count}>
+                        {currentSection.items.length} {currentSection.items.length === 1 ? "item" : "items"}
+                      </span>
+                    </div>
+
+                    <div className={styles.list}>
+                      {currentSection.items.map((item) => (
+                        <article className={styles.row} key={`${currentSection.title}-${item.acronym}`}>
+                          <div className={styles.acronym}>{item.acronym}</div>
+                          <div className={styles.dash}>—</div>
+                          <div className={styles.meaning}>{item.meaning}</div>
+                        </article>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <div className={styles.empty}>No matching acronyms found.</div>
+                )}
+              </section>
+            </div>
+          </>
+        ) : (
+          <section className={styles.flashcardArea} aria-label="A220 acronym flashcards">
+            <div className={styles.flashcardToolbar}>
+              <label className={styles.fieldLabel}>
+                <span>Deck</span>
+                <select
+                  className={styles.select}
+                  value={studySection}
+                  onChange={(event) => selectStudySection(event.target.value)}
+                >
+                  <option>All Systems</option>
+                  {sections.map((section) => (
+                    <option key={section.title}>{section.title}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label className={styles.toggleLabel}>
+                <input
+                  type="checkbox"
+                  checked={answerFirst}
+                  onChange={(event) => {
+                    setAnswerFirst(event.target.checked);
+                    setRevealed(false);
+                  }}
+                />
+                <span>Definition first</span>
+              </label>
+
+              <button type="button" className={styles.secondaryButton} onClick={shuffleDeck}>
+                Shuffle deck
+              </button>
+            </div>
+
+            {currentCard ? (
               <>
-                <div className={styles.sectionHeading}>
-                  <div>
-                    <p className={styles.sectionLabel}>SYSTEM</p>
-                    <h2>{currentSection.title}</h2>
-                  </div>
-                  <span className={styles.count}>
-                    {currentSection.items.length} {currentSection.items.length === 1 ? "item" : "items"}
+                <div className={styles.cardMeta}>
+                  <span>{currentCard.section}</span>
+                  <span>
+                    {cardIndex + 1} / {studyDeck.length}
                   </span>
                 </div>
 
-                <div className={styles.list}>
-                  {currentSection.items.map((item) => (
-                    <article className={styles.row} key={`${currentSection.title}-${item.acronym}`}>
-                      <div className={styles.acronym}>{item.acronym}</div>
-                      <div className={styles.dash}>—</div>
-                      <div className={styles.meaning}>{item.meaning}</div>
-                    </article>
-                  ))}
+                <button
+                  type="button"
+                  className={`${styles.flashcard} ${revealed ? styles.flashcardRevealed : ""}`}
+                  onClick={() => setRevealed((value) => !value)}
+                  aria-label={revealed ? "Hide flashcard answer" : "Reveal flashcard answer"}
+                >
+                  <div className={styles.flashcardPrompt}>
+                    <span className={styles.flashcardEyebrow}>
+                      {answerFirst ? "WHAT IS THE ACRONYM?" : "WHAT DOES THIS MEAN?"}
+                    </span>
+                    <strong className={answerFirst ? styles.definitionPrompt : styles.acronymPrompt}>
+                      {answerFirst ? currentCard.meaning : currentCard.acronym}
+                    </strong>
+                  </div>
+
+                  <div className={styles.flashcardDivider} />
+
+                  <div className={styles.flashcardAnswer}>
+                    {revealed ? (
+                      <>
+                        <span className={styles.flashcardEyebrow}>ANSWER</span>
+                        <strong className={answerFirst ? styles.acronymAnswer : styles.definitionAnswer}>
+                          {answerFirst ? currentCard.acronym : currentCard.meaning}
+                        </strong>
+                      </>
+                    ) : (
+                      <span className={styles.revealHint}>Click card or press Space to reveal</span>
+                    )}
+                  </div>
+                </button>
+
+                <div className={styles.flashcardControls}>
+                  <button type="button" className={styles.secondaryButton} onClick={previousCard}>
+                    ← Previous
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.primaryButton}
+                    onClick={() => (revealed ? nextCard() : setRevealed(true))}
+                  >
+                    {revealed ? "Next →" : "Reveal answer"}
+                  </button>
                 </div>
+
+                <p className={styles.keyboardHint}>
+                  Keyboard: <kbd>Space</kbd> reveal · <kbd>←</kbd> previous · <kbd>→</kbd> next
+                </p>
               </>
             ) : (
-              <div className={styles.empty}>No matching acronyms found.</div>
+              <div className={styles.empty}>No cards in this deck.</div>
             )}
           </section>
-        </div>
+        )}
 
         <footer className={styles.footer}>
           <span>OneTime Labs</span>

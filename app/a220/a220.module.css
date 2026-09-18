@@ -67,22 +67,55 @@
   letter-spacing: 0.08em;
 }
 
+.modeBar {
+  display: flex;
+  gap: 6px;
+  padding: 12px 32px 0;
+  background: #0e110f;
+  border-bottom: 1px solid #292f2a;
+}
+
+.modeButton {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #8e968e;
+  padding: 11px 14px 12px;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.modeButton:hover {
+  color: #f1f3ef;
+}
+
+.modeButtonActive {
+  color: #eef4e7;
+  border-bottom-color: #8fa46f;
+}
+
 .searchWrap {
   padding: 18px 32px;
   border-bottom: 1px solid #292f2a;
 }
 
-.search {
-  width: 100%;
+.search,
+.select {
   border: 1px solid #303631;
   background: #0c0f0d;
   color: #f0f2ed;
-  padding: 13px 15px;
   outline: none;
   font: inherit;
 }
 
-.search:focus {
+.search {
+  width: 100%;
+  padding: 13px 15px;
+}
+
+.search:focus,
+.select:focus {
   border-color: #718455;
   box-shadow: 0 0 0 3px rgba(113, 132, 85, 0.12);
 }
@@ -187,6 +220,206 @@
   padding: 20px 0;
 }
 
+/* Flashcards */
+.flashcardArea {
+  min-height: 610px;
+  padding: 28px 32px 40px;
+}
+
+.flashcardToolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #292f2a;
+}
+
+.fieldLabel {
+  display: grid;
+  gap: 7px;
+  min-width: 240px;
+  color: #8f968f;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.select {
+  min-width: 240px;
+  padding: 11px 36px 11px 12px;
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  color: #b7bdb7;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.toggleLabel input {
+  accent-color: #8fa46f;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 42px;
+  border: 1px solid #3b4438;
+  padding: 10px 15px;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.primaryButton {
+  background: #8fa46f;
+  color: #0c0f0d;
+  border-color: #8fa46f;
+}
+
+.primaryButton:hover {
+  filter: brightness(1.08);
+}
+
+.secondaryButton {
+  background: #121612;
+  color: #d5dbd0;
+}
+
+.secondaryButton:hover {
+  background: #181e17;
+  border-color: #59664d;
+}
+
+.cardMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 24px auto 10px;
+  width: min(760px, 100%);
+  color: #7f887f;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.flashcard {
+  width: min(760px, 100%);
+  min-height: 390px;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  border: 1px solid #353c35;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(143, 164, 111, 0.08), transparent 34%),
+    #101411;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.28);
+  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.flashcard:hover {
+  transform: translateY(-2px);
+  border-color: #56644a;
+}
+
+.flashcardRevealed {
+  border-color: #667755;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(143, 164, 111, 0.14), transparent 36%),
+    #111611;
+}
+
+.flashcardPrompt,
+.flashcardAnswer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 34px;
+}
+
+.flashcardDivider {
+  width: calc(100% - 68px);
+  height: 1px;
+  margin: 0 auto;
+  background: #2b312b;
+}
+
+.flashcardEyebrow {
+  color: #7e8d70;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.19em;
+}
+
+.acronymPrompt,
+.acronymAnswer {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  letter-spacing: 0.065em;
+}
+
+.acronymPrompt {
+  color: #e0e9d4;
+  font-size: clamp(42px, 8vw, 78px);
+}
+
+.acronymAnswer {
+  color: #d9e5ca;
+  font-size: clamp(34px, 6vw, 58px);
+}
+
+.definitionPrompt,
+.definitionAnswer {
+  max-width: 620px;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.definitionPrompt {
+  color: #e4e7e2;
+  font-size: clamp(24px, 4vw, 38px);
+}
+
+.definitionAnswer {
+  color: #dfe5da;
+  font-size: clamp(22px, 3.5vw, 34px);
+}
+
+.revealHint {
+  color: #747d74;
+  font-size: 13px;
+}
+
+.flashcardControls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.keyboardHint {
+  margin: 14px 0 0;
+  color: #666f66;
+  text-align: center;
+  font-size: 11px;
+}
+
+.keyboardHint kbd {
+  border: 1px solid #303630;
+  background: #0d100e;
+  padding: 2px 5px;
+  color: #9aa39a;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 10px;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
@@ -209,8 +442,10 @@
   }
 
   .header,
+  .modeBar,
   .searchWrap,
   .content,
+  .flashcardArea,
   .footer {
     padding-left: 20px;
     padding-right: 20px;
@@ -252,6 +487,34 @@
 
   .row {
     grid-template-columns: 82px 16px minmax(0, 1fr);
+  }
+
+  .flashcardToolbar {
+    align-items: stretch;
+  }
+
+  .fieldLabel,
+  .select,
+  .flashcardToolbar .secondaryButton {
+    width: 100%;
+  }
+
+  .flashcard {
+    min-height: 360px;
+  }
+
+  .flashcardPrompt,
+  .flashcardAnswer {
+    padding: 26px 20px;
+  }
+
+  .flashcardDivider {
+    width: calc(100% - 40px);
+  }
+
+  .flashcardControls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .footer {
