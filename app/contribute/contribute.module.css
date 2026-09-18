@@ -1,0 +1,427 @@
+.page {
+  min-height: 100vh;
+  background: #f5f6f7;
+  color: #101214;
+  font-family: "Segoe UI", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.header {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d7dce1;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid #101214;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.brandName {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.backLink {
+  color: #58616b;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: #101214;
+}
+
+.hero {
+  padding: 76px 0 54px;
+  max-width: 800px;
+}
+
+.eyebrow,
+.sectionKicker {
+  margin-bottom: 14px;
+  color: #68717b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.hero h1,
+.investIntro h2,
+.panel h2 {
+  margin: 0;
+  letter-spacing: -0.045em;
+}
+
+.hero h1 {
+  max-width: 760px;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 0.96;
+  font-weight: 750;
+}
+
+.hero p {
+  max-width: 690px;
+  margin: 26px 0 0;
+  color: #4c555f;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.statusBanner {
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  border: 1px solid #b9c8bc;
+  background: #edf4ee;
+  font-size: 14px;
+}
+
+.gridSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
+  border-top: 1px solid #cfd5da;
+  border-bottom: 1px solid #cfd5da;
+}
+
+.panel {
+  padding: 48px 56px 54px 0;
+  border-right: 1px solid #cfd5da;
+}
+
+.panel h2,
+.investIntro h2 {
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1;
+}
+
+.bodyCopy,
+.investIntro > p {
+  max-width: 650px;
+  margin: 18px 0 0;
+  color: #545d66;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.amountGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.amountButton,
+.primaryButton,
+.secondaryButton {
+  border: 1px solid #101214;
+  cursor: pointer;
+  font: inherit;
+  transition: background 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.amountButton {
+  min-height: 48px;
+  background: #ffffff;
+  color: #101214;
+  font-weight: 700;
+}
+
+.amountButton:hover,
+.amountButtonActive {
+  background: #101214;
+  color: #ffffff;
+}
+
+.fieldLabel {
+  display: block;
+  margin: 22px 0 8px;
+  color: #464f58;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.moneyField {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  border: 1px solid #bfc6cc;
+  background: #ffffff;
+}
+
+.moneyField span {
+  padding-left: 14px;
+  color: #6b747d;
+}
+
+.moneyField input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  padding: 14px 14px 14px 6px;
+  background: transparent;
+  font: inherit;
+}
+
+.primaryButton,
+.secondaryButton {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 18px;
+  padding: 0 18px;
+  background: #101214;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.primaryButton:hover:not(:disabled),
+.secondaryButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #24282c;
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.errorText,
+.formMessage {
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.errorText {
+  color: #a02b2b;
+}
+
+.finePrintBox,
+.legalNotice {
+  margin-top: 26px;
+  padding: 16px 18px;
+  border: 1px solid #d5d9dd;
+  background: #eceff1;
+  color: #4d565f;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.finePrintBox strong,
+.legalNotice strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #101214;
+}
+
+.finePrintBox p,
+.legalNotice p {
+  margin: 0;
+}
+
+.sidePanel {
+  padding: 48px 0 54px 48px;
+}
+
+.useRow {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 14px;
+  padding: 18px 0;
+  border-top: 1px solid #d7dce1;
+}
+
+.useRow:first-of-type {
+  margin-top: 18px;
+}
+
+.useRow > span {
+  color: #8a929a;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.useRow strong {
+  font-size: 14px;
+}
+
+.useRow p {
+  margin: 6px 0 0;
+  color: #606972;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.investSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 72px;
+  padding: 74px 0 84px;
+}
+
+.investIntro {
+  padding-top: 4px;
+}
+
+.interestForm {
+  padding: 28px;
+  border: 1px solid #cfd5da;
+  background: #ffffff;
+}
+
+.formTitle {
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e0e4e7;
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.textInput,
+.textArea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #bcc4ca;
+  border-radius: 0;
+  outline: none;
+  background: #ffffff;
+  color: #101214;
+  font: inherit;
+}
+
+.textInput {
+  min-height: 46px;
+  padding: 10px 12px;
+}
+
+.textArea {
+  padding: 12px;
+  resize: vertical;
+}
+
+.textInput:focus,
+.textArea:focus,
+.moneyField:focus-within {
+  border-color: #101214;
+}
+
+.optional {
+  color: #858d95;
+  font-weight: 500;
+}
+
+.honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 0 34px;
+  border-top: 1px solid #cfd5da;
+  color: #69727b;
+  font-size: 12px;
+}
+
+@media (max-width: 860px) {
+  .gridSection,
+  .investSection {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .sidePanel {
+    padding: 38px 0 48px;
+    border-top: 1px solid #cfd5da;
+  }
+
+  .investSection {
+    gap: 36px;
+  }
+}
+
+@media (max-width: 620px) {
+  .shell {
+    width: min(100% - 22px, 1180px);
+  }
+
+  .header {
+    min-height: 62px;
+  }
+
+  .brandName {
+    display: none;
+  }
+
+  .hero {
+    padding: 52px 0 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 14vw, 58px);
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .amountGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .amountGrid .amountButton:last-child {
+    grid-column: span 2;
+  }
+
+  .panel,
+  .sidePanel {
+    padding-top: 36px;
+    padding-bottom: 40px;
+  }
+
+  .investSection {
+    padding: 54px 0 64px;
+  }
+
+  .interestForm {
+    padding: 20px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
