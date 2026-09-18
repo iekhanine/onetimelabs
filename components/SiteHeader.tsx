@@ -23,6 +23,7 @@ export function SiteHeader() {
 
           <div className="otl-header-actions">
             <Link href="/contact">Contact</Link>
+            <Link className="otl-header-invest-link" href="/invest">Invest</Link>
             <a className="otl-header-store-link" href="https://store.onetimelabs.net">
               Software Store
             </a>

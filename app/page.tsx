@@ -55,13 +55,18 @@ export default function Home() {
         <section className="otl-support-ribbon" aria-label="Support OneTime Labs">
           <div className="otl-shell otl-support-ribbon-inner">
             <div className="otl-support-ribbon-copy">
-              <span className="otl-support-ribbon-badge">SUPPORT OTL</span>
-              <strong>Like what we are building?</strong>
-              <span>Help fund independent software and the next OneTime Labs project.</span>
+              <span className="otl-support-ribbon-badge">BACK OTL</span>
+              <strong>Support the work or follow the future investment round.</strong>
+              <span>Contributions and investment interest are separate.</span>
             </div>
-            <Link className="otl-support-ribbon-link" href="/contribute">
-              Donate / Support <ArrowRight size={13} />
-            </Link>
+            <div className="otl-support-ribbon-actions">
+              <Link className="otl-support-ribbon-link" href="/contribute">
+                Support OTL <ArrowRight size={13} />
+              </Link>
+              <Link className="otl-support-ribbon-link otl-support-ribbon-invest" href="/invest">
+                Investor Profile <ArrowRight size={13} />
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -84,6 +89,9 @@ export default function Home() {
                 </Link>
                 <Link className="otl-button otl-button-support" href="/contribute">
                   Support OneTime Labs <ArrowRight size={14} />
+                </Link>
+                <Link className="otl-button otl-button-invest" href="/invest">
+                  Investor Profile <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
@@ -170,23 +178,24 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="otl-contribute-feature">
-            <div>
+          <section className="otl-backing-grid" aria-label="Support and investment options">
+            <article className="otl-backing-card">
               <span className="otl-eyebrow otl-eyebrow-dark">SUPPORT ONETIME LABS</span>
               <h2>Help fund the next thing we build.</h2>
-              <p>
-                If you like what OneTime Labs is building, you can support independent development directly.
-                Support is separate from the non-binding future investment-interest list.
-              </p>
-            </div>
-            <div className="otl-contribute-feature-actions">
+              <p>Support independent development directly. This is a one-time contribution and does not purchase ownership.</p>
               <Link className="otl-button otl-button-primary" href="/contribute">
                 Support OneTime Labs <ArrowRight size={14} />
               </Link>
-              <Link href="/contribute#ownership">
-                Interested in future ownership? <ArrowRight size={12} />
+            </article>
+
+            <article className="otl-backing-card otl-backing-card-invest">
+              <span className="otl-eyebrow otl-eyebrow-dark">INVESTOR PROFILE</span>
+              <h2>Interested in future ownership?</h2>
+              <p>Review the company, portfolio, business model, planned use of capital, risks, and register non-binding investment interest.</p>
+              <Link className="otl-button otl-button-primary" href="/invest">
+                View Investor Profile <ArrowRight size={14} />
               </Link>
-            </div>
+            </article>
           </section>
 
           <section className="otl-local-strip">

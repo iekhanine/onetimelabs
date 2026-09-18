@@ -21,6 +21,8 @@ export function SiteFooter() {
           <Link href="/software">Software</Link>
           <Link href="/experience">Experience</Link>
           <Link href="/pricing">Pricing</Link>
+          <Link href="/contribute">Support OTL</Link>
+          <Link href="/invest">Invest</Link>
           <Link href="/contact">Contact</Link>
         </div>
 

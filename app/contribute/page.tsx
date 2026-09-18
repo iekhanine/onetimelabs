@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -9,7 +11,7 @@ import "./page.css";
 export const metadata: Metadata = {
   title: "Support OneTime Labs",
   description:
-    "Support independent software engineering at OneTime Labs or register non-binding interest in a possible future investment opportunity.",
+    "Support independent software engineering and product development at OneTime Labs through a one-time support payment.",
 };
 
 export default function ContributePage() {
@@ -34,13 +36,24 @@ export default function ContributePage() {
               <div><span>Payment</span><strong>One-time support through Stripe Checkout</strong></div>
               <div><span>Amounts</span><strong>$10 · $25 · $50 · $100 · $250 · Custom</strong></div>
               <div><span>Ownership</span><strong>Support payments do not purchase equity</strong></div>
-              <div><span>Investment</span><strong>Separate non-binding interest form below</strong></div>
+              <div><span>Investors</span><strong><Link className="otl-contribute-summary-link" href="/invest">Use the separate investor profile →</Link></strong></div>
             </aside>
           </div>
         </section>
 
         <div className="otl-shell otl-page-content">
           <ContributeClient />
+
+          <section className="otl-contribute-invest-link">
+            <div>
+              <span className="otl-eyebrow otl-eyebrow-dark">LOOKING FOR OWNERSHIP?</span>
+              <h2>Support and investment are intentionally separate.</h2>
+              <p>If you are interested in a future ownership opportunity rather than simply supporting the work, use the investor profile and non-binding interest form.</p>
+            </div>
+            <Link className="otl-button otl-button-primary" href="/invest">
+              View investor profile <ArrowRight size={14} />
+            </Link>
+          </section>
         </div>
       </main>
       <SiteFooter />

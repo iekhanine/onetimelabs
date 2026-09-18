@@ -1,10 +1,20 @@
 /* ==========================================================
    ONETIME LABS — CONTRIBUTE
-   Extends the shared company-store visual system.
+   Support-only route. Investment interest lives at /invest.
    ========================================================== */
 
 .otl-contribute-hero .otl-page-summary strong {
   font-size: 9.25px;
+}
+
+.otl-contribute-summary-link {
+  color: #e8f0f7;
+  text-decoration: none;
+}
+
+.otl-contribute-summary-link:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 .otl-contribute-status {
@@ -22,7 +32,7 @@
 }
 
 .otl-contribute-support {
-  margin-bottom: 42px;
+  margin-bottom: 30px;
 }
 
 .otl-contribute-grid {
@@ -80,18 +90,13 @@
   background: #1675d1;
 }
 
-.otl-contribute-label,
-.otl-contribute-form label {
+.otl-contribute-label {
   display: block;
-  margin: 16px 0 6px;
+  margin: 19px 0 6px;
   color: #526477;
   font-size: 8.5px;
   font-weight: 800;
   letter-spacing: .035em;
-}
-
-.otl-contribute-label {
-  margin-top: 19px;
 }
 
 .otl-contribute-money-field {
@@ -134,29 +139,19 @@
   margin-top: 12px;
 }
 
-.otl-contribute-checkout-button:disabled,
-.otl-contribute-form .otl-button:disabled {
+.otl-contribute-checkout-button:disabled {
   cursor: wait;
   opacity: .66;
 }
 
-.otl-contribute-error,
-.otl-contribute-form-message {
+.otl-contribute-error {
   margin: 9px 0 0;
+  color: #a33434;
   font-size: 9.5px;
   line-height: 1.5;
 }
 
-.otl-contribute-error {
-  color: #a33434;
-}
-
-.otl-contribute-form-message {
-  color: #40637e;
-}
-
-.otl-contribute-notice,
-.otl-contribute-legal {
+.otl-contribute-notice {
   margin-top: 18px;
   padding: 13px 14px;
   border: 1px solid #dbe3ec;
@@ -164,16 +159,14 @@
   background: #f7f9fc;
 }
 
-.otl-contribute-notice strong,
-.otl-contribute-legal strong {
+.otl-contribute-notice strong {
   display: block;
   margin-bottom: 5px;
   color: #31465b;
   font-size: 9.5px;
 }
 
-.otl-contribute-notice p,
-.otl-contribute-legal p {
+.otl-contribute-notice p {
   margin: 0;
   color: #748293;
   font-size: 8.75px;
@@ -214,88 +207,35 @@
   line-height: 1.55;
 }
 
-.otl-contribute-invest {
-  margin-bottom: 0;
+.otl-contribute-invest-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #c9dced;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #f7fbff 0%, #edf5fc 100%);
 }
 
-.otl-contribute-invest-panel {
-  margin-bottom: 0;
+.otl-contribute-invest-link h2 {
+  margin: 5px 0 5px;
+  color: #1d3043;
+  font-size: 18px;
+  letter-spacing: -.02em;
 }
 
-.otl-contribute-invest-panel .otl-panel-lead {
-  align-content: start;
-}
-
-.otl-contribute-form-wrap {
-  display: block;
-}
-
-.otl-contribute-form > strong {
-  display: block;
-  color: #25384a;
-  font-size: 13px;
-}
-
-.otl-contribute-form > p {
-  margin: 5px 0 13px;
-  color: #718092;
-  font-size: 9.5px;
-}
-
-.otl-contribute-form label span {
-  color: #98a3ae;
-  font-weight: 600;
-}
-
-.otl-contribute-form input,
-.otl-contribute-form select,
-.otl-contribute-form textarea {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #d6e0e8;
-  border-radius: 6px;
-  outline: none;
-  color: #24374a;
-  background: #fbfcfe;
-  font: inherit;
+.otl-contribute-invest-link p {
+  max-width: 760px;
+  margin: 0;
+  color: #69788a;
   font-size: 10px;
-}
-
-.otl-contribute-form input,
-.otl-contribute-form select {
-  min-height: 41px;
-  padding: 9px 10px;
-}
-
-.otl-contribute-form textarea {
-  min-height: 100px;
-  padding: 10px;
-  resize: vertical;
-}
-
-.otl-contribute-form input:focus,
-.otl-contribute-form select:focus,
-.otl-contribute-form textarea:focus {
-  border-color: #85b6e4;
-  box-shadow: 0 0 0 3px rgba(22, 117, 209, .08);
-}
-
-.otl-contribute-form .otl-button {
-  width: 100%;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.otl-contribute-honeypot {
-  position: absolute !important;
-  left: -10000px !important;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  line-height: 1.58;
 }
 
 @media (max-width: 760px) {
-  .otl-contribute-grid {
+  .otl-contribute-grid,
+  .otl-contribute-invest-link {
     grid-template-columns: 1fr;
   }
 }

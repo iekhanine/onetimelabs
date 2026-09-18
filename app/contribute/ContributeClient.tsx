@@ -1,15 +1,9 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, Check, Code2, Server, TestTube2 } from "lucide-react";
 
 const PRESET_AMOUNTS = [10, 25, 50, 100, 250];
-const INTEREST_RANGES = [
-  "Under $500",
-  "$500–$2,500",
-  "$2,500–$10,000",
-  "$10,000+",
-] as const;
 
 export default function ContributeClient() {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(25);
@@ -17,14 +11,6 @@ export default function ContributeClient() {
   const [checkoutBusy, setCheckoutBusy] = useState(false);
   const [checkoutError, setCheckoutError] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [range, setRange] = useState<(typeof INTEREST_RANGES)[number]>("$500–$2,500");
-  const [note, setNote] = useState("");
-  const [website, setWebsite] = useState("");
-  const [interestBusy, setInterestBusy] = useState(false);
-  const [interestMessage, setInterestMessage] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -76,37 +62,6 @@ export default function ContributeClient() {
     }
   }
 
-  async function submitInterest(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setInterestMessage("");
-    setInterestBusy(true);
-
-    try {
-      const response = await fetch("/api/contribute/invest-interest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, range, note, website }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Unable to submit your interest.");
-      }
-
-      setInterestMessage("Got it. We’ll keep your non-binding indication of interest on file.");
-      setName("");
-      setEmail("");
-      setRange("$500–$2,500");
-      setNote("");
-      setWebsite("");
-    } catch (error) {
-      setInterestMessage(error instanceof Error ? error.message : "Unable to submit your interest.");
-    } finally {
-      setInterestBusy(false);
-    }
-  }
-
   return (
     <>
       {statusMessage ? (
@@ -119,7 +74,7 @@ export default function ContributeClient() {
       <section className="otl-section otl-contribute-support" id="support">
         <div className="otl-section-heading">
           <div>
-            <span className="otl-eyebrow otl-eyebrow-dark">01 / DIRECT SUPPORT</span>
+            <span className="otl-eyebrow otl-eyebrow-dark">DIRECT SUPPORT</span>
             <h2>Back the work.</h2>
             <p>Pick an amount, then finish the payment on Stripe&apos;s hosted checkout.</p>
           </div>
@@ -206,94 +161,6 @@ export default function ContributeClient() {
               <div><strong>Testing</strong><p>Devices, test environments, integrations, and deployment work.</p></div>
             </div>
           </aside>
-        </div>
-      </section>
-
-      <section className="otl-section otl-contribute-invest" id="ownership">
-        <div className="otl-two-column-panel otl-contribute-invest-panel">
-          <div className="otl-panel-lead">
-            <span className="otl-eyebrow otl-eyebrow-dark">02 / FUTURE OWNERSHIP</span>
-            <h2>Want to own a piece of it?</h2>
-            <p>
-              We&apos;re evaluating whether to offer an investment opportunity in OneTime Labs in
-              the future. If equity ownership is something you would seriously consider, tell us
-              the general level of investment you might be interested in.
-            </p>
-
-            <div className="otl-contribute-legal">
-              <strong>No securities are being offered or sold on this page.</strong>
-              <p>
-                We are not accepting investment funds here. Any indication of interest is
-                non-binding, creates no obligation, and does not guarantee that an investment
-                opportunity will be offered. Any future offering would have separate terms,
-                disclosures, legal requirements, and eligibility rules.
-              </p>
-            </div>
-          </div>
-
-          <div className="otl-panel-action otl-contribute-form-wrap">
-            <form className="otl-contribute-form" onSubmit={submitInterest}>
-              <strong>Register interest</strong>
-              <p>This does not commit you to invest anything.</p>
-
-              <label htmlFor="interestName">Name</label>
-              <input
-                id="interestName"
-                autoComplete="name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-              />
-
-              <label htmlFor="interestEmail">Email</label>
-              <input
-                id="interestEmail"
-                type="email"
-                autoComplete="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-
-              <label htmlFor="interestRange">Potential investment range</label>
-              <select
-                id="interestRange"
-                value={range}
-                onChange={(event) => setRange(event.target.value as (typeof INTEREST_RANGES)[number])}
-              >
-                {INTEREST_RANGES.map((item) => (
-                  <option key={item} value={item}>{item}</option>
-                ))}
-              </select>
-
-              <label htmlFor="interestNote">Note <span>(optional)</span></label>
-              <textarea
-                id="interestNote"
-                rows={4}
-                placeholder="What interests you about OneTime Labs?"
-                value={note}
-                onChange={(event) => setNote(event.target.value)}
-              />
-
-              <div className="otl-contribute-honeypot" aria-hidden="true">
-                <label htmlFor="companyWebsite">Website</label>
-                <input
-                  id="companyWebsite"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  value={website}
-                  onChange={(event) => setWebsite(event.target.value)}
-                />
-              </div>
-
-              <button className="otl-button otl-button-primary" type="submit" disabled={interestBusy}>
-                {interestBusy ? "Submitting…" : "I’m Interested"}
-                {!interestBusy ? <ArrowRight size={14} /> : null}
-              </button>
-
-              {interestMessage ? <p className="otl-contribute-form-message">{interestMessage}</p> : null}
-            </form>
-          </div>
         </div>
       </section>
     </>

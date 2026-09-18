@@ -1038,3 +1038,112 @@
   .otl-support-ribbon-copy { grid-template-columns: auto 1fr; }
   .otl-support-ribbon-link { white-space: nowrap; }
 }
+
+/* ==========================================================
+   INVEST / SUPPORT VISIBILITY
+   Keeps contribution and ownership-interest paths distinct.
+   ========================================================== */
+
+.otl-header-actions .otl-header-invest-link {
+  color: #b9dcff;
+}
+
+.otl-header-actions .otl-header-invest-link:hover {
+  color: #fff;
+  background: rgba(22, 117, 209, .16);
+}
+
+.otl-support-ribbon-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.otl-support-ribbon-invest {
+  color: #fff;
+  background: #082f57;
+  border: 1px solid rgba(255, 255, 255, .25);
+  box-shadow: none;
+}
+
+.otl-support-ribbon-invest:hover {
+  color: #fff;
+  background: #062746;
+}
+
+.otl-button-invest {
+  color: #d9ebff;
+  background: rgba(22, 117, 209, .14);
+  border-color: rgba(121, 184, 246, .42);
+}
+
+.otl-button-invest:hover {
+  color: #fff;
+  background: rgba(22, 117, 209, .24);
+  border-color: rgba(151, 202, 252, .62);
+}
+
+.otl-backing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 0 30px;
+}
+
+.otl-backing-card {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  min-height: 205px;
+  padding: 20px;
+  border: 1px solid #c9dced;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #f7fbff 0%, #edf5fc 100%);
+}
+
+.otl-backing-card-invest {
+  border-color: #bdcfe1;
+  background: linear-gradient(135deg, #f8fbfd 0%, #e9f0f7 100%);
+}
+
+.otl-backing-card h2 {
+  margin: 5px 0 5px;
+  color: #1d3043;
+  font-size: 18px;
+  letter-spacing: -.02em;
+}
+
+.otl-backing-card p {
+  margin: 0 0 18px;
+  color: #69788a;
+  font-size: 10px;
+  line-height: 1.58;
+}
+
+.otl-backing-card .otl-button {
+  margin-top: auto;
+}
+
+@media (max-width: 760px) {
+  .otl-backing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .otl-support-ribbon-inner {
+    align-items: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .otl-support-ribbon-actions {
+    display: grid;
+    gap: 5px;
+  }
+
+  .otl-support-ribbon-link {
+    min-height: 27px;
+    padding: 0 8px;
+    font-size: 8px;
+  }
+}
