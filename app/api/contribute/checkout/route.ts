@@ -8,10 +8,15 @@ const MAX_DOLLARS = 10000;
 export async function POST(request: NextRequest) {
   try {
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+
     if (!stripeSecretKey) {
+      console.error("Contribution checkout: STRIPE_SECRET_KEY is missing.");
       return NextResponse.json(
-        { error: "Stripe is not configured on this deployment." },
-        { status: 500 },
+        {
+          error:
+            "Stripe checkout is not configured yet. Add STRIPE_SECRET_KEY to this Vercel project's Production environment and redeploy.",
+        },
+        { status: 503 },
       );
     }
 
@@ -33,7 +38,6 @@ export async function POST(request: NextRequest) {
     params.set("mode", "payment");
     params.set("success_url", `${origin}/contribute?status=success&session_id={CHECKOUT_SESSION_ID}`);
     params.set("cancel_url", `${origin}/contribute?status=cancelled`);
-    params.set("payment_method_types[0]", "card");
     params.set("line_items[0][price_data][currency]", "usd");
     params.set("line_items[0][price_data][unit_amount]", String(amountInCents));
     params.set("line_items[0][price_data][product_data][name]", "Support OneTime Labs");
@@ -47,6 +51,9 @@ export async function POST(request: NextRequest) {
     params.set("metadata[purpose]", "otl_support");
     params.set("payment_intent_data[metadata][purpose]", "otl_support");
 
+    // Do not hard-code payment_method_types here. Hosted Checkout can use the
+    // payment methods enabled and eligible for this Stripe account (including
+    // wallet methods such as Cash App Pay when configured in Stripe).
     const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
       headers: {
@@ -60,7 +67,7 @@ export async function POST(request: NextRequest) {
     const session = await stripeResponse.json();
 
     if (!stripeResponse.ok || !session?.url) {
-      console.error("Stripe Checkout error:", session);
+      console.error("Stripe contribution Checkout error:", session);
       return NextResponse.json(
         { error: session?.error?.message || "Unable to create Stripe Checkout session." },
         { status: 502 },

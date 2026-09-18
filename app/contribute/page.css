@@ -1,0 +1,316 @@
+/* ==========================================================
+   ONETIME LABS — CONTRIBUTE
+   Extends the shared company-store visual system.
+   ========================================================== */
+
+.otl-contribute-hero .otl-page-summary strong {
+  font-size: 9.25px;
+}
+
+.otl-contribute-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 22px;
+  padding: 12px 14px;
+  border: 1px solid #bcdacb;
+  border-radius: 8px;
+  color: #285d46;
+  background: #eef8f2;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.otl-contribute-support {
+  margin-bottom: 42px;
+}
+
+.otl-contribute-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr);
+  gap: 10px;
+}
+
+.otl-contribute-card {
+  border: 1px solid #d9e3ec;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.otl-contribute-payment-card {
+  padding: 22px;
+}
+
+.otl-contribute-intro {
+  max-width: 720px;
+  margin: 0;
+  color: #718092;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.otl-contribute-amounts {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 21px;
+}
+
+.otl-contribute-amounts button {
+  min-height: 43px;
+  border: 1px solid #cfdae5;
+  border-radius: 7px;
+  color: #31465b;
+  background: #fbfcfe;
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.otl-contribute-amounts button:hover {
+  border-color: #9fc5e8;
+  color: #0f65ba;
+  background: #f3f8fd;
+}
+
+.otl-contribute-amounts button.is-active {
+  border-color: #1675d1;
+  color: #fff;
+  background: #1675d1;
+}
+
+.otl-contribute-label,
+.otl-contribute-form label {
+  display: block;
+  margin: 16px 0 6px;
+  color: #526477;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: .035em;
+}
+
+.otl-contribute-label {
+  margin-top: 19px;
+}
+
+.otl-contribute-money-field {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  overflow: hidden;
+  border: 1px solid #d6e0e8;
+  border-radius: 7px;
+  background: #fbfcfe;
+}
+
+.otl-contribute-money-field:focus-within {
+  border-color: #85b6e4;
+  box-shadow: 0 0 0 3px rgba(22, 117, 209, .08);
+}
+
+.otl-contribute-money-field > span {
+  padding-left: 13px;
+  color: #7b8998;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.otl-contribute-money-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  padding: 11px 12px 11px 6px;
+  color: #223549;
+  background: transparent;
+  font: inherit;
+  font-size: 11px;
+}
+
+.otl-contribute-checkout-button {
+  width: 100%;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.otl-contribute-checkout-button:disabled,
+.otl-contribute-form .otl-button:disabled {
+  cursor: wait;
+  opacity: .66;
+}
+
+.otl-contribute-error,
+.otl-contribute-form-message {
+  margin: 9px 0 0;
+  font-size: 9.5px;
+  line-height: 1.5;
+}
+
+.otl-contribute-error {
+  color: #a33434;
+}
+
+.otl-contribute-form-message {
+  color: #40637e;
+}
+
+.otl-contribute-notice,
+.otl-contribute-legal {
+  margin-top: 18px;
+  padding: 13px 14px;
+  border: 1px solid #dbe3ec;
+  border-radius: 7px;
+  background: #f7f9fc;
+}
+
+.otl-contribute-notice strong,
+.otl-contribute-legal strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #31465b;
+  font-size: 9.5px;
+}
+
+.otl-contribute-notice p,
+.otl-contribute-legal p {
+  margin: 0;
+  color: #748293;
+  font-size: 8.75px;
+  line-height: 1.6;
+}
+
+.otl-contribute-uses {
+  padding: 21px;
+  background: #f7f9fc;
+}
+
+.otl-contribute-use-row {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e1e7ed;
+}
+
+.otl-contribute-use-row:last-child {
+  border-bottom: 0;
+}
+
+.otl-contribute-use-row > svg {
+  margin-top: 2px;
+  color: #1675d1;
+}
+
+.otl-contribute-use-row strong {
+  color: #2e4154;
+  font-size: 10px;
+}
+
+.otl-contribute-use-row p {
+  margin: 4px 0 0;
+  color: #718092;
+  font-size: 9.25px;
+  line-height: 1.55;
+}
+
+.otl-contribute-invest {
+  margin-bottom: 0;
+}
+
+.otl-contribute-invest-panel {
+  margin-bottom: 0;
+}
+
+.otl-contribute-invest-panel .otl-panel-lead {
+  align-content: start;
+}
+
+.otl-contribute-form-wrap {
+  display: block;
+}
+
+.otl-contribute-form > strong {
+  display: block;
+  color: #25384a;
+  font-size: 13px;
+}
+
+.otl-contribute-form > p {
+  margin: 5px 0 13px;
+  color: #718092;
+  font-size: 9.5px;
+}
+
+.otl-contribute-form label span {
+  color: #98a3ae;
+  font-weight: 600;
+}
+
+.otl-contribute-form input,
+.otl-contribute-form select,
+.otl-contribute-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d6e0e8;
+  border-radius: 6px;
+  outline: none;
+  color: #24374a;
+  background: #fbfcfe;
+  font: inherit;
+  font-size: 10px;
+}
+
+.otl-contribute-form input,
+.otl-contribute-form select {
+  min-height: 41px;
+  padding: 9px 10px;
+}
+
+.otl-contribute-form textarea {
+  min-height: 100px;
+  padding: 10px;
+  resize: vertical;
+}
+
+.otl-contribute-form input:focus,
+.otl-contribute-form select:focus,
+.otl-contribute-form textarea:focus {
+  border-color: #85b6e4;
+  box-shadow: 0 0 0 3px rgba(22, 117, 209, .08);
+}
+
+.otl-contribute-form .otl-button {
+  width: 100%;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.otl-contribute-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 760px) {
+  .otl-contribute-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .otl-contribute-amounts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .otl-contribute-amounts button:last-child {
+    grid-column: span 2;
+  }
+
+  .otl-contribute-payment-card,
+  .otl-contribute-uses {
+    padding: 17px;
+  }
+}

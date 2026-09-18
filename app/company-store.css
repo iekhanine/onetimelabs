@@ -669,6 +669,57 @@
 .otl-store-strip p { max-width: 760px; margin: 0; color: #69788a; font-size: 10px; line-height: 1.55; }
 
 /* ==========================================================
+   HOME — SUPPORT / CONTRIBUTE FEATURE
+   ========================================================== */
+
+.otl-contribute-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin: 0 0 30px;
+  padding: 20px;
+  border: 1px solid #c9dced;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #f7fbff 0%, #edf5fc 100%);
+}
+
+.otl-contribute-feature h2 {
+  margin: 5px 0 5px;
+  color: #1d3043;
+  font-size: 18px;
+  letter-spacing: -.02em;
+}
+
+.otl-contribute-feature p {
+  max-width: 760px;
+  margin: 0;
+  color: #69788a;
+  font-size: 10px;
+  line-height: 1.58;
+}
+
+.otl-contribute-feature-actions {
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
+.otl-contribute-feature-actions > a:not(.otl-button) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #0f65ba;
+  font-size: 8.75px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.otl-contribute-feature-actions > a:not(.otl-button):hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================
    PRODUCT / SOFTWARE PORTFOLIO
    ========================================================== */
 
@@ -873,6 +924,8 @@
   .otl-local-strip p { grid-column: 2; text-align: left; }
   .otl-pricing-row,
   .otl-engagement-table > div { grid-template-columns: 1fr; gap: 4px; padding: 13px 15px; }
+  .otl-contribute-feature { grid-template-columns: 1fr; }
+  .otl-contribute-feature-actions { justify-items: start; }
   .otl-store-strip { grid-template-columns: 1fr; }
   .otl-footer-links { gap: 9px 12px; }
 }

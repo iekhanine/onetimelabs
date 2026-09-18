@@ -1,34 +1,49 @@
 import type { Metadata } from "next";
+
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+
 import ContributeClient from "./ContributeClient";
-import styles from "./contribute.module.css";
+import "./page.css";
 
 export const metadata: Metadata = {
   title: "Support OneTime Labs",
   description:
-    "Support independent software engineering at OneTime Labs or register interest in a possible future investment opportunity.",
+    "Support independent software engineering at OneTime Labs or register non-binding interest in a possible future investment opportunity.",
 };
 
 export default function ContributePage() {
   return (
-    <main className={styles.page}>
-      <div className={styles.shell}>
-        <header className={styles.header}>
-          <a className={styles.brand} href="/" aria-label="OneTime Labs home">
-            <span className={styles.brandMark}>OTL</span>
-            <span className={styles.brandName}>OneTime Labs</span>
-          </a>
-          <a className={styles.backLink} href="/">
-            Back to site
-          </a>
-        </header>
+    <>
+      <SiteHeader />
+      <main className="otl-company-page">
+        <section className="otl-page-hero otl-contribute-hero">
+          <div className="otl-shell otl-page-hero-grid">
+            <div>
+              <span className="otl-eyebrow">SUPPORT ONETIME LABS</span>
+              <h1>Help us build the next thing.</h1>
+              <p>
+                OneTime Labs builds practical software, internal tools, and custom systems.
+                If you want to help fund independent development, testing, infrastructure,
+                and the weird useful projects that do not fit neatly into somebody else&apos;s
+                subscription model, you can support the work directly.
+              </p>
+            </div>
 
-        <ContributeClient />
+            <aside className="otl-page-summary" aria-label="Contribution summary">
+              <div><span>Payment</span><strong>One-time support through Stripe Checkout</strong></div>
+              <div><span>Amounts</span><strong>$10 · $25 · $50 · $100 · $250 · Custom</strong></div>
+              <div><span>Ownership</span><strong>Support payments do not purchase equity</strong></div>
+              <div><span>Investment</span><strong>Separate non-binding interest form below</strong></div>
+            </aside>
+          </div>
+        </section>
 
-        <footer className={styles.footer}>
-          <span>OneTime Labs</span>
-          <span>Software built to be yours.</span>
-        </footer>
-      </div>
-    </main>
+        <div className="otl-shell otl-page-content">
+          <ContributeClient />
+        </div>
+      </main>
+      <SiteFooter />
+    </>
   );
 }

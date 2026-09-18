@@ -154,6 +154,25 @@ export default function Home() {
             </div>
           </section>
 
+          <section className="otl-contribute-feature">
+            <div>
+              <span className="otl-eyebrow otl-eyebrow-dark">SUPPORT ONETIME LABS</span>
+              <h2>Help fund the next thing we build.</h2>
+              <p>
+                If you like what OneTime Labs is building, you can support independent development directly.
+                Support is separate from the non-binding future investment-interest list.
+              </p>
+            </div>
+            <div className="otl-contribute-feature-actions">
+              <Link className="otl-button otl-button-primary" href="/contribute">
+                Support OneTime Labs <ArrowRight size={14} />
+              </Link>
+              <Link href="/contribute#ownership">
+                Interested in future ownership? <ArrowRight size={12} />
+              </Link>
+            </div>
+          </section>
+
           <section className="otl-local-strip">
             <MapPin size={18} />
             <div>

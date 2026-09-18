@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/experience`, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/pricing`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/contribute`, changeFrequency: "monthly", priority: 0.65 },
     { url: `${base}/products/tvm`, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/products/otles`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/products/roffle`, changeFrequency: "weekly", priority: 0.5 },
