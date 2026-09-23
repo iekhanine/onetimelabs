@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./a220.module.css";
 
 type AcronymItem = { acronym: string; meaning: string };
@@ -260,13 +260,13 @@ export default function A220AcronymsClient() {
   // System tree
   const [openSystems, setOpenSystems] = useState<Set<string>>(new Set(["Flight Controls"]));
 
-  const ensureSession = () => {
+  const ensureSession = useCallback(() => {
     if (sessionStarted.current) return;
     sessionStarted.current = true;
     setProgress((current) => ({ ...current, sessions: current.sessions + 1 }));
-  };
+  }, []);
 
-  const updateCardStats = (card: StudyCard, correct?: boolean, confidence?: Confidence) => {
+  const updateCardStats = useCallback((card: StudyCard, correct?: boolean, confidence?: Confidence) => {
     ensureSession();
     setProgress((current) => {
       const existing = current.cards[card.id] ?? { seen: 0, attempts: 0, correct: 0, missed: 0 };
@@ -285,7 +285,7 @@ export default function A220AcronymsClient() {
         cards: { ...current.cards, [card.id]: next },
       };
     });
-  };
+  }, [ensureSession]);
 
   useEffect(() => {
     try {
@@ -346,17 +346,17 @@ export default function A220AcronymsClient() {
     setRevealed(false);
   };
 
-  const nextCard = () => {
+  const nextCard = useCallback(() => {
     if (!studyDeck.length) return;
     setCardIndex((index) => (index + 1) % studyDeck.length);
     setRevealed(false);
-  };
+  }, [studyDeck.length]);
 
-  const previousCard = () => {
+  const previousCard = useCallback(() => {
     if (!studyDeck.length) return;
     setCardIndex((index) => (index - 1 + studyDeck.length) % studyDeck.length);
     setRevealed(false);
-  };
+  }, [studyDeck.length]);
 
   useEffect(() => {
     if (mode !== "flashcards") return;
@@ -371,7 +371,7 @@ export default function A220AcronymsClient() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [mode, studyDeck.length]);
+  }, [mode, nextCard, previousCard]);
 
   const startQuiz = (overrideCards?: StudyCard[]) => {
     ensureSession();
@@ -485,7 +485,7 @@ export default function A220AcronymsClient() {
       }, 450);
       return () => window.clearTimeout(timer);
     }
-  }, [matchLeft, matchRight]);
+  }, [matchCards, matchLeft, matchRight, updateCardStats]);
 
   const nextSpeedQuestion = (sectionName = speedSection) => {
     const pool = cardPool(sectionName);
@@ -754,7 +754,7 @@ export default function A220AcronymsClient() {
           <div className={styles.systemTree}>{sections.map((section) => {
             const open = openSystems.has(section.title);
             return <article className={styles.systemNode} key={section.title}>
-              <button className={styles.systemNodeHead} onClick={() => setOpenSystems((current) => { const next = new Set(current); open ? next.delete(section.title) : next.add(section.title); return next; })}>
+              <button className={styles.systemNodeHead} onClick={() => setOpenSystems((current) => { const next = new Set(current); if (open) { next.delete(section.title); } else { next.add(section.title); } return next; })}>
                 <div><span className={styles.systemDot} /><strong>{section.title}</strong><small>{section.items.length} items</small></div><span>{open ? "−" : "+"}</span>
               </button>
               {open && <div className={styles.systemChildren}>{section.items.map((item) => <div key={`${section.title}-${item.acronym}`}><strong>{item.acronym}</strong><span>{item.meaning}</span></div>)}</div>}

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   useCallback,
   useEffect,
@@ -359,10 +361,10 @@ export default function MetronomePanel() {
             </p>
           </div>
 
-          <a href="/">
+          <Link href="/">
             <ArrowLeft size={13} />
             PRODUCT DECK
-          </a>
+          </Link>
         </header>
 
 

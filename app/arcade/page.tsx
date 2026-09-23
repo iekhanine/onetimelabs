@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   ArrowLeft,
   ExternalLink,
@@ -42,13 +44,13 @@ export default function ArcadePage() {
             </p>
           </div>
 
-          <a
+          <Link
             href="/"
             className="arcade-back"
           >
             <ArrowLeft size={14} />
             PRODUCT DECK
-          </a>
+          </Link>
         </header>
 
 
@@ -81,7 +83,7 @@ export default function ArcadePage() {
               className="arcade-well"
               key={game.slug}
             >
-              <a
+              <Link
                 className={`arcade-key arcade-key--${game.accent}`}
                 href={`/arcade/${game.slug}`}
               >
@@ -114,7 +116,7 @@ export default function ArcadePage() {
                   RUN PROGRAM
                   <ExternalLink size={11} />
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </section>

@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -1165,10 +1166,10 @@ export default function ArcadeGamePanel({
             </p>
           </div>
 
-          <a href="/arcade">
+          <Link href="/arcade">
             <ArrowLeft size={13} />
             PROGRAM LIBRARY
-          </a>
+          </Link>
         </header>
 
         <div className="game-display">

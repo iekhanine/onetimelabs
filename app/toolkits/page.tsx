@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./page.css";
 
 const tools = [
@@ -13,14 +14,14 @@ export default function ToolkitsPage() {
   return (
     <main className="toolkits-page">
       <section className="toolkits-shell">
-        <a href="/">← OneTime Labs</a>
+        <Link href="/">← OneTime Labs</Link>
         <h1>Toolkits</h1>
         <div className="toolkits-grid">
           {tools.map(([name, href]) => (
-            <a key={href} href={href} className="toolkits-card">
+            <Link key={href} href={href} className="toolkits-card">
               <strong>{name}</strong>
               <span>OPEN →</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

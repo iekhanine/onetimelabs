@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductVideo } from "@/components/ProductVideo";
@@ -65,7 +66,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               />
             ) : (
               <div className="product-still">
-                <img src={product.screenshot} alt={product.screenshotAlt} />
+                <Image src={product.screenshot} alt={product.screenshotAlt} width={1600} height={900} sizes="(max-width: 900px) 100vw, 1200px" />
               </div>
             )}
           </div>

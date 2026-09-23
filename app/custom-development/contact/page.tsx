@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   ArrowLeft,
   ArrowRight,
@@ -67,23 +69,23 @@ export default function CustomDevelopmentContact() {
           HEADER 002
           ===================================================== */}
       <header className="inquiry-header">
-        <a className="inquiry-brand" href="/" aria-label="OneTime Labs home">
+        <Link className="inquiry-brand" href="/" aria-label="OneTime Labs home">
           <span className="inquiry-brand-mark">OTL</span>
           <span className="inquiry-brand-name">OneTime Labs</span>
-        </a>
+        </Link>
 
         <nav className="inquiry-desktop-nav" aria-label="Primary navigation">
-          <a href="/#products">Products</a>
-          <a href="/custom-development">Custom Development</a>
-          <a href="/#solutions">Solutions</a>
-          <a href="/#company">Company</a>
-          <a href="/#documentation">Documentation</a>
+          <Link href="/#products">Products</Link>
+          <Link href="/custom-development">Custom Development</Link>
+          <Link href="/#solutions">Solutions</Link>
+          <Link href="/#company">Company</Link>
+          <Link href="/#documentation">Documentation</Link>
         </nav>
 
-        <a className="inquiry-header-cta" href="/custom-development">
+        <Link className="inquiry-header-cta" href="/custom-development">
           Custom Development
           <ArrowRight size={15} />
-        </a>
+        </Link>
 
         <button
           className="inquiry-menu-button"
@@ -97,11 +99,11 @@ export default function CustomDevelopmentContact() {
 
         {menuOpen && (
           <nav className="inquiry-mobile-nav" aria-label="Mobile navigation">
-            <a href="/#products">Products</a>
-            <a href="/custom-development">Custom Development</a>
-            <a href="/#solutions">Solutions</a>
-            <a href="/#company">Company</a>
-            <a href="/#documentation">Documentation</a>
+            <Link href="/#products">Products</Link>
+            <Link href="/custom-development">Custom Development</Link>
+            <Link href="/#solutions">Solutions</Link>
+            <Link href="/#company">Company</Link>
+            <Link href="/#documentation">Documentation</Link>
           </nav>
         )}
       </header>
@@ -112,10 +114,10 @@ export default function CustomDevelopmentContact() {
             =================================================== */}
         <section className="inquiry-intro">
           <div className="inquiry-intro-copy">
-            <a className="inquiry-back-link" href="/custom-development">
+            <Link className="inquiry-back-link" href="/custom-development">
               <ArrowLeft size={14} />
               Custom Development
-            </a>
+            </Link>
 
             <p className="inquiry-eyebrow">PROJECT INQUIRY</p>
 
@@ -126,8 +128,8 @@ export default function CustomDevelopmentContact() {
             </h1>
 
             <p className="inquiry-description">
-              You don't need a finished specification. Tell me what your team
-              is doing today, what isn't working, and what you wish existed
+              You don’t need a finished specification. Tell me what your team
+              is doing today, what isn’t working, and what you wish existed
               instead.
             </p>
           </div>
@@ -175,9 +177,9 @@ export default function CustomDevelopmentContact() {
 
               <div>
                 <p className="inquiry-eyebrow">INQUIRY RECEIVED</p>
-                <h2>That's enough to start a conversation.</h2>
+                <h2>That’s enough to start a conversation.</h2>
                 <p>
-                  Your project inquiry has been sent to OneTime Labs. I'll
+                  Your project inquiry has been sent to OneTime Labs. I’ll
                   review what you shared and follow up using the email address
                   you provided.
                 </p>
@@ -253,7 +255,7 @@ export default function CustomDevelopmentContact() {
               <fieldset className="inquiry-fieldset">
                 <legend>
                   <span>02</span>
-                  What's the problem?
+                  What’s the problem?
                 </legend>
 
                 <label className="inquiry-full-field">
@@ -409,10 +411,10 @@ export default function CustomDevelopmentContact() {
         </div>
 
         <div className="inquiry-footer-links">
-          <a href="/">Home</a>
-          <a href="/custom-development">Custom Development</a>
-          <a href="/#products">Products</a>
-          <a href="/#documentation">Documentation</a>
+          <Link href="/">Home</Link>
+          <Link href="/custom-development">Custom Development</Link>
+          <Link href="/#products">Products</Link>
+          <Link href="/#documentation">Documentation</Link>
         </div>
 
         <p className="inquiry-copyright">

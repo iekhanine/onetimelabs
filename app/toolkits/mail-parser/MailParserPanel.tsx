@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Check, Clipboard, Download, FileText, Mail, RotateCcw, ShieldCheck } from "lucide-react";
 import { parseEmail } from "../../lib/emailParser";
@@ -114,7 +115,7 @@ export default function MailParserPanel() {
   }
 
   return <main className="mail-shell"><section className="mail-panel">
-    <header className="mail-header"><div><span className="mail-kicker">ONETIME LABS // TOOLKIT MODULE</span><h1><Mail size={20}/> MAIL PARSER</h1><p>Turn Gmail “Show original” source into clean, structured, copy-ready message data.</p></div><a href="/" className="mail-back"><ArrowLeft size={14}/> PRODUCT DECK</a></header>
+    <header className="mail-header"><div><span className="mail-kicker">ONETIME LABS // TOOLKIT MODULE</span><h1><Mail size={20}/> MAIL PARSER</h1><p>Turn Gmail “Show original” source into clean, structured, copy-ready message data.</p></div><Link href="/" className="mail-back"><ArrowLeft size={14}/> PRODUCT DECK</Link></header>
 
     <div className="mail-display"><div><span>PROCESSING MODE</span><strong>LOCAL BROWSER</strong></div><div><span>STORAGE</span><strong>NONE</strong></div><div><span>NETWORK</span><strong>NOT REQUIRED</strong></div></div>
 

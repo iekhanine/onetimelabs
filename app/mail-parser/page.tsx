@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./page.css";
 
@@ -18,7 +19,7 @@ export default function MailParser(){
   }),[raw]);
 
   return <main className="mail-page"><div className="mail-shell">
-    <a href="/" className="mail-back">← OneTime Labs</a>
+    <Link href="/" className="mail-back">← OneTime Labs</Link>
     <p className="mail-kicker">MAIL PARSER</p>
     <h1>Paste the email. We’ll break it apart.</h1>
     <p className="mail-intro">Open the email in Gmail, Outlook, or your mail client. Select the full message, copy it, then paste it below. Nothing is published by this page.</p>

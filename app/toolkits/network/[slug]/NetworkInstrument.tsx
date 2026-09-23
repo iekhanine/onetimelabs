@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   useMemo,
   useState,
@@ -685,7 +687,7 @@ function PortReference() {
           ([port, protocol, service]) => (
             <div key={`${port}-${service}`}>
               <span>
-                {protocol} // PORT {port}
+                {protocol}{" // "}PORT {port}
               </span>
 
               <strong>
@@ -833,10 +835,10 @@ export default function NetworkInstrument({
             </p>
           </div>
 
-          <a href="/toolkits/network">
+          <Link href="/toolkits/network">
             <ArrowLeft size={13} />
             TOOL LIBRARY
-          </a>
+          </Link>
         </header>
 
 
