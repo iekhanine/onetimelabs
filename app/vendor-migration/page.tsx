@@ -67,7 +67,7 @@ export default function VendorMigrationPage() {
           <div className="otl-shell otl-page-hero-grid">
             <div>
               <span className="otl-eyebrow">VENDOR MIGRATION</span>
-              <h1>Change vendors without breaking operations.</h1>
+              <h1>Change the vendor without breaking the operation.</h1>
               <p>
                 OneTime Labs helps organizations move from the current environment to a defined
                 target state with the dependencies, owners, validation, and handoff work treated as

@@ -4,8 +4,21 @@ import { Resend } from "resend";
 export const runtime = "nodejs";
 
 const topicLabels: Record<string, string> = {
+  business: "Business solutions consultation",
+  "business-web": "Website / booking / customer-facing service",
+  "business-tools": "Internal tool / job or customer tracking",
+  "business-data": "Spreadsheets / reporting / data cleanup",
+  // Legacy values retained so older links and bookmarks continue to work.
+  "small-business": "Business solutions consultation",
+  "small-business-web": "Website / booking / customer-facing service",
+  "small-business-tools": "Internal tool / job or customer tracking",
+  "small-business-data": "Spreadsheets / reporting / data cleanup",
+  "vendor-migration": "Enterprise — vendor migration",
+  "managed-print": "Enterprise — Managed Print Services",
+  "contact-center": "Enterprise — contact center / Five9 / Genesys",
+  consulting: "Enterprise consulting",
   product: "Product question / demo",
-  custom: "Custom software / workflow",
+  custom: "Enterprise custom software / workflow",
   partnership: "Partnership",
   support: "Product support",
   general: "General inquiry",

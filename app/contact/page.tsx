@@ -7,56 +7,48 @@ import { SiteHeader } from "@/components/SiteHeader";
 export const metadata = {
   title: "Contact",
   description:
-    "Contact OneTime Labs about vendor migration, Managed Print Services, enterprise consulting, custom software, or OneTime Labs products.",
+    "Contact OneTime Labs about business technology, enterprise consulting, software, migrations, contact center platforms, managed print, reporting, automation, or custom development.",
 };
 
 export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main className="otl-company-page">
-        <section className="otl-page-hero otl-page-hero-contact">
-          <div className="otl-shell otl-page-hero-grid">
-            <div>
-              <span className="otl-eyebrow">CONTACT ONETIME LABS</span>
-              <h1>Start with the problem.</h1>
-              <p>
-                Vendor change, print environment, enterprise architecture, asset or licensing issue,
-                custom workflow, internal software, or product support. The rough version is enough to start.
-              </p>
-            </div>
-
-            <aside className="otl-page-summary">
-              <div><span>General inquiries</span><strong>inquiry@onetimelabs.net</strong></div>
-              <div><span>Product support</span><strong>support@onetimelabs.net</strong></div>
-              <div><span>Onsite corridor</span><strong>Racine · Milwaukee · Chicago</strong></div>
-              <div><span>Remote</span><strong>National engagements welcome</strong></div>
-            </aside>
+      <main className="otl-company-page otl-compact-contact-page">
+        <section className="otl-compact-contact-heading">
+          <div className="otl-shell">
+            <span className="otl-eyebrow">CONTACT</span>
+            <h1>Tell us what you need.</h1>
+            <p>A rough explanation is enough. We will figure out the technical part.</p>
           </div>
         </section>
 
-        <div className="otl-shell otl-page-content">
-          <section className="otl-contact-layout">
-            <div className="otl-contact-copy">
-              <span className="otl-eyebrow otl-eyebrow-dark">NO TICKET MAZE</span>
-              <h2>Tell us what you are trying to change, fix, replace, or build.</h2>
-              <p>
-                You do not need a polished requirements document. Include the environment, what is
-                not working, any deadline or cutover date, and what a successful result should look like.
-              </p>
-              <div className="otl-contact-direct">
-                <div><span>General</span><strong>inquiry@onetimelabs.net</strong></div>
-                <div><span>Support</span><strong>support@onetimelabs.net</strong></div>
-              </div>
+        <section className="otl-shell otl-compact-contact-layout">
+          <aside className="otl-compact-contact-details">
+            <div>
+              <span>GENERAL</span>
+              <strong>inquiry@onetimelabs.net</strong>
             </div>
+            <div>
+              <span>SUPPORT</span>
+              <strong>support@onetimelabs.net</strong>
+            </div>
+            <div>
+              <span>ONSITE</span>
+              <strong>Racine · Milwaukee · Chicago</strong>
+            </div>
+            <div>
+              <span>REMOTE</span>
+              <strong>National engagements welcome</strong>
+            </div>
+          </aside>
 
-            <div className="otl-contact-form-stage">
-              <Suspense fallback={<div className="inquiry-form">Loading contact form...</div>}>
-                <InquiryForm />
-              </Suspense>
-            </div>
-          </section>
-        </div>
+          <div className="otl-contact-form-stage">
+            <Suspense fallback={<div className="inquiry-form">Loading contact form...</div>}>
+              <InquiryForm />
+            </Suspense>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </>

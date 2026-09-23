@@ -4,6 +4,7 @@ import {
   Building2,
   FileStack,
   Layers3,
+  Headphones,
   Network,
   Printer,
   Settings2,
@@ -23,6 +24,12 @@ const experienceAreas = [
     icon: Network,
     title: "Vendor & platform transitions",
     text: "Discovery, target-state planning, migration sequencing, validation, vendor coordination, operational ownership, and stabilization.",
+  },
+  {
+    icon: Headphones,
+    id: "contact-center",
+    title: "Google / Nest — Five9 to Genesys",
+    text: "Managed the Five9-to-Genesys contact-center transition, working across ACD queue and agent routing, agent assignments, transfer and escalation paths, IVR selection-based call flows, IVA automation, call recording / ACR, migration validation, and production call-flow troubleshooting.",
   },
   {
     icon: FileStack,
@@ -49,7 +56,7 @@ const experienceAreas = [
 export const metadata = {
   title: "Enterprise Experience",
   description:
-    "Enterprise experience behind OneTime Labs across Hewlett-Packard, SC Johnson, Google, Ricoh, and Bank of America environments, spanning managed print, vendor transition, ITAM/SAM, architecture, and operations.",
+    "Enterprise experience behind OneTime Labs across Hewlett-Packard, SC Johnson, Google / Nest, Ricoh, and Bank of America environments, spanning managed print, contact center platforms, vendor transition, ITAM/SAM, architecture, and operations.",
 };
 
 export default function ExperiencePage() {
@@ -64,7 +71,7 @@ export default function ExperiencePage() {
               <h1>OneTime Labs is new. The enterprise experience behind it is not.</h1>
               <p>
                 OneTime Labs is built on prior professional work inside large enterprise environments
-                where vendor management, infrastructure, print, asset management, licensing, governance,
+                where vendor management, infrastructure, print, contact center platforms, asset management, licensing, governance,
                 and support all have to function together.
               </p>
               <div className="otl-hero-actions">
@@ -79,7 +86,7 @@ export default function ExperiencePage() {
 
             <aside className="otl-page-summary">
               <div><span>Environment</span><strong>Large enterprise</strong></div>
-              <div><span>Operations</span><strong>Infrastructure · print · ITAM/SAM · support</strong></div>
+              <div><span>Operations</span><strong>Infrastructure · print · contact center · ITAM/SAM · support</strong></div>
               <div><span>Delivery</span><strong>Architecture · implementation · migration · governance</strong></div>
               <div><span>Current company</span><strong>OneTime Labs</strong></div>
             </aside>
@@ -112,8 +119,8 @@ export default function ExperiencePage() {
             </div>
 
             <div className="otl-detail-grid">
-              {experienceAreas.map(({ icon: Icon, title, text }) => (
-                <article key={title}>
+              {experienceAreas.map(({ icon: Icon, id, title, text }) => (
+                <article id={id} key={title}>
                   <Icon size={18} />
                   <h3>{title}</h3>
                   <p>{text}</p>
@@ -134,7 +141,7 @@ export default function ExperiencePage() {
             </div>
             <div className="otl-panel-action">
               <strong>That is the lane.</strong>
-              <p>OneTime Labs focuses on those seams: migration, operational ownership, managed print, architecture, governance, and purpose-built tooling.</p>
+              <p>OneTime Labs focuses on those seams: migration, contact-center platform transitions, managed print, operational ownership, architecture, governance, and purpose-built tooling.</p>
               <Link href="/vendor-migration">Vendor migration <ArrowRight size={13} /></Link>
             </div>
           </section>

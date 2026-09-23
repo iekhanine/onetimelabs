@@ -1,0 +1,36 @@
+OneTime Labs Investor / Business Plan Redesign
+September 2026
+
+New routes
+- /business
+  Skim-first investor overview designed for a 7-10 second first read.
+- /business/plan
+  Full rewritten investor-oriented business plan.
+- /business/plan?export=1
+  Opens the full plan and launches the browser print dialog for Save as PDF.
+
+What changed
+- Added a prominent Investors item to the Store department navigation.
+- Added a dedicated investor navigation bar: Overview / Business Plan / Export PDF.
+- Reorganized the original 37-section plan into 10 investor-oriented chapters.
+- Preserved the original planning assumptions, pricing ranges, revenue model,
+  funding target, capital allocation, risk language, and equity/valuation caveat.
+- Added Store-matched investor and business-plan styling.
+- Added Letter-size print CSS designed to pack content into normal document flow.
+- PDF export does not require an added npm package; it uses the browser print/save
+  PDF path and temporarily sets a useful PDF filename through document.title.
+
+PDF layout validation
+- Test render: 4 US Letter pages.
+- No forced one-section-per-page pagination.
+- Repeated card padding and type sizes are consistent.
+- Tables and compact cards are kept together where practical.
+
+Changed / added source files
+- src/App.tsx
+- src/components/StoreHeader.tsx
+- src/components/StoreFooter.tsx
+- src/components/InvestorNav.tsx (new)
+- src/pages/InvestorPage.tsx (new)
+- src/pages/BusinessPlanPage.tsx (new)
+- src/styles.css

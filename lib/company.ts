@@ -1,7 +1,7 @@
 export const enterpriseExperience = [
   "Hewlett-Packard",
   "SC Johnson",
-  "Google",
+  "Google / Nest",
   "Ricoh",
   "Bank of America",
 ] as const;

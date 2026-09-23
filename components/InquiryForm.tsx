@@ -14,10 +14,16 @@ const productOptions = [
 ];
 
 const topicOptions = [
-  { value: "vendor-migration", label: "Vendor migration" },
-  { value: "managed-print", label: "Managed Print Services" },
+  { value: "business", label: "Business solutions consultation" },
+  { value: "business-web", label: "Website / booking / customer-facing service" },
+  { value: "business-tools", label: "Internal tool / job or customer tracking" },
+  { value: "business-data", label: "Spreadsheets / reporting / data cleanup" },
+  { value: "enterprise", label: "Enterprise consultation" },
+  { value: "vendor-migration", label: "Enterprise — vendor migration" },
+  { value: "managed-print", label: "Enterprise — Managed Print Services" },
+  { value: "contact-center", label: "Enterprise — contact center / Five9 / Genesys" },
   { value: "consulting", label: "Enterprise consulting" },
-  { value: "custom", label: "Custom software / workflow" },
+  { value: "custom", label: "Enterprise custom software / workflow" },
   { value: "product", label: "Software product question / demo" },
   { value: "support", label: "Product support" },
   { value: "partnership", label: "Partnership" },
