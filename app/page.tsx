@@ -19,7 +19,7 @@ const paths = [
     icon: Building2,
     label: "ENTERPRISE",
     title: "Plan, migrate, modernize, and support the technology your organization depends on.",
-    services: "Vendor migrations · Contact center · Managed print · ITAM / SAM · Internal platforms · Custom software",
+    services: "Vendor Migrations · Contact Center · Managed Print Services · ITAM / SAM · Internal Platforms · Custom Software",
     action: "Explore Enterprise Solutions",
   },
 ] as const;
