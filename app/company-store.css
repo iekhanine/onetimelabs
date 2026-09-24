@@ -1654,32 +1654,53 @@
 }
 
 .otl-compact-home {
-  /* Header is 66px and compact footer is 82px. Keep the landing page
-     tall enough to fill the remaining viewport so no body background
-     shows beneath the footer on short screens. */
+  /* Split the viewport into two stable zones: the handwritten bumper
+     occupies the open space below the header, while the service chooser
+     keeps its own position below it. Rotating text never moves the cards. */
   min-height: calc(100vh - 148px);
   min-height: calc(100dvh - 148px);
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 170px auto;
+  align-content: center;
+  align-items: stretch;
+  row-gap: 8px;
   background:
     radial-gradient(circle at 80% 10%, rgba(35, 131, 255, .08), transparent 28%),
     #f5f8fc;
 }
 
+.otl-home-bumper-zone {
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+
+.otl-home-bumper-inner {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
 .otl-compact-choice {
-  padding-top: 42px;
-  padding-bottom: 42px;
+  width: min(var(--otl-shell-max), calc(100% - var(--otl-shell-gutter)));
+  padding-top: 0;
+  padding-bottom: 22px;
 }
 
 .otl-compact-choice-label {
-  margin-bottom: 12px;
+  max-width: 1100px;
+  margin: 0 auto 12px;
   color: #6d8298;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: .14em;
+  text-align: center;
 }
 
 .otl-compact-choice-grid {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   overflow: hidden;
@@ -1751,12 +1772,17 @@
 .otl-compact-choice-card + .otl-compact-choice-card strong { color: #68b3f9; }
 
 .otl-compact-help {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
   padding: 16px 2px 0;
   color: #74869a;
   font-size: 12px;
+  text-align: center;
 }
 
 .otl-compact-help a,
@@ -1960,7 +1986,14 @@
   .otl-compact-header { gap: 12px; }
   .otl-compact-header-actions a:first-child { display: none; }
   .otl-compact-nav { gap: 18px; }
-  .otl-compact-choice { padding-top: 28px; padding-bottom: 28px; }
+  .otl-compact-home {
+    grid-template-rows: 118px auto;
+    align-content: start;
+    row-gap: 4px;
+    padding-top: 12px;
+  }
+  .otl-home-bumper-zone { min-height: 0; padding: 0; }
+  .otl-compact-choice { padding-top: 0; padding-bottom: 28px; }
   .otl-compact-choice-card { min-height: 230px; padding: 24px; }
   .otl-compact-choice-card h1 { font-size: 31px; }
   .otl-compact-help { display: grid; gap: 7px; }
@@ -2045,3 +2078,95 @@
    core descriptive copy raised to 13–14px for desktop/mobile
    readability without returning to oversized marketing layouts.
    ========================================================== */
+
+/* ==========================================================
+   HOMEPAGE MARKETING NOTE — rotating pain-point text
+   A loose handwritten interruption above the service chooser.
+   ========================================================== */
+
+.otl-marketing-note {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 0 clamp(8px, 3vw, 30px);
+}
+
+.otl-marketing-note-stage {
+  width: 100%;
+  height: 96px;
+  display: grid;
+  place-items: center;
+}
+
+.otl-marketing-note-text {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: .08em 0 .22em;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #263f5a;
+  font-family:
+    "Segoe Print",
+    "Bradley Hand ITC",
+    "Bradley Hand",
+    "Lucida Handwriting",
+    cursive;
+  font-size: clamp(24px, 2.55vw, 34px);
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -.02em;
+  text-align: center;
+  text-wrap: balance;
+  opacity: 1;
+  transform: rotate(-.35deg) translateY(0);
+  filter: blur(0);
+  transition:
+    opacity 1.7s cubic-bezier(.4, 0, .2, 1),
+    transform 1.7s cubic-bezier(.4, 0, .2, 1),
+    filter 1.7s cubic-bezier(.4, 0, .2, 1);
+}
+
+.otl-marketing-note-text::before {
+  content: "“";
+  color: #4c8bc7;
+}
+
+.otl-marketing-note-text::after {
+  content: "”";
+  color: #4c8bc7;
+}
+
+.otl-marketing-note-text.is-fading {
+  opacity: 0;
+  transform: rotate(.15deg) translateY(-3px);
+  filter: blur(2px);
+}
+
+@media (max-width: 760px) {
+  .otl-marketing-note {
+    margin-bottom: 10px;
+    padding-inline: 2px;
+  }
+
+  .otl-marketing-note-stage {
+    height: 84px;
+  }
+
+  .otl-marketing-note-text {
+    max-width: 94vw;
+    padding-bottom: .22em;
+    font-size: clamp(20px, 5.4vw, 25px);
+    line-height: 1.28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .otl-marketing-note-text {
+    transition: none;
+  }
+}

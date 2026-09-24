@@ -1,0 +1,366 @@
+[
+  {
+    "id": "OTL-001",
+    "segment": "general",
+    "segmentLabel": "General Business",
+    "text": "How many times are you typing the same customer into different places?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-002",
+    "segment": "general",
+    "segmentLabel": "General Business",
+    "text": "Every Friday. Same spreadsheet. Same three hours.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-003",
+    "segment": "general",
+    "segmentLabel": "General Business",
+    "text": "Still texting three people just to find out where a job stands?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-004",
+    "segment": "general",
+    "segmentLabel": "General Business",
+    "text": "Still approving purchases and discounts in an email thread?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-005",
+    "segment": "general",
+    "segmentLabel": "General Business",
+    "text": "Printed the form just to type it back into a computer?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-006",
+    "segment": "general",
+    "segmentLabel": "General Business",
+    "text": "Your employees should not have to be the integration.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-007",
+    "segment": "trades",
+    "segmentLabel": "Trades & Field Service",
+    "text": "Still texting addresses and job details to your technicians?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-008",
+    "segment": "trades",
+    "segmentLabel": "Trades & Field Service",
+    "text": "Job finished at 2:30. Why are you rebuilding the invoice at 8:00?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-009",
+    "segment": "trades",
+    "segmentLabel": "Trades & Field Service",
+    "text": "A customer calls about last year’s job. Can you find it in 10 seconds?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-010",
+    "segment": "trades",
+    "segmentLabel": "Trades & Field Service",
+    "text": "One emergency call should not wreck the rest of today’s schedule.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-011",
+    "segment": "trades",
+    "segmentLabel": "Trades & Field Service",
+    "text": "How much work is sitting in quotes nobody followed up on?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-012",
+    "segment": "trades",
+    "segmentLabel": "Trades & Field Service",
+    "text": "Same customer every month? Stop scheduling the same job every month.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-013",
+    "segment": "trades",
+    "segmentLabel": "Trades & Field Service",
+    "text": "One customer. Six locations. Still tracking it in email?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-014",
+    "segment": "trades",
+    "segmentLabel": "Trades & Field Service",
+    "text": "Running jobs all day and running the office all night?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-015",
+    "segment": "retail",
+    "segmentLabel": "Retail & Brick-and-Mortar",
+    "text": "Square says 6. The spreadsheet says 9. The shelf says 0.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-016",
+    "segment": "retail",
+    "segmentLabel": "Retail & Brick-and-Mortar",
+    "text": "Sold it online. Sold it in-store. What is actually left?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-017",
+    "segment": "retail",
+    "segmentLabel": "Retail & Brick-and-Mortar",
+    "text": "Counted it on a clipboard. Why are you typing it all again?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-018",
+    "segment": "retail",
+    "segmentLabel": "Retail & Brick-and-Mortar",
+    "text": "Three stores should not mean three nights of reporting.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-019",
+    "segment": "retail",
+    "segmentLabel": "Retail & Brick-and-Mortar",
+    "text": "Still tracking customer orders on paper behind the counter?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-020",
+    "segment": "retail",
+    "segmentLabel": "Retail & Brick-and-Mortar",
+    "text": "How many times a day do you say, “Your order is ready”?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-021",
+    "segment": "hospitality",
+    "segmentLabel": "Restaurant / Bar",
+    "text": "Your POS knows what sold. Does anyone know what is left?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-022",
+    "segment": "hospitality",
+    "segmentLabel": "Restaurant / Bar",
+    "text": "Posted the schedule Monday. Rebuilt it in group text by Wednesday?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-023",
+    "segment": "hospitality",
+    "segmentLabel": "Restaurant / Bar",
+    "text": "Counter. Online. Delivery. Catering. How many sales reports is that?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-024",
+    "segment": "hospitality",
+    "segmentLabel": "Restaurant / Bar",
+    "text": "Still building the same end-of-day report by hand?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-025",
+    "segment": "hospitality",
+    "segmentLabel": "Restaurant / Bar",
+    "text": "The ice machine is still acting weird. Who owns fixing it?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-026",
+    "segment": "hospitality",
+    "segmentLabel": "Restaurant / Bar",
+    "text": "Did that case get more expensive again—or does nobody remember?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-027",
+    "segment": "warehouse",
+    "segmentLabel": "Warehouse / Distribution",
+    "text": "“Do we have one?” should not require a tour of the warehouse.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-028",
+    "segment": "warehouse",
+    "segmentLabel": "Warehouse / Distribution",
+    "text": "Picked? Packed? Still on the printer? Where is that order?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-029",
+    "segment": "warehouse",
+    "segmentLabel": "Warehouse / Distribution",
+    "text": "Received it at the dock. Why are you typing it again upstairs?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-030",
+    "segment": "warehouse",
+    "segmentLabel": "Warehouse / Distribution",
+    "text": "If “we’re almost out” is the reorder alert, it is already late.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-031",
+    "segment": "warehouse",
+    "segmentLabel": "Warehouse / Distribution",
+    "text": "Moved ten units. Did both inventories get updated?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-032",
+    "segment": "warehouse",
+    "segmentLabel": "Warehouse / Distribution",
+    "text": "Your inventory meeting should not be three people arguing with three spreadsheets.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-033",
+    "segment": "auto",
+    "segmentLabel": "Auto / Repair Shop",
+    "text": "How many times today did someone ask, “Is my car ready yet?”",
+    "weight": 3
+  },
+  {
+    "id": "OTL-034",
+    "segment": "auto",
+    "segmentLabel": "Auto / Repair Shop",
+    "text": "Can you see a vehicle’s full history without digging through old invoices?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-035",
+    "segment": "auto",
+    "segmentLabel": "Auto / Repair Shop",
+    "text": "Booked six jobs for three bays again?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-036",
+    "segment": "auto",
+    "segmentLabel": "Auto / Repair Shop",
+    "text": "Which jobs are waiting on parts—and which parts?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-037",
+    "segment": "appointments",
+    "segmentLabel": "Appointments / Personal Services",
+    "text": "Customers can book four different ways. What could possibly go wrong?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-038",
+    "segment": "appointments",
+    "segmentLabel": "Appointments / Personal Services",
+    "text": "Still texting tomorrow’s appointments one customer at a time?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-039",
+    "segment": "appointments",
+    "segmentLabel": "Appointments / Personal Services",
+    "text": "Your best customer walks in. Can every employee see what they usually get?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-040",
+    "segment": "appointments",
+    "segmentLabel": "Appointments / Personal Services",
+    "text": "Still rebuilding everyone’s weekly numbers from appointments and a spreadsheet?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-041",
+    "segment": "property",
+    "segmentLabel": "Property / Facilities",
+    "text": "Text. Email. Voicemail. Which maintenance request did we forget?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-042",
+    "segment": "property",
+    "segmentLabel": "Property / Facilities",
+    "text": "Still using a spreadsheet to remember every inspection and renewal?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-043",
+    "segment": "property",
+    "segmentLabel": "Property / Facilities",
+    "text": "Which vendor’s insurance certificate expires next month?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-044",
+    "segment": "property",
+    "segmentLabel": "Property / Facilities",
+    "text": "One move-out. Five vendors. Twelve texts. What is actually finished?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-045",
+    "segment": "construction",
+    "segmentLabel": "Construction / Contractors",
+    "text": "Customer changed the scope in a text. Did the estimate change too?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-046",
+    "segment": "construction",
+    "segmentLabel": "Construction / Contractors",
+    "text": "Today’s job photos are in a group text. Where will they be in six months?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-047",
+    "segment": "construction",
+    "segmentLabel": "Construction / Contractors",
+    "text": "Still scheduling subcontractors by bouncing between texts and a spreadsheet?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-048",
+    "segment": "construction",
+    "segmentLabel": "Construction / Contractors",
+    "text": "Which job is waiting on material—and when is it actually arriving?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-049",
+    "segment": "professional",
+    "segmentLabel": "Professional Services",
+    "text": "New client emailed everything. Now who gets to organize it?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-050",
+    "segment": "professional",
+    "segmentLabel": "Professional Services",
+    "text": "If the deadline lives in somebody’s inbox, it is not a deadline system.",
+    "weight": 3
+  },
+  {
+    "id": "OTL-051",
+    "segment": "professional",
+    "segmentLabel": "Professional Services",
+    "text": "Why does sending the invoice require another spreadsheet first?",
+    "weight": 3
+  },
+  {
+    "id": "OTL-052",
+    "segment": "professional",
+    "segmentLabel": "Professional Services",
+    "text": "Which version is final_final_v3_REALFINAL.pdf?",
+    "weight": 3
+  }
+]

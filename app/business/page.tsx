@@ -70,6 +70,7 @@ export default function BusinessPage() {
           </div>
         </section>
 
+
         <section className="otl-shell otl-compact-services">
           <div className="otl-compact-services-heading">
             <strong>WHAT WE BUILD</strong>

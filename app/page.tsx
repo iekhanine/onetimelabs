@@ -3,22 +3,23 @@ import { ArrowRight, Building2, BriefcaseBusiness } from "lucide-react";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { MarketingBumper } from "@/components/MarketingBumper";
 
 const paths = [
   {
     href: "/business",
     icon: BriefcaseBusiness,
-    label: "BUSINESS SOLUTIONS",
-    title: "Websites, booking, job tracking, reporting, and automation — built around your operation.",
-    services: "Customer portals · Scheduling · Internal tools · Dashboards · Integrations · Custom software",
+    label: "SMALL & MIDSIZE BUSINESS",
+    title: "Keep jobs, customers, schedules, paperwork, and follow-ups from becoming a daily mess.",
+    services: "Jobs · Customers · Scheduling · Inventory · Paperwork · Billing",
     action: "Explore Business Solutions",
   },
   {
     href: "/enterprise",
     icon: Building2,
-    label: "ENTERPRISE SOLUTIONS",
-    title: "Migrate, integrate, automate, and build across complex technology environments.",
-    services: "Vendor migration · Contact center · Managed print · ITAM / SAM · Internal platforms · Custom software",
+    label: "ENTERPRISE",
+    title: "Plan, migrate, modernize, and support the technology your organization depends on.",
+    services: "Vendor migrations · Contact center · Managed print · ITAM / SAM · Internal platforms · Custom software",
     action: "Explore Enterprise Solutions",
   },
 ] as const;
@@ -28,6 +29,12 @@ export default function Home() {
     <>
       <SiteHeader />
       <main className="otl-company-page otl-compact-home">
+        <div className="otl-home-bumper-zone">
+          <div className="otl-shell otl-home-bumper-inner">
+            <MarketingBumper />
+          </div>
+        </div>
+
         <section className="otl-shell otl-compact-choice" aria-label="Choose a OneTime Labs service area">
           <div className="otl-compact-choice-label">CHOOSE A SERVICE AREA</div>
 
