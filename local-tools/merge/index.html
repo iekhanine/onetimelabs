@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>OneTime Labs | Local Mail Merge</title>
+  <link rel="stylesheet" href="./merge.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-group">
+        <div class="brand-mark">OTL</div>
+        <div>
+          <div class="brand-name">OneTime Labs</div>
+          <div class="brand-subtitle">Local Outreach Merge</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="local-badge"><span class="dot"></span>LOCAL ONLY</span>
+        <button class="button button-ghost" id="exportCampaignBtn" type="button">Export JSON</button>
+        <label class="button button-ghost file-label" for="importCampaignInput">Import JSON</label>
+        <input id="importCampaignInput" type="file" accept="application/json,.json" hidden />
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero-panel">
+        <div>
+          <p class="eyebrow">OUTREACH WORKBENCH</p>
+          <h1>Write once. Personalize each. Copy. Send.</h1>
+          <p class="hero-copy">Build a reusable email, add organizations and their personalized lines, then generate a clean email for every recipient. Nothing is sent from this page and nothing leaves your browser.</p>
+        </div>
+        <div class="hero-stats" aria-label="campaign statistics">
+          <div><strong id="recipientCountStat">0</strong><span>Recipients</span></div>
+          <div><strong id="generatedCountStat">0</strong><span>Ready</span></div>
+          <div><strong id="sentCountStat">0</strong><span>Marked sent</span></div>
+        </div>
+      </section>
+
+      <nav class="tabs" aria-label="Mail merge sections">
+        <button class="tab is-active" data-tab="template" type="button">1. Template</button>
+        <button class="tab" data-tab="recipients" type="button">2. Recipients</button>
+        <button class="tab" data-tab="generated" type="button">3. Generated Emails</button>
+      </nav>
+
+      <section class="tab-panel is-active" id="panel-template">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 1</p>
+            <h2>Build the base email</h2>
+            <p>Use merge tags anywhere in the subject or body. Personalized lines are inserted with <code>{{merge_lines}}</code>.</p>
+          </div>
+          <button class="button button-secondary" id="resetTemplateBtn" type="button">Reset default template</button>
+        </div>
+
+        <div class="editor-layout">
+          <div class="editor-card">
+            <label for="subjectTemplate">Subject</label>
+            <input id="subjectTemplate" class="text-input" type="text" />
+
+            <div class="label-row">
+              <label for="bodyTemplate">Email body</label>
+              <span id="bodyCharCount">0 characters</span>
+            </div>
+            <textarea id="bodyTemplate" class="body-editor" spellcheck="true"></textarea>
+          </div>
+
+          <aside class="variables-card">
+            <p class="eyebrow">MERGE TAGS</p>
+            <h3>Click to insert</h3>
+            <p class="muted">Tags use the currently focused subject/body field.</p>
+            <div class="token-list" id="tokenList">
+              <button class="token" data-token="{{first_name}}" type="button"><code>{{first_name}}</code><span>Recipient first name</span></button>
+              <button class="token" data-token="{{organization}}" type="button"><code>{{organization}}</code><span>Organization name</span></button>
+              <button class="token" data-token="{{email}}" type="button"><code>{{email}}</code><span>Recipient email</span></button>
+              <button class="token" data-token="{{merge_lines}}" type="button"><code>{{merge_lines}}</code><span>All personalization lines</span></button>
+              <button class="token" data-token="{{merge_line_1}}" type="button"><code>{{merge_line_1}}</code><span>Specific personalization line</span></button>
+              <button class="token" data-token="{{merge_line_2}}" type="button"><code>{{merge_line_2}}</code><span>Specific personalization line</span></button>
+            </div>
+            <div class="privacy-note">
+              <strong>Local by design.</strong>
+              <span>This page does not call an API, send email, or upload recipient data.</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-recipients">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 2</p>
+            <h2>Add recipients</h2>
+            <p>Each recipient can have as many organization-specific personalization lines as you need.</p>
+          </div>
+          <div class="action-row">
+            <button class="button button-secondary" id="bulkAddBtn" type="button">Bulk paste</button>
+            <button class="button button-primary" id="addRecipientBtn" type="button">+ Add recipient</button>
+          </div>
+        </div>
+
+        <div class="recipient-toolbar">
+          <input id="recipientSearch" class="text-input" type="search" placeholder="Search name, organization, or email…" />
+          <span class="muted" id="recipientSummary"></span>
+        </div>
+        <div id="recipientList" class="recipient-list"></div>
+        <div id="recipientEmpty" class="empty-state" hidden>
+          <strong>No recipients yet.</strong>
+          <span>Add one manually or paste a batch.</span>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-generated">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 3</p>
+            <h2>Copy your client-specific emails</h2>
+            <p>Everything below is generated from your current template and recipient data.</p>
+          </div>
+          <div class="action-row">
+            <button class="button button-secondary" id="downloadTxtBtn" type="button">Download all as .txt</button>
+            <button class="button button-primary" id="copyAllEmailsBtn" type="button">Copy all emails</button>
+          </div>
+        </div>
+
+        <div class="generated-toolbar">
+          <div class="filter-group" role="group" aria-label="generated email filter">
+            <button class="filter-button is-active" data-filter="all" type="button">All</button>
+            <button class="filter-button" data-filter="unsent" type="button">Unsent</button>
+            <button class="filter-button" data-filter="sent" type="button">Sent</button>
+          </div>
+          <input id="generatedSearch" class="text-input" type="search" placeholder="Find generated email…" />
+        </div>
+        <div id="generatedList" class="generated-list"></div>
+        <div id="generatedEmpty" class="empty-state" hidden>
+          <strong>Nothing to generate yet.</strong>
+          <span>Add a recipient first.</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="bulkDialog" class="modal">
+    <form method="dialog" class="modal-card" id="bulkForm">
+      <div class="modal-heading">
+        <div>
+          <p class="eyebrow">BULK ADD</p>
+          <h2>Paste recipients</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="Close" type="submit">×</button>
+      </div>
+      <p class="muted">One recipient per line. Separate columns with tabs. This makes pasting directly from Excel/Google Sheets painless.</p>
+      <div class="bulk-format">
+        <strong>Columns:</strong>
+        <code>First Name [tab] Organization [tab] Email [tab] Personalization 1 [tab] Personalization 2 …</code>
+      </div>
+      <textarea id="bulkInput" class="bulk-input" placeholder="Lorianne&#9;Organization Name&#9;lorianne@example.org&#9;Your focus on…&#10;Jane&#9;HALO&#9;jane@example.org&#9;HALO's mix of shelter operations…"></textarea>
+      <div class="modal-actions">
+        <button class="button button-secondary" value="cancel" type="submit">Cancel</button>
+        <button class="button button-primary" id="confirmBulkBtn" value="default" type="button">Add recipients</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./merge.js"></script>
+</body>
+</html>

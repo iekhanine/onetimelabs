@@ -2170,3 +2170,218 @@
     transition: none;
   }
 }
+
+/* ==========================================================
+   HOME SERVICE CARDS — PHOTOGRAPHIC
+   ========================================================== */
+
+.otl-compact-choice-grid--visual {
+  gap: 14px;
+}
+
+.otl-compact-choice-card--visual {
+  padding: 0;
+  overflow: hidden;
+  min-height: 0;
+  background: #fff;
+}
+
+.otl-compact-choice-card--visual + .otl-compact-choice-card--visual {
+  border-left: 1px solid #dbe4ed;
+  background: #fff;
+}
+
+.otl-compact-choice-card--visual:hover,
+.otl-compact-choice-card--visual + .otl-compact-choice-card--visual:hover {
+  background: #fff;
+}
+
+.otl-compact-choice-photo {
+  min-height: 235px;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid #dbe4ed;
+  transition: transform .22s ease, filter .22s ease;
+}
+
+.otl-compact-choice-card--visual:hover .otl-compact-choice-photo {
+  transform: scale(1.015);
+  filter: saturate(1.08);
+}
+
+.otl-compact-choice-body {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px 26px;
+}
+
+.otl-compact-choice-card--visual + .otl-compact-choice-card--visual .otl-compact-choice-top,
+.otl-compact-choice-card--visual + .otl-compact-choice-card--visual strong {
+  color: #1875ce;
+}
+
+.otl-compact-choice-card--visual + .otl-compact-choice-card--visual h1 {
+  color: #172638;
+}
+
+.otl-compact-choice-card--visual + .otl-compact-choice-card--visual p {
+  color: #63778a;
+}
+
+/* ==========================================================
+   HOME VISUALS + ASSESSMENTS — IMAGE-LED ENTRY POINTS
+   ========================================================== */
+
+.otl-home-visuals,
+.otl-home-assessments {
+  width: 100%;
+  max-width: 1100px;
+  margin: 26px auto 8px;
+}
+
+.otl-home-visual-grid,
+.otl-home-assessment-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.otl-home-visual-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.otl-home-assessments {
+  padding-top: 26px;
+  border-top: 1px solid #dbe4ed;
+}
+
+.otl-home-visual-card,
+.otl-home-assessment-card {
+  overflow: hidden;
+  border: 1px solid #d6e0ea;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(14, 34, 53, .045);
+  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+.otl-home-visual-card:hover,
+.otl-home-assessment-card:hover {
+  transform: translateY(-2px);
+  border-color: #a9c8e5;
+  box-shadow: 0 14px 34px rgba(14, 34, 53, .075);
+}
+
+.otl-home-visual-image,
+.otl-home-assessment-visual {
+  position: relative;
+  overflow: hidden;
+  background-color: #eaf2f8;
+  background-size: cover;
+  background-position: center;
+  transition: transform .22s ease, filter .22s ease;
+}
+
+.otl-home-visual-image {
+  aspect-ratio: 4 / 3;
+}
+
+.otl-home-assessment-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.otl-home-assessment-visual {
+  aspect-ratio: 16 / 8.5;
+  border-bottom: 1px solid #e1e9f1;
+}
+
+.otl-home-visual-card:hover .otl-home-visual-image,
+.otl-home-assessment-card:hover .otl-home-assessment-visual {
+  transform: scale(1.015);
+  filter: saturate(1.08);
+}
+
+.otl-home-visual-copy,
+.otl-home-assessment-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.otl-home-visual-copy {
+  padding: 15px 16px 17px;
+}
+
+.otl-home-assessment-content {
+  min-height: 190px;
+  padding: 18px 22px 20px;
+}
+
+.otl-home-visual-copy > span,
+.otl-home-assessment-content > span {
+  color: #1875ce;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
+.otl-home-visual-copy h3 {
+  margin: 9px 0 0;
+  color: #172638;
+  font-size: 17px;
+  line-height: 1.35;
+  letter-spacing: -.02em;
+}
+
+.otl-home-assessment-content h3 {
+  margin: 8px 0 7px;
+  color: #172638;
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+
+.otl-home-assessment-content p {
+  margin: 0;
+  color: #63778a;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.otl-home-assessment-content strong {
+  margin-top: auto;
+  padding-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #0d6efd;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .otl-compact-choice-photo { min-height: 220px; }
+  .otl-compact-choice-body { min-height: 0; }
+
+  .otl-home-visual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .otl-home-assessment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .otl-home-visuals,
+  .otl-home-assessments {
+    margin-top: 20px;
+  }
+
+  .otl-home-assessments {
+    padding-top: 20px;
+  }
+
+  .otl-home-assessment-content {
+    min-height: 175px;
+    padding: 16px 18px 18px;
+  }
+}

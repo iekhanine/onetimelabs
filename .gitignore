@@ -1,16 +1,38 @@
-node_modules
-.next
-out
-.env
-.env.local
-.env.*.local
-.vercel
-.DS_Store
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+<<<<<<< HEAD
 *.zip
 OTL_ORIG.zip
+=======
+lerna-debug.log*
+>>>>>>> dcadaf0 (Update OneTime Labs)
 
-OTL_ORIG.zip
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.next/
+node_modules/
+.vercel/
+out/
+dist/
+
+.env
+.env.local
+.env.*.local

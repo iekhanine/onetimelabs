@@ -6,7 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -15,30 +15,34 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./*"
       ]
     }
   },
- "include": [
-  "next-env.d.ts",
-  ".next/types/**/*.ts",
-  "**/*.ts",
-  "**/*.tsx",
-  ".next/dev/types/**/*.ts"
-],
-"exclude": [
-  "node_modules",
-  "legacy-src",
-  "legacy-src/**/*"
-]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "api",
+    "src",
+    "public/app",
+    "vite.config.ts",
+    "tsconfig.api.json",
+    "tsconfig.app.json",
+    "tsconfig.node.json"
+  ]
 }

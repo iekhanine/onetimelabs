@@ -17,6 +17,7 @@ export function SiteHeader() {
           <Link href="/business">Business Solutions</Link>
           <Link href="/enterprise">Enterprise</Link>
           <Link href="/software">Software</Link>
+          <Link href="/assess">Assessments</Link>
           <Link href="/pricing">Pricing</Link>
         </nav>
 

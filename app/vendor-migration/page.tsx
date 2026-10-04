@@ -74,11 +74,11 @@ export default function VendorMigrationPage() {
                 part of the migration—not as cleanup for somebody else later.
               </p>
               <div className="otl-hero-actions">
-                <Link className="otl-button otl-button-primary" href="/contact">
-                  Discuss a migration <ArrowRight size={14} />
+                <Link className="otl-button otl-button-primary" href="/assess/vendor-migration">
+                  Free risk assessment <ArrowRight size={14} />
                 </Link>
-                <Link className="otl-button otl-button-secondary" href="/pricing">
-                  View pricing
+                <Link className="otl-button otl-button-secondary" href="/contact">
+                  Discuss a migration
                 </Link>
               </div>
             </div>
@@ -158,8 +158,8 @@ export default function VendorMigrationPage() {
               <h2>Show us what you are replacing.</h2>
               <p>We can start with a short consultation, a current-state assessment, or a scoped migration engagement.</p>
             </div>
-            <Link className="otl-button otl-button-primary" href="/contact">
-              Start the conversation <ArrowRight size={14} />
+            <Link className="otl-button otl-button-primary" href="/assess/vendor-migration">
+              Check migration risk <ArrowRight size={14} />
             </Link>
           </section>
         </div>
