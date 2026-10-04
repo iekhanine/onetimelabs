@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient, type User } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
 import {
@@ -111,33 +111,68 @@ async function sendVisitorConfirmation(email: string, name: string, assessmentTi
   }
 }
 
-async function isAuthorizedAdmin(db: SupabaseClient, request: Request) {
+type AdminAuthorizationResult = {
+  user: User | null;
+  stage?: "NO_TOKEN" | "AUTH_CONFIG" | "AUTH_VERIFY" | "ADMIN_LOOKUP" | "NOT_AUTHORIZED";
+  detail?: string;
+};
+
+function safeErrorMessage(error: unknown) {
+  if (error instanceof Error) return error.message.slice(0, 300);
+  if (error && typeof error === "object" && "message" in error) {
+    return String((error as { message?: unknown }).message || "Unknown error").slice(0, 300);
+  }
+  return String(error || "Unknown error").slice(0, 300);
+}
+
+async function authorizeAdmin(db: SupabaseClient, request: Request): Promise<AdminAuthorizationResult> {
   const authHeader = request.headers.get("authorization") || "";
   const token = authHeader.replace(/^Bearer\s+/i, "").trim();
-  if (!token) return null;
+  if (!token) return { user: null, stage: "NO_TOKEN", detail: "No bearer token was sent." };
 
   const auth = authClient();
-  if (!auth) return null;
-  const { data: authData, error } = await auth.auth.getUser(token);
+  if (!auth) return { user: null, stage: "AUTH_CONFIG", detail: "Supabase auth client is not configured." };
+
+  let authData;
+  try {
+    const result = await auth.auth.getUser(token);
+    if (result.error) {
+      return { user: null, stage: "AUTH_VERIFY", detail: safeErrorMessage(result.error) };
+    }
+    authData = result.data;
+  } catch (error) {
+    return { user: null, stage: "AUTH_VERIFY", detail: safeErrorMessage(error) };
+  }
+
   const user = authData.user;
-  if (error || !user?.email) return null;
+  if (!user?.email) {
+    return { user: null, stage: "AUTH_VERIFY", detail: "Supabase returned no email for this session." };
+  }
 
   const email = user.email.toLowerCase();
   const envAdmins = (process.env.OTL_ADMIN_EMAILS || "")
     .split(",")
-    .map((item) => item.trim().toLowerCase())
+    .map((item) => item.trim().replace(/^["']|["']$/g, "").toLowerCase())
     .filter(Boolean);
 
-  if (envAdmins.includes(email)) return user;
+  if (envAdmins.includes(email)) return { user };
 
-  const { data: admin, error: adminError } = await db
-    .from("admin_users")
-    .select("email")
-    .eq("email", email)
-    .maybeSingle();
+  try {
+    const { data: admin, error: adminError } = await db
+      .from("admin_users")
+      .select("email")
+      .eq("email", email)
+      .maybeSingle();
 
-  if (!adminError && admin) return user;
-  return null;
+    if (adminError) {
+      return { user: null, stage: "ADMIN_LOOKUP", detail: safeErrorMessage(adminError) };
+    }
+    if (admin) return { user };
+  } catch (error) {
+    return { user: null, stage: "ADMIN_LOOKUP", detail: safeErrorMessage(error) };
+  }
+
+  return { user: null, stage: "NOT_AUTHORIZED", detail: `Signed-in email ${email} is not in the admin allowlist.` };
 }
 
 const testVendorAnswers: Record<string, string> = {
@@ -162,8 +197,13 @@ export async function POST(request: Request) {
   }
 
   if (body.adminAction === "create-test") {
-    const user = await isAuthorizedAdmin(db, request);
-    if (!user) return NextResponse.json({ error: "Admin access required." }, { status: 403 });
+    const authorization = await authorizeAdmin(db, request);
+    if (!authorization.user) {
+      return NextResponse.json({
+        error: `Admin authorization failed [${authorization.stage || "UNKNOWN"}]: ${authorization.detail || "Unknown error"}`,
+      }, { status: 403 });
+    }
+    const user = authorization.user;
 
     const type: AssessmentType = "vendor-migration";
     const result = calculateAssessment(type, testVendorAnswers);
@@ -339,8 +379,13 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const user = await isAuthorizedAdmin(db, request);
-  if (!user) return NextResponse.json({ error: "Admin access required." }, { status: 403 });
+  const authorization = await authorizeAdmin(db, request);
+  if (!authorization.user) {
+    return NextResponse.json({
+      error: `Admin authorization failed [${authorization.stage || "UNKNOWN"}]: ${authorization.detail || "Unknown error"}`,
+    }, { status: 403 });
+  }
+  const user = authorization.user;
   if (!id) return NextResponse.json({ error: "Assessment ID is required." }, { status: 400 });
 
   if (body.consultationWorkspace && typeof body.consultationWorkspace === "object") {
@@ -385,17 +430,28 @@ export async function PATCH(request: Request) {
 
 export async function GET(request: Request) {
   const db = serviceClient();
-  if (!db) return NextResponse.json({ error: "Assessment database is not configured." }, { status: 503 });
+  if (!db) return NextResponse.json({ error: "Assessment database is not configured [SERVICE_CONFIG]." }, { status: 503 });
 
-  const user = await isAuthorizedAdmin(db, request);
-  if (!user) return NextResponse.json({ error: "Admin access required." }, { status: 403 });
+  const authorization = await authorizeAdmin(db, request);
+  if (!authorization.user) {
+    return NextResponse.json({
+      error: `Admin authorization failed [${authorization.stage || "UNKNOWN"}]: ${authorization.detail || "Unknown error"}`,
+    }, { status: 403 });
+  }
+  const user = authorization.user;
 
-  const { data, error } = await db
-    .from("otl_assessment_submissions")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(250);
+  try {
+    const { data, error } = await db
+      .from("otl_assessment_submissions")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(250);
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json({ submissions: data || [], adminEmail: user.email });
+    if (error) {
+      return NextResponse.json({ error: `Assessment query failed [SUBMISSIONS_QUERY]: ${safeErrorMessage(error)}` }, { status: 500 });
+    }
+    return NextResponse.json({ submissions: data || [], adminEmail: user.email });
+  } catch (error) {
+    return NextResponse.json({ error: `Assessment query failed [SUBMISSIONS_QUERY]: ${safeErrorMessage(error)}` }, { status: 500 });
+  }
 }
