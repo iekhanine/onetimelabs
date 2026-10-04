@@ -27,4 +27,12 @@ dist-ssr
 node_modules/
 .vercel/
 dist/
+out/.next/
+node_modules/
+.vercel/
+dist/
 out/
+
+.env
+.env.*
+!.env.example

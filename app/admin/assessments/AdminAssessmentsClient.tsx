@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, FlaskConical, LogIn, RefreshCw, Save } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { generateConsultationGuide } from "@/lib/consulting-guides";
@@ -57,10 +57,19 @@ export default function AdminAssessmentsClient() {
   const [workspaceDrafts, setWorkspaceDrafts] = useState<Record<string, WorkspaceDraft>>({});
   const [saveState, setSaveState] = useState<Record<string, string>>({});
   const [creatingTest, setCreatingTest] = useState(false);
+  const [supabase, setSupabase] = useState<ReturnType<typeof createClient> | null>(null);
 
-  const supabase = useMemo(() => createClient(), []);
+  useEffect(() => {
+    try {
+      setSupabase(createClient());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to initialize Supabase.");
+      setLoading(false);
+    }
+  }, []);
 
   async function load() {
+    if (!supabase) return;
     setLoading(true);
     setError("");
     const { data: { session } } = await supabase.auth.getSession();
@@ -88,12 +97,14 @@ export default function AdminAssessmentsClient() {
   }
 
   useEffect(() => {
+    if (!supabase) return;
     void load();
     const { data } = supabase.auth.onAuthStateChange(() => void load());
     return () => data.subscription.unsubscribe();
   }, [supabase]);
 
   async function signIn() {
+    if (!supabase) return;
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: `${location.origin}/auth/callback?next=/admin/assessments` },
@@ -101,10 +112,12 @@ export default function AdminAssessmentsClient() {
   }
 
   async function signOut() {
+    if (!supabase) return;
     await supabase.auth.signOut();
   }
 
   async function authorizedFetch(url: string, init: RequestInit = {}) {
+    if (!supabase) throw new Error("Supabase client is not ready.");
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) throw new Error("Admin session expired.");
     return fetch(url, {
