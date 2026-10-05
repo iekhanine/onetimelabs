@@ -86,3 +86,30 @@ The Assessment Inbox now automatically builds a consultant interview guide from 
 The guide is automatically sorted by priority: critical gaps, high-risk/low-maturity responses, partial controls, then validation items.
 
 Authorized admins can use **Create test assessment** in `/admin/assessments` to insert a clearly labeled sample Vendor Migration lead. The test record does not send notification email.
+
+## 7. Client reports, PDF export, and expanded assessment library
+
+For an existing assessment installation, run:
+
+`sql/010_assessment_sharing_and_library.sql`
+
+This migration:
+
+- adds a secure per-submission share token
+- adds enable/revoke controls for client report links
+- removes the old database constraint that only allowed `vendor-migration` and `itam` assessment types
+- keeps direct browser access to assessment records disabled
+
+The admin workspace can now:
+
+- export a branded, paginated PDF report directly from the server
+- create, copy, open, and revoke an unlisted client report URL
+- automatically save the latest consultation notes before exporting or sharing
+
+Client report URLs use:
+
+`/assessment-report/<secure-token>`
+
+Shared reports are marked `noindex`, excluded from the sitemap, and can be revoked from the Assessment Inbox. The shared page also includes its own **Download PDF** action.
+
+The `/assess` page is now a searchable/filterable library containing 32 free assessments. New assessments use the same submission, scoring, consultation-request, admin-inbox, and client-report workflow as the original Vendor Migration and ITAM assessments.

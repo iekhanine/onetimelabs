@@ -344,3 +344,142 @@
   .contactGrid { grid-template-columns: 1fr; }
   .fullField { grid-column: auto; }
 }
+
+.librarySection {
+  width: min(1220px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 38px 0 78px;
+}
+
+.libraryToolbar {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.searchBox {
+  min-height: 48px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #cfd9e4;
+  border-radius: 10px;
+  background: white;
+  color: #63778b;
+  box-shadow: 0 8px 24px rgba(28, 48, 71, .04);
+}
+
+.searchBox input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  color: #172638;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+}
+
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filterButton {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid #d5dfe9;
+  border-radius: 999px;
+  background: white;
+  color: #4d6074;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.filterButtonActive {
+  border-color: #1675d1;
+  background: #1675d1;
+  color: white;
+}
+
+.libraryCount {
+  margin: 0 0 14px;
+  color: #6a7b8d;
+  font-size: 12px;
+}
+
+.libraryCount strong { color: #1d3146; }
+
+.libraryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.libraryCard {
+  min-height: 300px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dbe3ec;
+  border-radius: 13px;
+  background: white;
+  box-shadow: 0 12px 30px rgba(28, 48, 71, .05);
+}
+
+.libraryCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #78889a;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.libraryBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: #edf5fd;
+  color: #315f89;
+}
+
+.libraryCard h2 {
+  margin: 16px 0 9px;
+  font-size: 23px;
+  line-height: 1.08;
+  letter-spacing: -.03em;
+}
+
+.libraryCard p {
+  margin: 0 0 17px;
+  color: #5d6d7e;
+  font-size: 13px;
+  line-height: 1.58;
+}
+
+.libraryCard .cardFacts { margin-top: auto; }
+.libraryCard .primaryLink { margin-top: 0; }
+
+.libraryEmpty {
+  padding: 60px 20px;
+  border: 1px dashed #ccd8e4;
+  border-radius: 12px;
+  background: rgba(255,255,255,.65);
+  color: #718295;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .libraryGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 660px) {
+  .libraryGrid { grid-template-columns: 1fr; }
+  .librarySection { width: min(100% - 28px, 1220px); }
+}

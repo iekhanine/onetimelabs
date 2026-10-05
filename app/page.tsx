@@ -4,6 +4,7 @@ import { ArrowRight, Building2, BriefcaseBusiness } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MarketingBumper } from "@/components/MarketingBumper";
+import { assessments } from "@/lib/assessments";
 
 const photos = {
   smallBusiness: "https://images.unsplash.com/photo-1743574729836-8e02167d4350?auto=format&fit=crop&w=1800&q=82",
@@ -107,6 +108,15 @@ export default function Home() {
           </section>
 
           <section className="otl-home-assessments" aria-label="Free technology assessments">
+            <Link className="otl-home-assessment-library" href="/assess">
+              <div>
+                <span>FREE ASSESSMENT LIBRARY</span>
+                <h2>{Object.keys(assessments).length} practical company technology assessments. Free.</h2>
+                <p>Security, IT operations, cloud, asset management, vendor management, service delivery, AI readiness, governance, and more.</p>
+              </div>
+              <strong>Browse all assessments <ArrowRight size={16} /></strong>
+            </Link>
+
             <div className="otl-home-assessment-grid">
               <Link className="otl-home-assessment-card" href="/assess/vendor-migration">
                 <div className="otl-home-assessment-visual" style={{ backgroundImage: `url(${photos.enterprise})` }} aria-hidden="true" />

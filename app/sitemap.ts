@@ -1,16 +1,22 @@
 import type { MetadataRoute } from "next";
 
+import { assessments } from "@/lib/assessments";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://onetimelabs.net";
+  const assessmentUrls = Object.keys(assessments).map((type) => ({
+    url: `${base}/assess/${type}`,
+    changeFrequency: "monthly" as const,
+    priority: type === "vendor-migration" || type === "itam" ? 0.95 : 0.75,
+  }));
 
   return [
     { url: base, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/business`, changeFrequency: "weekly", priority: 0.95 },
     { url: `${base}/enterprise`, changeFrequency: "weekly", priority: 0.95 },
     { url: `${base}/vendor-migration`, changeFrequency: "monthly", priority: 0.95 },
-    { url: `${base}/assess`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${base}/assess/vendor-migration`, changeFrequency: "monthly", priority: 0.95 },
-    { url: `${base}/assess/itam`, changeFrequency: "monthly", priority: 0.95 },
+    { url: `${base}/assess`, changeFrequency: "weekly", priority: 0.95 },
+    ...assessmentUrls,
     { url: `${base}/managed-print-services`, changeFrequency: "monthly", priority: 0.95 },
     { url: `${base}/consulting`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/custom-development`, changeFrequency: "monthly", priority: 0.85 },

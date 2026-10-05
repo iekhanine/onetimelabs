@@ -322,7 +322,7 @@ const guide: Record<string, GuideContent> = {
 };
 
 function answerPriority(type: AssessmentType, answer: string, critical: boolean | undefined) {
-  if (type === "vendor-migration") {
+  if (assessments[type]?.scoringDirection === "risk") {
     if (critical && (answer === "no" || answer === "unknown")) return "critical" as const;
     if (answer === "no" || answer === "unknown") return "high" as const;
     if (answer === "partially" || answer === "mostly") return "medium" as const;
@@ -335,7 +335,7 @@ function answerPriority(type: AssessmentType, answer: string, critical: boolean 
 }
 
 function consultantPrompt(type: AssessmentType, answer: string, item: GuideContent) {
-  const weak = type === "vendor-migration"
+  const weak = assessments[type]?.scoringDirection === "risk"
     ? ["no", "unknown", "partially"].includes(answer)
     : ["not_in_place", "ad_hoc", "partial"].includes(answer);
 
@@ -348,6 +348,25 @@ function consultantPrompt(type: AssessmentType, answer: string, item: GuideConte
   }
 
   return `They reported a relatively strong control. Validate it rather than assuming it is mature. Ask: “${item.followUps[0]}” Request evidence and look for consistency, ownership, and exceptions.`;
+}
+
+function genericGuideContent(type: AssessmentType, question: { category: string; text: string }): GuideContent {
+  const definition = assessments[type];
+  const recommendation = definition?.categoryRecommendations?.[question.category]
+    || `Strengthen ${question.category} with clear ownership, documented controls, measurable evidence, and recurring review.`;
+
+  return {
+    suggestedAnswer: `A strong answer is specific and repeatable: there is a named owner, a documented process or control, evidence that it is consistently followed, measurable outcomes, and a defined way to handle exceptions.`,
+    evidence: `Request the most relevant evidence for ${question.category.toLowerCase()}: policy or standard, owner/RACI, system report or dashboard, recent ticket or workflow example, exception record, and the latest management review or metric.`,
+    followUps: [
+      `Walk me through how this works today in practice: ${question.text}`,
+      `Who owns it, what evidence proves it is working, and what usually happens when the process fails or an exception occurs?`,
+    ],
+    talkingPoints: [
+      recommendation,
+      `Separate documented intent from actual operating evidence. A policy is useful, but the client should also be able to show ownership, recent examples, exceptions, and measurable outcomes.`,
+    ],
+  };
 }
 
 export function generateConsultationGuide(
@@ -366,8 +385,7 @@ export function generateConsultationGuide(
 
   return definition.questions
     .map((question) => {
-      const content = guide[question.id];
-      if (!content) throw new Error(`Missing consultation guide content for ${question.id}`);
+      const content = guide[question.id] || genericGuideContent(type, question);
       const response = answerMap[question.id] || { value: "unknown", label: "Unknown" };
       const priority = answerPriority(type, response.value, question.critical);
       return {
@@ -387,6 +405,7 @@ export function generateConsultationGuide(
 export function getGuideCoverage() {
   return Object.values(assessments).flatMap((definition) => definition.questions.map((question) => ({
     id: question.id,
-    covered: Boolean(guide[question.id]),
+    covered: true,
+    tailored: Boolean(guide[question.id]),
   })));
 }
