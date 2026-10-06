@@ -117,7 +117,7 @@ export default function ConsultingPage() {
             <div className="otl-section-heading">
               <div>
                 <span className="otl-eyebrow otl-eyebrow-dark">ENGAGEMENT MODEL</span>
-                <h2>Use as much consulting as the problem actually needs.</h2>
+                <h2>Use as much consulting as the problem  needs.</h2>
               </div>
             </div>
 

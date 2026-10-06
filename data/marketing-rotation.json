@@ -108,7 +108,7 @@
     "id": "OTL-016",
     "segment": "retail",
     "segmentLabel": "Retail & Brick-and-Mortar",
-    "text": "Sold it online. Sold it in-store. What is actually left?",
+    "text": "Sold it online. Sold it in-store. What is  left?",
     "weight": 3
   },
   {
@@ -304,7 +304,7 @@
     "id": "OTL-044",
     "segment": "property",
     "segmentLabel": "Property / Facilities",
-    "text": "One move-out. Five vendors. Twelve texts. What is actually finished?",
+    "text": "One move-out. Five vendors. Twelve texts. What is  finished?",
     "weight": 3
   },
   {
@@ -332,7 +332,7 @@
     "id": "OTL-048",
     "segment": "construction",
     "segmentLabel": "Construction / Contractors",
-    "text": "Which job is waiting on material—and when is it actually arriving?",
+    "text": "Which job is waiting on material—and when is it  arriving?",
     "weight": 3
   },
   {

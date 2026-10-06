@@ -39,7 +39,7 @@ const guide: Record<string, GuideContent> = {
   vm04: {
     suggestedAnswer: "Yes. Customer, incumbent, and incoming vendor responsibilities are documented down to deliverables, dependencies, approvals, and handoff points.",
     evidence: "RACI, transition agreement, SOWs, exit plan, responsibility matrix, vendor meeting minutes.",
-    followUps: ["Which activities are currently assumed rather than contractually or operationally assigned?", "Where could the incumbent and incoming vendor each believe the other owns the same task?"],
+    followUps: ["Which activities are currently assumed rather than contr or operationally assigned?", "Where could the incumbent and incoming vendor each believe the other owns the same task?"],
     talkingPoints: ["Vendor transitions fail in the seams between contracts.", "Explicitly assign discovery, exports, credentials, documentation, testing, and post-cutover support."],
   },
   vm05: {
@@ -129,7 +129,7 @@ const guide: Record<string, GuideContent> = {
   vm19: {
     suggestedAnswer: "Yes. Rollback criteria, decision authority, trigger times, steps, data implications, communications, and expected recovery duration are documented and tested where practical.",
     evidence: "Rollback runbook, decision matrix, reverse-migration test, recovery timing, communications plan.",
-    followUps: ["What specific condition causes the team to stop troubleshooting and roll back?", "Who can make that decision and how long does rollback actually take?"],
+    followUps: ["What specific condition causes the team to stop troubleshooting and roll back?", "Who can make that decision and how long does rollback  take?"],
     talkingPoints: ["A rollback plan that starts with 'if needed' is not a rollback plan.", "Pre-agree the trigger and authority so the team does not debate while the outage clock is running."],
   },
   vm20: {
@@ -280,7 +280,7 @@ const guide: Record<string, GuideContent> = {
   it19: {
     suggestedAnswer: "Managed, measured & documented. ITAM routinely identifies reclamation, shelfware, duplicate services, inactive SaaS accounts, oversized subscriptions, dormant hardware, and other avoidable spend and tracks realized savings.",
     evidence: "Reclamation reports, SaaS usage analytics, savings register, duplicate-product analysis, recovery workflows.",
-    followUps: ["How much spend has ITAM actually avoided or reclaimed in the last year?", "What happens operationally after an unused license or asset is identified?"],
+    followUps: ["How much spend has ITAM  avoided or reclaimed in the last year?", "What happens operationally after an unused license or asset is identified?"],
     talkingPoints: ["Optimization requires a closed loop from insight to reclamation to measured savings.", "Track realized value, not just theoretical opportunity."],
   },
   it20: {

@@ -121,7 +121,7 @@ export default function ScjRoleScopePage() {
           <p>
             When I compare the original position and
             expectations communicated to me with the work I
-            was actually asked to perform, the difference is
+            was  asked to perform, the difference is
             substantial.
           </p>
 

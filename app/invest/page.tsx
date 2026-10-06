@@ -95,7 +95,7 @@ export default function InvestPage() {
               <h1>Build the company behind the software.</h1>
               <p>
                 OneTime Labs combines enterprise consulting with commercially licensed software
-                built from problems we have actually encountered in operations. We are evaluating
+                built from problems we have  encountered in operations. We are evaluating
                 a future capital raise and are currently collecting non-binding indications of
                 interest from people who want to follow that process.
               </p>
@@ -214,7 +214,7 @@ export default function InvestPage() {
             <div className="otl-section-heading">
               <div>
                 <span className="otl-eyebrow otl-eyebrow-dark">05 / USE OF CAPITAL</span>
-                <h2>What additional capital would actually do.</h2>
+                <h2>What additional capital would  do.</h2>
                 <p>This is a planning allocation, not a finalized offering budget or promise of exact spending percentages.</p>
               </div>
             </div>

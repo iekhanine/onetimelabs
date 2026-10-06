@@ -1,18 +1,10 @@
-# OneTime Labs Website
+# Local Service — three small service cards
 
-This is the OneTime Labs Next.js site.
+Copy this patch over the root of the `onetimelabs.net` project.
 
-## Local development
+This changes only the Local Service demo data so the Small card size is demonstrated as a complete three-column row:
+- Mechanical Repair
+- Battery & Charging
+- Tires & Alignment
 
-```powershell
-npm install
-npm run dev
-```
-
-Open the URL printed by Next.js (normally `http://localhost:3000`).
-
-The local-only mail merge utility is served from:
-
-`http://localhost:3000/merge/`
-
-The mail merge utility is static and browser-only; it does not send email or store recipient data on a server.
+No other layout or Platform files are changed.

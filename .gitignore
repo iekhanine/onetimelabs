@@ -32,7 +32,7 @@ node_modules/
 .vercel/
 dist/
 out/
-
+*.zip
 .env
 .env.*
 !.env.example

@@ -15,7 +15,7 @@ const buildTypes = [
   {
     icon: Workflow,
     title: "Operational applications",
-    text: "Internal applications built around the process your team actually follows instead of forcing that process into a generic platform.",
+    text: "Internal applications built around the process your team  follows instead of forcing that process into a generic platform.",
   },
   {
     icon: Database,
@@ -145,7 +145,7 @@ export default function CustomDevelopmentPage() {
             <div>
               <span className="otl-eyebrow otl-eyebrow-dark">PROJECT SCOPING</span>
               <h2>Bring the ugly spreadsheet, manual process, or broken workflow.</h2>
-              <p>We will start by figuring out whether you actually need software. If you do, we scope the smallest useful system first.</p>
+              <p>We will start by figuring out whether you  need software. If you do, we scope the smallest useful system first.</p>
             </div>
             <Link className="otl-button otl-button-primary" href="/contact">
               Scope a project <ArrowRight size={14} />

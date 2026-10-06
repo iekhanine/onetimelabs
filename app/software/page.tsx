@@ -30,7 +30,7 @@ export default function SoftwarePage() {
           <div className="otl-shell otl-page-hero-grid">
             <div>
               <span className="otl-eyebrow">ENTERPRISE SOFTWARE</span>
-              <h1>Software built from problems we have actually seen.</h1>
+              <h1>Software built from problems we have  seen.</h1>
               <p>
                 The OneTime Labs portfolio comes out of operational work: documentation,
                 change governance, managed print, licensing, asset management, and location-based records.
