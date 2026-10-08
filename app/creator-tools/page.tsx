@@ -53,6 +53,23 @@ export default function CreatorToolsPage() {
         </section>
 
         <div className="otl-shell otl-page-content">
+          <section className="otl-two-column-panel">
+            <div className="otl-panel-lead">
+              <MessageSquareText size={22} />
+              <span className="otl-eyebrow otl-eyebrow-dark">FREE PUBLIC TOOL</span>
+              <h2>Teleprompter</h2>
+              <p>
+                A browser-based prompter for meetings, presentations, interviews, training, and camera work.
+                Auto-scroll, timed pacing, voice follow, mirror mode, keyboard controls, Word import, and presenter display — no account required.
+              </p>
+            </div>
+            <div className="otl-panel-action">
+              <strong>No subscription. No script upload.</strong>
+              <p>Your script stays in the browser, with local autosave and production controls designed for real work.</p>
+              <Link href="/teleprompter">Open the free teleprompter <ArrowRight size={13} /></Link>
+            </div>
+          </section>
+
           <section className="otl-section">
             <div className="otl-section-heading">
               <div>

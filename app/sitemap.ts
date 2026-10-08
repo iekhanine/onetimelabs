@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/custom-development`, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/software`, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/creator-tools`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${base}/teleprompter`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/experience`, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/pricing`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.85 },
