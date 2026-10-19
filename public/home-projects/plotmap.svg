@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="26" fill="#eef4f7"/>
+  <path d="M0 93L640 14v105L0 210z" fill="#d8e6ea"/><path d="M0 250L640 156v73L0 330z" fill="#dce8dd"/>
+  <g stroke="#fff" stroke-width="8" opacity=".92"><path d="M72 0l95 360"/><path d="M330 0l-36 360"/><path d="M535 0l-80 360"/><path d="M0 130l640 71"/></g>
+  <g fill="#2f80c8"><circle cx="196" cy="118" r="17"/><path d="M196 135l-15 30h30z"/><circle cx="420" cy="214" r="17"/><path d="M420 231l-15 30h30z"/></g>
+  <rect x="38" y="34" width="224" height="50" rx="12" fill="#fff" opacity=".95"/><text x="58" y="65" font-family="Arial" font-size="18" font-weight="700" fill="#17324a">PlotMap</text>
+</svg>

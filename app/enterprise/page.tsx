@@ -40,9 +40,9 @@ const services = [
     detail: "Five9 → Genesys transition management across ACD queue and agent routing, agent assignments, transfer and escalation paths, IVR/IVA call flows, call recording / ACR, migration validation, and production troubleshooting.",
   },
   {
-    href: "/consulting",
+    href: "/services/itam",
     icon: Boxes,
-    title: "ITAM / SAM / Operations",
+    title: "IT Asset Management (ITAM / SAM)",
     detail: "Asset management, licensing, CMDB, standards, governance, and operational cleanup.",
   },
   {
@@ -68,8 +68,8 @@ export default function EnterprisePage() {
           <div className="otl-shell otl-compact-section-hero-inner">
             <div>
               <span className="otl-eyebrow">ENTERPRISE SOLUTIONS</span>
-              <h1>Build, migrate, and modernize the systems your organization depends on.</h1>
-              <p>Vendor transitions, contact center platforms, infrastructure, ITAM / SAM, integrations, internal platforms, automation, and custom software.</p>
+              <h1>Enterprise asset management and the services around it.</h1>
+              <p>IT asset management is our specialty. We also support vendor transitions, enterprise print, contact center platforms, operational integrations, and related software.</p>
             </div>
             <Link className="otl-button otl-button-primary" href="/contact?topic=enterprise">
               Start a consultation <ArrowRight size={14} />
@@ -80,7 +80,7 @@ export default function EnterprisePage() {
         <section className="otl-shell otl-compact-services">
           <div className="otl-compact-services-heading">
             <strong>WHAT WE DELIVER</strong>
-            <span>Engineering and consulting across complex technology environments.</span>
+            <span>ITAM first, with complementary technology and operational services.</span>
           </div>
 
           <div className="otl-compact-service-list">

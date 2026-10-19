@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 export const metadata = {
   title: "Contact",
   description:
-    "Contact OneTime Labs about business technology, enterprise consulting, software, migrations, contact center platforms, managed print, reporting, automation, or custom development.",
+    "Contact OneTime Labs about IT asset management, CMDB improvements, license optimization, inventory systems, and related enterprise services.",
 };
 
 export default function ContactPage() {
@@ -18,8 +18,8 @@ export default function ContactPage() {
         <section className="otl-compact-contact-heading">
           <div className="otl-shell">
             <span className="otl-eyebrow">CONTACT</span>
-            <h1>Tell us what you need.</h1>
-            <p>A rough explanation is enough. We will figure out the technical part.</p>
+            <h1>Tell us what needs fixing.</h1>
+            <p>Tell us what you track today, which systems you use, and what needs to improve. A rough overview is enough.</p>
           </div>
         </section>
 

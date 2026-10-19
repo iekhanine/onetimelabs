@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="26" fill="#d9c4a8"/>
+  <rect x="110" y="55" width="420" height="250" rx="34" fill="#463729" stroke="#241b14" stroke-width="8"/>
+  <rect x="144" y="86" width="282" height="188" rx="20" fill="#ede4cf"/>
+  <text x="285" y="164" text-anchor="middle" font-family="Arial Black, Arial" font-size="44" fill="#1c1f24">IVAN</text><text x="285" y="214" text-anchor="middle" font-family="Arial Black, Arial" font-size="44" fill="#1c1f24">SAYS</text>
+  <circle cx="474" cy="122" r="25" fill="#ad6d42"/><circle cx="474" cy="122" r="10" fill="#3b2b21"/><circle cx="474" cy="203" r="25" fill="#ad6d42"/><circle cx="474" cy="203" r="10" fill="#3b2b21"/>
+  <path d="M470 260h22" stroke="#c8a881" stroke-width="6" stroke-linecap="round"/>
+</svg>

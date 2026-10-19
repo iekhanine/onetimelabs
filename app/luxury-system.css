@@ -1,0 +1,23 @@
+/* OneTime Labs: site-wide monochrome luxury system.
+   Loaded last, so this layer reaches existing pages without altering their logic. */
+:root{color-scheme:dark;--ink:#ececef;--ink-2:#d5d6d9;--paper:#08090b;--paper-2:#111316;--white:#f5f5f6;--muted:#a3a5aa;--line:#34363a;--orange:#ced0d4;--blue:#c0c3c8;--green:#aeb1b5;--accent:#d5d5d5;--otl-navy-950:#050607;--otl-navy-900:#08090b;--otl-navy-800:#121417;--otl-blue-600:#b8babf;--otl-blue-500:#d0d1d4;--otl-blue-100:#25272b;--otl-text-900:#f2f2f2;--otl-text-700:#d2d3d5;--otl-text-500:#a4a5a8;--otl-line:#34363a;--otl-panel:#131518;--otl-panel-soft:#0c0e10}
+html{background:#08090b}body{background:#08090b;color:#e7e8e9;letter-spacing:.006em}::selection{background:#5b5d62;color:#fff}
+h1,h2,h3,h4{font-weight:350;letter-spacing:-.045em}p{line-height:1.68}a,button,input,select,textarea{transition:background-color .22s,border-color .22s,color .22s,box-shadow .22s}a:hover{color:#fff}
+/* All generic interactive elements, including forms that were on light pages. */
+button:not([class*="danger"]),input[type=button],input[type=submit],input[type=reset],.button,.btn,[role=button]{border-radius:3px;background:#1b1d20;color:#ededee;border:1px solid #5d6065;box-shadow:none;text-transform:none;font-weight:500;letter-spacing:.035em}
+button:not([class*="danger"]):hover,input[type=submit]:hover,.button:hover,.btn:hover,[role=button]:hover{background:#303237;border-color:#a1a3a6;color:#fff;box-shadow:none}
+input:not([type=checkbox]):not([type=radio]),textarea,select{background:#111316!important;color:#f0f0f1!important;border:1px solid #484a50!important;border-radius:3px!important;box-shadow:none!important}input::placeholder,textarea::placeholder{color:#85888d!important}input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #a7aab0;outline-offset:3px}
+label{color:#dbdcde}fieldset{border-color:#36383b}hr{border-color:#33363a}
+/* Standard site header/footer and old store-derived components. */
+.site-header,.otl-store-header,.otl-header-main,.otl-department-nav{background:rgba(7,8,10,.97)!important;color:#e6e7e9!important;border-color:#303236!important;box-shadow:none!important;backdrop-filter:blur(18px)}.brand,.otl-brand{letter-spacing:-.03em;font-weight:500}.otl-brand strong{font-weight:550}.otl-brand span,.otl-header-context,.site-nav{color:#a8aaae}.otl-compact-nav a,.otl-header-actions a,.otl-department-nav a{color:#dedfe1!important}.otl-header-actions .otl-header-store-link{background:#1e2023!important;border:1px solid #777a7e;border-radius:3px}
+.otl-brand img,.brand__mark{object-fit:contain}
+/* Existing marketing cards, panels, data tables and pricing tiles. */
+.otl-card,.otl-panel,.otl-product-card,.otl-feature-card,.card,.panel,article[class*="card"],section[class*="panel"],div[class*="Card"],div[class*="card"]{background-color:#141619;color:#e7e8e9;border-color:#35373b;box-shadow:none}
+.otl-shell [class*="eyebrow"],.eyebrow,[class*="Kicker"],[class*="kicker"]{color:#acafb4;letter-spacing:.14em}
+.otl-shell [class*="hero"],.otl-shell [class*="section"],.otl-shell [class*="surface"]{border-color:#33363b}
+table{border-collapse:collapse}th,td{border-color:#34363b!important}th{background:#191b1e;color:#e4e5e6}td{background:#101215;color:#d9dade}tr:nth-child(even) td{background:#17191c}
+/* Normalize a few pervasive original blue/orange variables without touching app logic. */
+.otl-store-header a:hover,.site-nav a:hover{color:white!important}a:focus-visible{border-radius:2px}
+/* Subtle scrollbars and native details. */
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:#0b0c0e}::-webkit-scrollbar-thumb{background:#35383d;border:2px solid #0b0c0e;border-radius:8px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}

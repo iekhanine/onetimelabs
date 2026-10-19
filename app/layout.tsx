@@ -1,31 +1,13 @@
-import type { ReactNode } from "react";
-import type { Metadata } from "next";
-
+import type {ReactNode} from "react";
+import type {Metadata} from "next";
 import "./globals.css";
 import "./company-store.css";
+import "./brand-system.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://onetimelabs.net"),
-  title: {
-    default: "OneTime Labs | Business Technology & Software",
-    template: "%s | OneTime Labs",
-  },
-  description:
-    "OneTime Labs builds practical websites, internal tools, reporting, automation, enterprise systems, and provides vendor migration, managed print, ITAM/SAM, and technology consulting.",
-  openGraph: {
-    title: "OneTime Labs | Business Technology & Software",
-    description:
-      "Practical technology for small businesses and enterprise environments — from websites and internal tools to vendor migrations and operational software.",
-    url: "https://onetimelabs.net",
-    siteName: "OneTime Labs",
-    type: "website",
-  },
+  title: {default:"OneTime Labs | IT Asset Management & Inventory Systems",template:"%s | OneTime Labs"},
+  description:"IT asset management, hardware lifecycle, software licensing, CMDB improvements, inventory reconciliation, and operational asset systems. Plus retail, warehouse, and general asset management services.",
+  openGraph: {title:"OneTime Labs | IT Asset Management & Inventory Systems",description:"Practical ITAM services: hardware and software assets, CMDB data quality, physical inventory, lifecycle controls, and platform implementation.",url:"https://onetimelabs.net",siteName:"OneTime Labs",type:"website"},
 };
-
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
+export default function RootLayout({children}:Readonly<{children:ReactNode}>){return <html lang="en"><body>{children}</body></html>}

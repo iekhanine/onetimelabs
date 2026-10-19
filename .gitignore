@@ -1,38 +1,36 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
+# Dependencies and builds
+node_modules/
 .next/
-node_modules/
 .vercel/
 dist/
-out/.next/
-node_modules/
-.vercel/
-dist/
+dist-ssr/
 out/
-*.zip
+coverage/
+*.tsbuildinfo
+*.log
+# Local secrets and credentials (including nested directories)
 .env
 .env.*
+**/.env
+**/.env.*
 !.env.example
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*service-account*.json
+*service_account*.json
+*credentials*.json
+*secrets*.json
+# Export archives and local artifacts
+*.zip
+*.tar
+*.tar.gz
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+*.zip

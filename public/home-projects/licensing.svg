@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs><linearGradient id="b" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0b1827"/><stop offset="1" stop-color="#163754"/></linearGradient></defs>
+  <rect width="640" height="360" rx="26" fill="url(#b)"/>
+  <circle cx="260" cy="178" r="56" fill="#e9f2fb" opacity=".97"/>
+  <circle cx="260" cy="178" r="24" fill="#17344d"/>
+  <path d="M306 178h145v34h-32v28h-34v-28h-33v28h-34v-28h-12z" fill="#e9f2fb"/>
+  <text x="56" y="72" font-family="Arial" font-size="18" font-weight="700" fill="#fff">OneTime Licensing</text>
+  <text x="56" y="99" font-family="Arial" font-size="12" fill="#9fb5ca">Products · keys · activations · entitlements</text>
+  <rect x="56" y="284" width="192" height="14" rx="7" fill="#315fce"/><rect x="260" y="284" width="110" height="14" rx="7" fill="#2e6d62"/><rect x="382" y="284" width="148" height="14" rx="7" fill="#5b7288"/>
+</svg>

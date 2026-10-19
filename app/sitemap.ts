@@ -12,8 +12,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: base, changeFrequency: "weekly", priority: 1 },
+    { url: `${base}/services/itam`, changeFrequency: "monthly", priority: 0.99 },
+    { url: `${base}/itam`, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/business`, changeFrequency: "weekly", priority: 0.95 },
-    { url: `${base}/enterprise`, changeFrequency: "weekly", priority: 0.95 },
+    { url: `${base}/enterprise`, changeFrequency: "weekly", priority: 0.75 },
     { url: `${base}/vendor-migration`, changeFrequency: "monthly", priority: 0.95 },
     { url: `${base}/assess`, changeFrequency: "weekly", priority: 0.95 },
     ...assessmentUrls,

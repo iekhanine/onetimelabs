@@ -63,12 +63,6 @@ export const enterpriseSoftware = [
       "Change intake, review, evidence, approvals, CAB workflow, and operational audit history without adopting an entire ITSM suite.",
   },
   {
-    name: "PCCR",
-    discipline: "Managed print",
-    description:
-      "Printer compliance and fleet reporting built around enterprise Streamline NX and Web JetAdmin exports.",
-  },
-  {
     name: "OneTime Labs Licensing",
     discipline: "Software licensing",
     description:

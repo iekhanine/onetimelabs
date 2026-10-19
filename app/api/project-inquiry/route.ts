@@ -4,6 +4,8 @@ import { Resend } from "resend";
 export const runtime = "nodejs";
 
 const topicLabels: Record<string, string> = {
+  itam: "IT asset management / CMDB / SAM",
+  "general-inventory": "Warehouse, retail or general asset inventory",
   business: "Business solutions consultation",
   "business-web": "Website / booking / customer-facing service",
   "business-tools": "Internal tool / job or customer tracking",

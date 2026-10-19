@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#f7d15c"/><stop offset="1" stop-color="#f09c2d"/></linearGradient></defs>
+  <rect width="640" height="360" rx="26" fill="#fff4d8"/>
+  <path d="M208 42h226l28 270H178z" fill="url(#g)" stroke="#d78322" stroke-width="4"/>
+  <path d="M208 42h226l-18 46H225z" fill="#ffe69a"/>
+  <text x="320" y="144" text-anchor="middle" font-family="Arial Black, Arial" font-size="40" fill="#1e2630">CHIPS</text><text x="320" y="188" text-anchor="middle" font-family="Arial Black, Arial" font-size="40" fill="#1e2630">FOR</text><text x="320" y="232" text-anchor="middle" font-family="Arial Black, Arial" font-size="40" fill="#1e2630">JESUS</text>
+  <text x="320" y="268" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#704719">A VERY SMALL RELIGIOUS TRANSACTION</text>
+</svg>

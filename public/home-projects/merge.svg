@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="26" fill="#f2f7fb"/>
+  <rect x="52" y="58" width="164" height="244" rx="18" fill="#2f79bc"/>
+  <path d="M82 104h104v72H82z" fill="#fff"/><path d="M82 104l52 39 52-39" fill="none" stroke="#2f79bc" stroke-width="7"/>
+  <g transform="translate(252 58)"><rect width="336" height="244" rx="18" fill="#fff" stroke="#dce6ef"/><text x="28" y="42" font-family="Arial" font-size="16" font-weight="700" fill="#173149">Merge</text><g fill="#edf2f6"><rect x="28" y="70" width="280" height="34" rx="8"/><rect x="28" y="116" width="280" height="34" rx="8"/><rect x="28" y="162" width="280" height="34" rx="8"/></g><g fill="#6e8294"><rect x="46" y="83" width="114" height="8" rx="4"/><rect x="46" y="129" width="164" height="8" rx="4"/><rect x="46" y="175" width="136" height="8" rx="4"/></g></g>
+</svg>

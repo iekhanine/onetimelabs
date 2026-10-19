@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#f8fbff"/><stop offset="1" stop-color="#e9f1f8"/></linearGradient></defs>
+  <rect width="640" height="360" rx="26" fill="url(#g)"/>
+  <rect x="34" y="30" width="572" height="300" rx="20" fill="#fff" stroke="#d9e4ee"/>
+  <text x="62" y="70" font-family="Arial" font-size="24" font-weight="700" fill="#10243b">ChangeOps</text>
+  <text x="62" y="96" font-family="Arial" font-size="12" fill="#718196">Plan. Track. Deliver.</text>
+  <g transform="translate(62 122)">
+    <rect width="150" height="170" rx="12" fill="#f7f9fb" stroke="#e0e7ef"/><text x="16" y="28" font-family="Arial" font-size="12" font-weight="700" fill="#56677b">TO DO</text>
+    <rect x="18" y="48" width="112" height="24" rx="7" fill="#fff"/><circle cx="31" cy="60" r="5" fill="#e6a44b"/><rect x="42" y="56" width="66" height="8" rx="4" fill="#dce4ec"/>
+    <rect x="18" y="82" width="112" height="24" rx="7" fill="#fff"/><circle cx="31" cy="94" r="5" fill="#e6a44b"/><rect x="42" y="90" width="76" height="8" rx="4" fill="#dce4ec"/>
+  </g>
+  <g transform="translate(230 122)">
+    <rect width="150" height="170" rx="12" fill="#eef6ff" stroke="#d9e7f7"/><text x="16" y="28" font-family="Arial" font-size="12" font-weight="700" fill="#3e6f9f">IN PROGRESS</text>
+    <rect x="18" y="48" width="112" height="24" rx="7" fill="#fff"/><circle cx="31" cy="60" r="5" fill="#4d94d6"/><rect x="42" y="56" width="66" height="8" rx="4" fill="#dce4ec"/>
+    <rect x="18" y="82" width="112" height="24" rx="7" fill="#fff"/><circle cx="31" cy="94" r="5" fill="#4d94d6"/><rect x="42" y="90" width="76" height="8" rx="4" fill="#dce4ec"/>
+  </g>
+  <g transform="translate(398 122)">
+    <rect width="150" height="170" rx="12" fill="#f0faf4" stroke="#d8ebdf"/><text x="16" y="28" font-family="Arial" font-size="12" font-weight="700" fill="#3f8260">COMPLETED</text>
+    <rect x="18" y="48" width="112" height="24" rx="7" fill="#fff"/><circle cx="31" cy="60" r="5" fill="#56b978"/><rect x="42" y="56" width="66" height="8" rx="4" fill="#dce4ec"/>
+  </g>
+</svg>

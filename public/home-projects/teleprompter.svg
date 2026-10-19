@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="26" fill="#07090c"/>
+  <rect x="36" y="34" width="568" height="292" rx="18" fill="#0d1117" stroke="#28313b"/>
+  <text x="68" y="104" font-family="Arial" font-size="28" fill="#f3f5f7">A simple browser</text><text x="68" y="143" font-family="Arial" font-size="28" fill="#f3f5f7">teleprompter for</text><text x="68" y="182" font-family="Arial" font-size="28" fill="#f3f5f7">creators, presenters</text><text x="68" y="221" font-family="Arial" font-size="28" fill="#f3f5f7">and professionals.</text>
+  <rect x="68" y="267" width="420" height="7" rx="3" fill="#27303a"/><rect x="68" y="267" width="226" height="7" rx="3" fill="#4d88c7"/><circle cx="294" cy="270.5" r="10" fill="#dce8f3"/>
+  <circle cx="548" cy="270" r="24" fill="#17222e"/><path d="M541 258l18 12-18 12z" fill="#fff"/>
+</svg>

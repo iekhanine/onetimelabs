@@ -98,7 +98,8 @@
 .toolToggle,
 .iconButton,
 .playButton,
-.openDisplayButton {
+.openDisplayButton,
+.recordButton {
   border: 1px solid #343842;
   border-radius: 5px;
   color: #d9dce3;
@@ -180,6 +181,44 @@
 
 .playButton:hover {
   background: #fff;
+}
+
+.recordButton {
+  min-width: 92px;
+  height: 40px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-color: #4a4f59;
+  color: #e8eaee;
+  background: #252830;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.recordButton:hover {
+  background: #2d313a;
+}
+
+.recordButtonActive {
+  color: #fff;
+  background: #8f2f35;
+  border-color: #b3444b;
+}
+
+.recordButtonActive:hover {
+  background: #a3373e;
+}
+
+.recordingError {
+  padding: 6px 12px;
+  border-bottom: 1px solid #6e3439;
+  color: #ffd8dc;
+  background: #351c20;
+  font-size: 10px;
+  font-weight: 650;
 }
 
 .iconButton {

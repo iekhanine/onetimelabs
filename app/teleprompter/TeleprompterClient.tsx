@@ -238,6 +238,9 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
   const [musicLoop, setMusicLoop] = useState(true);
   const [musicLinked, setMusicLinked] = useState(true);
   const [musicFading, setMusicFading] = useState(false);
+  const [recording, setRecording] = useState(false);
+  const [recordingElapsed, setRecordingElapsed] = useState(0);
+  const [recordingError, setRecordingError] = useState("");
 
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const previewViewportRef = useRef<HTMLDivElement | null>(null);
@@ -255,6 +258,15 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const musicUrlRef = useRef<string | null>(null);
   const musicFadeTimerRef = useRef<number | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const musicSourceNodeRef = useRef<MediaElementAudioSourceNode | null>(null);
+  const musicGainRef = useRef<GainNode | null>(null);
+  const mixDestinationRef = useRef<MediaStreamAudioDestinationNode | null>(null);
+  const micStreamRef = useRef<MediaStream | null>(null);
+  const micSourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
+  const recorderRef = useRef<MediaRecorder | null>(null);
+  const recordedChunksRef = useRef<Blob[]>([]);
+  const recordingTimerRef = useRef<number | null>(null);
 
   const words = useMemo(() => normalizeWords(script), [script]);
   const wordCount = words.length;
@@ -655,8 +667,13 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.volume = musicVolume;
     audio.loop = musicLoop;
+    if (musicGainRef.current) {
+      audio.volume = 1;
+      musicGainRef.current.gain.value = musicVolume;
+    } else {
+      audio.volume = musicVolume;
+    }
   }, [musicLoop, musicVolume]);
 
   useEffect(() => {
@@ -671,9 +688,150 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
 
   useEffect(() => () => {
     if (musicFadeTimerRef.current) window.clearInterval(musicFadeTimerRef.current);
+    if (recordingTimerRef.current) window.clearInterval(recordingTimerRef.current);
     audioRef.current?.pause();
+    recorderRef.current?.state !== "inactive" && recorderRef.current?.stop();
+    micStreamRef.current?.getTracks().forEach((track) => track.stop());
+    audioContextRef.current?.close().catch(() => undefined);
     if (musicUrlRef.current) URL.revokeObjectURL(musicUrlRef.current);
   }, []);
+
+  const resetAudioGraph = useCallback(async () => {
+    micStreamRef.current?.getTracks().forEach((track) => track.stop());
+    micStreamRef.current = null;
+    try { micSourceRef.current?.disconnect(); } catch {}
+    micSourceRef.current = null;
+    try { musicSourceNodeRef.current?.disconnect(); } catch {}
+    musicSourceNodeRef.current = null;
+    try { musicGainRef.current?.disconnect(); } catch {}
+    musicGainRef.current = null;
+    mixDestinationRef.current = null;
+    if (audioContextRef.current && audioContextRef.current.state !== "closed") {
+      await audioContextRef.current.close().catch(() => undefined);
+    }
+    audioContextRef.current = null;
+  }, []);
+
+  const ensureRecordingGraph = useCallback(async () => {
+    const AudioContextCtor = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContextCtor) throw new Error("This browser does not support audio mixing.");
+
+    let context = audioContextRef.current;
+    if (!context || context.state === "closed") {
+      context = new AudioContextCtor();
+      audioContextRef.current = context;
+    }
+    if (context.state === "suspended") await context.resume();
+
+    let destination = mixDestinationRef.current;
+    if (!destination) {
+      destination = context.createMediaStreamDestination();
+      mixDestinationRef.current = destination;
+    }
+
+    const audio = audioRef.current;
+    if (audio && !musicSourceNodeRef.current) {
+      const source = context.createMediaElementSource(audio);
+      const gain = context.createGain();
+      gain.gain.value = musicVolume;
+      source.connect(gain);
+      gain.connect(context.destination);
+      gain.connect(destination);
+      audio.volume = 1;
+      musicSourceNodeRef.current = source;
+      musicGainRef.current = gain;
+    }
+
+    return { context, destination };
+  }, [musicVolume]);
+
+  const stopRecording = useCallback(() => {
+    const recorder = recorderRef.current;
+    if (recorder && recorder.state !== "inactive") recorder.stop();
+  }, []);
+
+  const startRecording = useCallback(async () => {
+    if (recording) {
+      stopRecording();
+      return;
+    }
+
+    setRecordingError("");
+    try {
+      if (!navigator.mediaDevices?.getUserMedia) {
+        throw new Error("Microphone recording is not available in this browser.");
+      }
+      if (!("MediaRecorder" in window)) {
+        throw new Error("Audio recording is not available in this browser.");
+      }
+
+      const { context, destination } = await ensureRecordingGraph();
+      const micStream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+      });
+      micStreamRef.current = micStream;
+      const micSource = context.createMediaStreamSource(micStream);
+      micSource.connect(destination);
+      micSourceRef.current = micSource;
+
+      const mimeCandidates = [
+        "audio/webm;codecs=opus",
+        "audio/webm",
+        "audio/mp4",
+      ];
+      const mimeType = mimeCandidates.find((type) => MediaRecorder.isTypeSupported(type));
+      const recorder = mimeType
+        ? new MediaRecorder(destination.stream, { mimeType })
+        : new MediaRecorder(destination.stream);
+
+      recordedChunksRef.current = [];
+      recorder.ondataavailable = (event) => {
+        if (event.data.size > 0) recordedChunksRef.current.push(event.data);
+      };
+      recorder.onerror = () => setRecordingError("Recording failed. Check your microphone permission and try again.");
+      recorder.onstop = () => {
+        const type = recorder.mimeType || mimeType || "audio/webm";
+        const blob = new Blob(recordedChunksRef.current, { type });
+        recordedChunksRef.current = [];
+        if (blob.size > 0) {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+          const ext = type.includes("mp4") ? "m4a" : "webm";
+          link.href = url;
+          link.download = `teleprompter-recording-${stamp}.${ext}`;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+        try { micSourceRef.current?.disconnect(); } catch {}
+        micSourceRef.current = null;
+        micStreamRef.current?.getTracks().forEach((track) => track.stop());
+        micStreamRef.current = null;
+        recorderRef.current = null;
+        if (recordingTimerRef.current) window.clearInterval(recordingTimerRef.current);
+        recordingTimerRef.current = null;
+        setRecording(false);
+      };
+
+      recorderRef.current = recorder;
+      recorder.start(250);
+      setRecordingElapsed(0);
+      const startedAt = performance.now();
+      recordingTimerRef.current = window.setInterval(() => {
+        setRecordingElapsed((performance.now() - startedAt) / 1000);
+      }, 250);
+      setRecording(true);
+    } catch (error) {
+      micStreamRef.current?.getTracks().forEach((track) => track.stop());
+      micStreamRef.current = null;
+      try { micSourceRef.current?.disconnect(); } catch {}
+      micSourceRef.current = null;
+      setRecording(false);
+      setRecordingError(error instanceof Error ? error.message : "Could not start recording.");
+    }
+  }, [ensureRecordingGraph, recording, stopRecording]);
 
   const remainingSeconds = useMemo(() => {
     if (progress >= 1) return 0;
@@ -684,9 +842,11 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
     return Math.max(0, estimatedSeconds * (1 - progress));
   }, [elapsed, estimatedSeconds, progress, settings.mode, settings.wpm, settings.targetSeconds]);
 
-  const handleMusicImport = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleMusicImport = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
+    if (!file || recording) return;
+
+    await resetAudioGraph();
 
     if (musicFadeTimerRef.current) {
       window.clearInterval(musicFadeTimerRef.current);
@@ -731,18 +891,22 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
     if (musicFadeTimerRef.current) window.clearInterval(musicFadeTimerRef.current);
 
     setMusicFading(true);
-    const startVolume = audio.volume;
+    const gain = musicGainRef.current;
+    const startVolume = gain ? gain.gain.value : audio.volume;
     const steps = 20;
     let step = 0;
     musicFadeTimerRef.current = window.setInterval(() => {
       step += 1;
-      audio.volume = Math.max(0, startVolume * (1 - step / steps));
+      const nextVolume = Math.max(0, startVolume * (1 - step / steps));
+      if (gain) gain.gain.value = nextVolume;
+      else audio.volume = nextVolume;
       if (step >= steps) {
         if (musicFadeTimerRef.current) window.clearInterval(musicFadeTimerRef.current);
         musicFadeTimerRef.current = null;
         audio.pause();
         audio.currentTime = 0;
-        audio.volume = musicVolume;
+        if (gain) gain.gain.value = musicVolume;
+        else audio.volume = musicVolume;
         setMusicFading(false);
       }
     }, 60);
@@ -938,6 +1102,15 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
             {running ? <Pause size={18} /> : <Play size={18} />}
             {running ? "Pause" : "Start"}
           </button>
+          <button
+            className={`${styles.recordButton} ${recording ? styles.recordButtonActive : ""}`}
+            type="button"
+            onClick={startRecording}
+            title={recording ? "Stop and save recording" : "Record microphone + background music"}
+          >
+            <Mic size={17} />
+            {recording ? `Stop ${formatClock(recordingElapsed)}` : "Record"}
+          </button>
           <button className={styles.iconButton} type="button" onClick={() => restart()} title="Restart"><RotateCcw size={17} /></button>
           <button className={styles.iconButton} type="button" onClick={() => scrollByRemoteAware(-220, "scrollUp")} title="Jump back"><ArrowUp size={17} /></button>
           <button className={styles.iconButton} type="button" onClick={() => scrollByRemoteAware(220, "scrollDown")} title="Jump forward"><ArrowDown size={17} /></button>
@@ -947,7 +1120,7 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
           <label className={styles.musicLoadButton} title={musicName || "Load background music"}>
             <Music2 size={15} />
             <span>{musicName ? "Replace" : "Music"}</span>
-            <input type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg" onChange={handleMusicImport} />
+            <input type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg" onChange={handleMusicImport} disabled={recording} />
           </label>
           <button className={styles.musicIconButton} type="button" onClick={toggleMusic} disabled={!musicName} title={musicPlaying ? "Pause music" : "Play music"}>
             {musicPlaying ? <Pause size={15} /> : <Play size={15} />}
@@ -1015,6 +1188,7 @@ export function TeleprompterClient({ displayMode = false }: { displayMode?: bool
           <div><span>Remain</span><strong>{formatClock(remainingSeconds)}</strong></div>
         </div>
       </section>
+      {recordingError && <div className={styles.recordingError}>{recordingError}</div>}
 
       <section className={styles.appWorkspace}>
         <section className={`${styles.pane} ${styles.scriptPane}`}>

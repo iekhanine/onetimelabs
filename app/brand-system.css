@@ -1,0 +1,30 @@
+/* OneTime Labs — authoritative brand contract for corporate pages only.
+   Product workspaces and client demo sites retain their own functional themes. */
+:root {
+ --otl-navy-950:#070809; --otl-navy-900:#0b0c0e; --otl-navy-800:#17191b;
+ --otl-blue-600:#c4c5c8; --otl-blue-500:#d4d5d7; --otl-blue-100:#242629;
+ --otl-text-900:#efeff0; --otl-text-700:#c7c8ca; --otl-text-500:#a5a7ab;
+ --otl-line:#34363a; --otl-panel:#121416; --otl-panel-soft:#191b1e;
+ --otl-ink:#efeff0;--otl-silver:#c6c8cb;--otl-subtle:#a5a7ab;--otl-surface:#111315;
+}
+.otl-company-page {color:var(--otl-ink);background:#08090b;min-height:calc(100vh - 70px)}
+.otl-company-page h1,.otl-company-page h2,.otl-company-page h3 {color:#f0f0f1;font-weight:300;letter-spacing:-.045em}
+.otl-company-page p,.otl-company-page li {color:#c0c2c5;line-height:1.75}
+.otl-company-page .otl-eyebrow,.otl-company-page [class*="-eyebrow"] {color:#aaadb1;letter-spacing:.21em;font-weight:500}
+.otl-store-header,.otl-header-main {background:#070809;color:#f2f2f3;box-shadow:none;border-bottom:1px solid #292b2d}
+.otl-store-header a,.otl-store-header .otl-brand span,.otl-compact-nav a {color:#d1d3d6}
+.otl-store-header a:hover {color:white}
+.otl-brand img {object-fit:contain}
+.otl-company-page section {border-color:#282a2d}
+.otl-company-page :is(article,[class*="-card"],[class*="-panel"],[class*="-tile"]) {box-shadow:none;border-color:#34363a}
+.otl-company-page :is(input:not([type=checkbox]):not([type=radio]),textarea,select) {background:#141619;color:#f0f0f1;border:1px solid #505258;border-radius:3px;min-height:44px}
+.otl-company-page :is(input,textarea)::placeholder {color:#999ca2}
+.otl-company-page :is(button,[class*="-button"]) {box-shadow:none;border-radius:3px;font-weight:500;letter-spacing:.03em}
+.otl-company-page :is(input,textarea,select,button,a):focus-visible {outline:2px solid #d0d2d5;outline-offset:3px}
+.otl-company-page :is(.otl-button-primary,button[type=submit]) {background:#d2d3d6;color:#0b0d0e;border:1px solid #d2d3d6}
+.otl-company-page :is(.otl-button-primary,button[type=submit]):hover {background:white;color:#0b0d0e}
+.otl-compact-contact-page,.otl-compact-section-page {background:#08090b}
+.otl-compact-contact-heading,.otl-compact-section-hero {background:#0e1012;color:#ededee;border-color:#303236}
+.otl-compact-contact-details strong {color:#e5e6e8}
+.otl-company-page :is(.otl-compact-service-row,.otl-compact-service-list,.otl-compact-contact-layout,.otl-compact-contact-details) {border-color:#303236}
+@media (prefers-reduced-motion:reduce){.otl-company-page *{animation:none!important;scroll-behavior:auto!important}}

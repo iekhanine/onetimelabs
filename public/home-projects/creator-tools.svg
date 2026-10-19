@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="26" fill="#eff4f8"/>
+  <g transform="translate(78 92)"><rect width="130" height="164" rx="18" fill="#fff" stroke="#d7e1e9"/><rect x="26" y="32" width="78" height="62" rx="10" fill="#dbe8f3"/><path d="M38 80l18-18 15 14 14-10 17 14" fill="none" stroke="#426d92" stroke-width="6"/><rect x="30" y="118" width="70" height="8" rx="4" fill="#b8c7d3"/></g>
+  <g transform="translate(255 92)"><rect width="130" height="164" rx="18" fill="#fff" stroke="#d7e1e9"/><path d="M39 31h52l18 18v77H39z" fill="#e8eef4" stroke="#6f8497" stroke-width="4"/><path d="M91 31v20h18" fill="none" stroke="#6f8497" stroke-width="4"/><rect x="51" y="72" width="46" height="6" rx="3" fill="#6f8497"/><rect x="51" y="88" width="38" height="6" rx="3" fill="#6f8497"/></g>
+  <g transform="translate(432 92)"><rect width="130" height="164" rx="18" fill="#fff" stroke="#d7e1e9"/><rect x="26" y="38" width="78" height="70" rx="12" fill="#2d5f87"/><path d="M57 57l31 16-31 17z" fill="#fff"/><rect x="30" y="124" width="70" height="8" rx="4" fill="#b8c7d3"/></g>
+</svg>

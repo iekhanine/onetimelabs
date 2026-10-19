@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="26" fill="#f2f7fb"/>
+  <rect x="42" y="38" width="556" height="284" rx="18" fill="#fff" stroke="#d9e4ed"/>
+  <rect x="64" y="62" width="132" height="236" rx="12" fill="#10253a"/>
+  <text x="84" y="92" font-family="Arial" font-size="16" font-weight="700" fill="#fff">CommonShift</text>
+  <g fill="#385069"><rect x="84" y="122" width="74" height="8" rx="4"/><rect x="84" y="148" width="90" height="8" rx="4"/><rect x="84" y="174" width="62" height="8" rx="4"/></g>
+  <g transform="translate(224 72)"><rect width="340" height="54" rx="10" fill="#f6f8fa"/><circle cx="24" cy="27" r="11" fill="#4f86bd"/><rect x="48" y="16" width="128" height="9" rx="4" fill="#45596b"/><rect x="48" y="32" width="208" height="7" rx="3" fill="#c8d3dc"/><rect y="68" width="340" height="54" rx="10" fill="#f6f8fa"/><circle cx="24" cy="95" r="11" fill="#55b979"/><rect x="48" y="84" width="158" height="9" rx="4" fill="#45596b"/><rect x="48" y="100" width="224" height="7" rx="3" fill="#c8d3dc"/><rect y="136" width="340" height="54" rx="10" fill="#f6f8fa"/><circle cx="24" cy="163" r="11" fill="#e4a64d"/><rect x="48" y="152" width="108" height="9" rx="4" fill="#45596b"/><rect x="48" y="168" width="248" height="7" rx="3" fill="#c8d3dc"/></g>
+</svg>

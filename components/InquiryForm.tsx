@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 const productOptions = [
   { value: "otles", label: "OTLES" },
   { value: "changeops", label: "ChangeOps" },
-  { value: "pccr", label: "PCCR" },
   { value: "licensing", label: "OneTime Labs Licensing" },
   { value: "otlam", label: "OTLAM" },
   { value: "plotmap", label: "PlotMap" },
@@ -14,6 +13,8 @@ const productOptions = [
 ];
 
 const topicOptions = [
+  { value: "itam", label: "IT asset management / CMDB / SAM" },
+  { value: "general-inventory", label: "Warehouse, retail or general asset inventory" },
   { value: "business", label: "Business solutions consultation" },
   { value: "business-web", label: "Website / booking / customer-facing service" },
   { value: "business-tools", label: "Internal tool / job or customer tracking" },
@@ -41,8 +42,8 @@ export function InquiryForm() {
   }, [searchParams]);
 
   const initialTopic = useMemo(() => {
-    const value = searchParams.get("topic") ?? "consulting";
-    return topicOptions.some((option) => option.value === value) ? value : "consulting";
+    const value = searchParams.get("topic") ?? "itam";
+    return topicOptions.some((option) => option.value === value) ? value : "itam";
   }, [searchParams]);
 
   const [status, setStatus] = useState<Status>("idle");
