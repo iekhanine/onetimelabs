@@ -9,7 +9,7 @@ const blankAsset:Asset={category:"Laptop",manufacturer:"",model:"",serial:"",ass
 export default function FieldEditor({initial,token,onSaved}:{initial:Assessment;token?:string;onSaved?:(x:Assessment)=>void}){
  const [a,setA]=useState<Assessment>(initial);
  const [tab,setTab]=useState("scope"),[busy,setBusy]=useState(false),[notice,setNotice]=useState("");
- const guest=Boolean(token),readOnly=guest&&["approved","rejected","in_review"].includes(a.status);
+ const guest=Boolean(token),readOnly=guest&&a.status!=="draft";
  const sections=[...fieldSections,{id:"assets",title:"09 · Device logbook",description:"Inventory serials, locations, assignments and observed condition. Do not record passwords.",questions:[]}];
  function setAnswer(id:string,value:string){setA(prev=>({...prev,answers:{...prev.answers,[id]:value}}));}
  function setAsset(i:number,key:keyof Asset,value:string){setA(prev=>({...prev,assets:prev.assets.map((x,j)=>i===j?{...x,[key]:value}:x)}));}
