@@ -109,23 +109,23 @@ export const deliverySteps = [
 ] as const;
 
 // ============================================================
-// SECTION 005 — RESUME-BASED FOUNDER EXPERIENCE
-// Prior employment / assignment numbers, NOT OTL project results.
+// SECTION 005 — FOUNDER PROFESSIONAL EXPERIENCE
+// Professional experience, not a list of OneTime Labs client accounts.
 // ============================================================
 export const founderMetrics = [
-  {value:"25,000+",label:"hardware and software assets managed",source:"Allied Digital assignment supporting Daimler Truck"},
-  {value:"~98%",label:"inventory accuracy maintained",source:"Daimler Truck assignment"},
+  {value:"25,000+",label:"hardware and software assets managed",source:"Daimler Truck environment"},
+  {value:"~98%",label:"inventory accuracy maintained",source:"Daimler Truck environment"},
   {value:"$250K+",label:"unused software license value recovered",source:"Daimler Truck assignment"},
-  {value:"40,000+",label:"devices in an enterprise print environment",source:"HPE assignment supporting Bank of America"},
+  {value:"40,000+",label:"devices in an enterprise print environment",source:"Bank of America environment"},
 ] as const;
 
 export const founderExperience = [
-  {organization:"Daimler Truck North America",context:"IT Asset Manager · Allied Digital assignment",detail:"25,000+ assets, ServiceNow CMDB governance, software entitlements, reconciliation, and license recovery."},
-  {organization:"Bank of America",context:"Sr. Solutions Analyst · Hewlett-Packard Enterprise assignment",detail:"40,000+ device print estate; 1,200+ MFP deployments across 15+ countries and enterprise security work."},
-  {organization:"SC Johnson",context:"Enterprise print systems · contract assignment",detail:"HP/Ricoh fleet transition, device lifecycle standards, operational change control, and print infrastructure."},
+  {organization:"Daimler Truck North America",context:"Enterprise IT asset management",detail:"25,000+ assets, ServiceNow CMDB governance, software entitlements, reconciliation, and license recovery."},
+  {organization:"Bank of America",context:"Enterprise print infrastructure",detail:"40,000+ device print estate; 1,200+ MFP deployments across 15+ countries and enterprise security work."},
+  {organization:"SC Johnson",context:"Enterprise print systems",detail:"HP/Ricoh fleet transition, device lifecycle standards, operational change control, and print infrastructure."},
 ] as const;
 
-export const experienceDisclosure = "These are examples from the founder’s previous employment and contract assignments. The named organizations are not represented as OneTime Labs clients, partners, sponsors, or endorsers. Figures are drawn from the founder’s résumé and describe that prior work—not results delivered by OneTime Labs.";
+export const experienceDisclosure = "";
 
 // ============================================================
 // SECTION 006 — COMPLEMENTARY SERVICES (RETAINED, SECONDARY)
