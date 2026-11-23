@@ -12,6 +12,7 @@ export function SiteHeader() {
         </Link>
         <nav className="otl-compact-nav" aria-label="Primary navigation">
           <Link href="/services/itam">ITAM Services</Link>
+          <Link href="/services/private-it">Private IT Concierge</Link>
           <Link href="/experience">Experience</Link>
           <Link href="/business">Other Solutions</Link>
           <Link href="/itam">ITAM Toolkit</Link>
