@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 import { accessFromToken,fieldDb,safeAnswers,safeAssets,safeText } from "@/lib/field";
 export const dynamic="force-dynamic";
 async function resolve(req:Request){const url=new URL(req.url), token=req.method==="GET"?url.searchParams.get("token"):null;return token?accessFromToken(token,"assessor"):null;}
@@ -9,6 +10,16 @@ export async function POST(req:Request){
  if(loadError||!existing)return NextResponse.json({error:"Not found"},{status:404});
  if(existing.status!=="draft")return NextResponse.json({error:"Visit is locked for review"},{status:409});
  const update={answers:safeAnswers(b.answers),assets:safeAssets(b.assets),assigned_to:safeText(b.assigned_to,150),status:b.submit?"submitted":"draft",updated_at:new Date().toISOString()};
- const {error}=await db.from("otl_field_assessments").update(update).eq("id",access.assessment_id);if(error)throw error;return NextResponse.json({ok:true,status:update.status});
+ const {error}=await db.from("otl_field_assessments").update(update).eq("id",access.assessment_id);if(error)throw error;
+ if(b.submit && process.env.RESEND_API_KEY){
+   const client=await db.from("otl_field_assessments").select("client_name,site_name").eq("id",access.assessment_id).single();
+   const name=client.data?.client_name||"Client",site=client.data?.site_name||"Site";
+   try{await new Resend(process.env.RESEND_API_KEY).emails.send({
+     from:"OneTime Labs <inquiry@onetimelabs.net>",to:["inquiry@onetimelabs.net"],
+     subject:"[OneTime Labs] Site assessment submitted for review",
+     text:"A field assessment has been submitted.\n\nClient: "+name+"\nSite: "+site+"\n\nReview securely at https://www.onetimelabs.net/field"
+   });}catch(e){console.error("Field assessment notification failed",e);}
+ }
+ return NextResponse.json({ok:true,status:update.status});
  }catch{return NextResponse.json({error:"Unable to save visit"},{status:500});}
 }
