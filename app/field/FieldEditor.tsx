@@ -8,7 +8,7 @@ export type Assessment={id:string;client_name:string;site_name:string;address:st
 const blankAsset:Asset={category:"Laptop",manufacturer:"",model:"",serial:"",asset_tag:"",location:"",assigned_to:"",condition:"",notes:""};
 export default function FieldEditor({initial,token,onSaved}:{initial:Assessment;token?:string;onSaved?:(x:Assessment)=>void}){
  const [a,setA]=useState<Assessment>(initial);
- const [tab,setTab]=useState("scope"),[busy,setBusy]=useState(false),[notice,setNotice]=useState("");
+ const [tab,setTab]=useState("scope"),[busy,setBusy]=useState(false),[notice,setNotice]=useState(""),[menuOpen,setMenuOpen]=useState(false);
  const guest=Boolean(token),readOnly=guest&&a.status!=="draft";
  const sections=[...fieldSections,{id:"assets",title:"10 · Device logbook",description:"Inventory serials, locations, assignments and observed condition. Do not record passwords.",questions:[]}];
  function setAnswer(id:string,value:string){setA(prev=>({...prev,answers:{...prev.answers,[id]:value}}));}
@@ -26,11 +26,13 @@ export default function FieldEditor({initial,token,onSaved}:{initial:Assessment;
  }
  const percent=completion(a.answers,a.assets||[]);
  return <div className={styles.editor}>
-  <aside className={styles.editorNav}>
+  <button type="button" className={styles.fieldMenuButton} onClick={()=>setMenuOpen(true)}>☰  Playbook sections</button>
+  {menuOpen&&<button type="button" aria-label="Close section menu" className={styles.mobileBackdrop} onClick={()=>setMenuOpen(false)}/>}
+  <aside className={styles.editorNav+" "+(menuOpen?styles.mobileOpen:"")}>
    <div className={styles.smallCaption}>FIELD PLAYBOOK</div>
    <div className={styles.progressLine}><strong>{percent}%</strong><span>complete</span></div>
    <div className={styles.progressTrack}><div style={{width:percent+"%"}}/></div>
-   <div className={styles.mobileNav}>{sections.map(s=><button type="button" key={s.id} className={tab===s.id?styles.active:""} onClick={()=>setTab(s.id)}>{s.title}</button>)}</div>
+   <div className={styles.mobileNav}>{sections.map(s=><button type="button" key={s.id} className={tab===s.id?styles.active:""} onClick={()=>{setTab(s.id);setMenuOpen(false);}}>{s.title}</button>)}</div>
   </aside>
   <section className={styles.editorContent}>
    {sections.filter(s=>s.id===tab).map(s=><div key={s.id}>
