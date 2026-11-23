@@ -3,12 +3,12 @@ import {useState} from "react";
 import styles from "./support.module.css";
 export default function SupportForm(){
  const [sending,setSending]=useState(false),[done,setDone]=useState<number|null>(null),[error,setError]=useState("");
- const [remote,setRemote]=useState(false),[started]=useState(()=>Date.now());
+ const [remote,setRemote]=useState(false);
  async function submit(e:React.FormEvent<HTMLFormElement>){
   e.preventDefault();if(sending)return;setSending(true);setError("");
   const f=new FormData(e.currentTarget);
   try{
-   const body=Object.fromEntries(f.entries());const response=await fetch("/api/support",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...body,remote_requested:remote,form_started_at:started})});
+   const body=Object.fromEntries(f.entries());const response=await fetch("/api/support",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...body,remote_requested:remote})});
    const data=await response.json();if(!response.ok)throw new Error(data.error||"Could not send request");
    setDone(data.number||0);
   }catch(e){setError(e instanceof Error?e.message:"Unable to submit request");}finally{setSending(false);}
