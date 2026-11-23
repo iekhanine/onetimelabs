@@ -8,7 +8,7 @@ import s from "./home.module.css";
 import {
   companyTagline, siteCopy, itamServices, recordOptions,
   deliverySteps, founderMetrics, founderExperience,
-  experienceDisclosure, adjacentServices, adjacentLinks,
+  adjacentServices, adjacentLinks,
 } from "@/lib/itam-site-copy";
 
 const serviceIcons = [HardDrive, ShieldCheck, Database, ScanLine, Workflow, ClipboardCheck];
@@ -65,7 +65,7 @@ export default function Home() {
 
         <section className={s.metrics} aria-label="Founder's past enterprise experience metrics">
           <div className={s.container}>
-            <div className={s.metricsHeading}><span className={s.label}>FOUNDER EXPERIENCE</span><p>Selected figures from prior enterprise roles and assignments—not OneTime Labs client results.</p></div>
+            <div className={s.metricsHeading}><span className={s.label}>FOUNDER EXPERIENCE</span><p>Selected results from hands-on enterprise technology experience.</p></div>
             <div className={s.metricsGrid}>{founderMetrics.map(m=><div className={s.metric} key={m.value}><strong>{m.value}</strong><span>{m.label}</span><small>{m.source}</small></div>)}</div>
           </div>
         </section>
@@ -103,9 +103,8 @@ export default function Home() {
 
         <section className={s.experience} id="experience">
           <div className={s.container}>
-            <div className={s.experienceHeading}><div><p className={s.label}>THE EXPERIENCE BEHIND THE WORK</p><h2>Enterprise-scale experience. Applied where it counts.</h2><p>OneTime Labs is built on hands-on asset, licensing, and infrastructure work in complex organizations. That work was performed in previous employment and contract roles.</p></div><Link href="/experience">More about our experience <ArrowUpRight size={16}/></Link></div>
+            <div className={s.experienceHeading}><div><p className={s.label}>THE EXPERIENCE BEHIND THE WORK</p><h2>Enterprise-scale experience. Applied where it counts.</h2><p>Hands-on experience across complex enterprise environments, spanning asset management, software licensing, infrastructure, and operational delivery.</p></div><Link href="/experience">More about our experience <ArrowUpRight size={16}/></Link></div>
             <div className={s.experienceList}>{founderExperience.map(x=><article key={x.organization}><div><strong>{x.organization}</strong><span>{x.context}</span></div><p>{x.detail}</p></article>)}</div>
-            <p className={s.experienceDisclaimer}>{experienceDisclosure}</p>
           </div>
         </section>
 
