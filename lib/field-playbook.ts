@@ -77,6 +77,7 @@ export const fieldQuestionCount=fieldSections.reduce((n,s)=>n+s.questions.length
 export const assetCategories=["Laptop","Desktop","Thin client","Tablet","Mobile phone","Printer","Multifunction printer","Scanner","POS","Kiosk","Server","Storage","Switch","Router","Firewall","Wireless AP","UPS","AV / conference","IoT / smart device","Peripheral","Other"];
 export function completion(answers:Record<string,string>,assets:unknown[]):number{
  const filled=fieldSections.flatMap(s=>s.questions).filter(q=>(answers[q.id]||"").trim().length>0).length;
- // Inventory gets a small weighted share to make field capture visible in progress.
- return Math.round((filled+Math.min(5,assets.length))/(fieldQuestionCount+5)*100);
+ // Completion measures documented questions; device inventory is reported separately.
+ void assets;
+ return Math.round(filled/fieldQuestionCount*100);
 }
