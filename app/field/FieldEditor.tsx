@@ -129,7 +129,7 @@ export default function FieldEditor({initial,token,mode="assessor",onSaved}:{ini
  return <div className={styles.editor}>
   <div className={styles.mobileSectionBar}>
     <button type="button" className={styles.mobileSectionTrigger} onClick={()=>setMenuOpen(true)} aria-label="Open all assessment sections" aria-expanded={menuOpen}>
-     <span className={styles.mobileSectionIcon}>☰</span><span><small>SECTION {currentIndex+1} OF {sections.length} · {percent}% COMPLETE</small><strong>{sections[currentIndex]?.title||"Choose section"}</strong></span><span aria-hidden="true">▾</span>
+     <span className={styles.mobileSectionIcon}>☰</span><span><small>SECTION {currentIndex+1} OF {sections.length} · {percent}% COMPLETE</small><strong>{sections[currentIndex]?.title||"Choose section"}</strong><small className={styles.mobileSaveStatus}>{saveState==="saving"?"● Saving…":saveState==="saved"?"✓ Saved":saveState==="error"?"! Not saved — retry":saveState==="recovered"?"↻ Restoring draft":"○ Unsaved changes"}</small></span><span aria-hidden="true">▾</span>
     </button>
     <div className={styles.mobileSectionTrack}><div style={{width:percent+"%"}}/></div>
   </div>
