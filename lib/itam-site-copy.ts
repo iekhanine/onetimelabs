@@ -138,6 +138,7 @@ export const adjacentServices = [
 ] as const;
 
 export const adjacentLinks = [
+  {label:"Private Client IT Concierge",href:"/services/private-it"},
   {label:"General business solutions",href:"/business"},
   {label:"Vendor migrations",href:"/vendor-migration"},
   {label:"Managed print",href:"/managed-print-services"},
