@@ -50,3 +50,5 @@
  .editorContent{padding:18px}
 }
 @media print{.mobileSectionBar,.sectionPager{display:none!important}.siteSummary{background:white;color:#111;border-color:#bbb}.siteSummaryGrid strong,.siteSummaryHeading strong{color:#111}}
+
+@media(max-width:900px){.editor{overflow:visible}.mobileSectionBar{border-radius:22px 22px 0 0}.editorContent{overflow:visible}}
