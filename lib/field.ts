@@ -28,7 +28,7 @@ export async function createOwnerCookie(id:string){
  (await cookies()).set(cookieName,payload+"."+digest(payload),{httpOnly:true,secure:true,sameSite:"lax",path:"/",maxAge:8*60*60});
 }
 export async function clearOwnerCookie(){(await cookies()).delete(cookieName);}
-export async function accessFromToken(token:string,kind:"assessor"|"public") {
+export async function accessFromToken(token:string,kind:"assessor"|"public"|"intake") {
  if(!secret() || !/^[A-Za-z0-9_-]{30,100}$/.test(token)) return null;
  const db=fieldDb();
  const {data}=await db.from("otl_field_access").select("id, assessment_id,expires_at,revoked_at").eq("token_hash",digest(token)).eq("kind",kind).maybeSingle();
