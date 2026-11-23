@@ -10,8 +10,6 @@ export async function POST(request:Request){
   const email=normalize(b.email,254).toLowerCase(),name=normalize(b.name,120);
   const subject=normalize(b.subject,180),description=normalize(b.description,6000);
   if(!validEmail(email)||name.length<2||subject.length<5||description.length<12)return jsonError("Enter your name, valid email, subject and a description of at least 12 characters.");
-  const provided=Number(b.form_started_at);
-  if(provided>0 && (Date.now()-provided)<1500)return jsonError("Please review the form before submitting.",429);
   const db=fieldDb();
   if(!process.env.RESEND_API_KEY)return jsonError("Support email delivery is unavailable. Please try again later.",503);
   const ip=normalize(request.headers.get("x-vercel-forwarded-for")?.split(",")[0]||request.headers.get("x-forwarded-for")?.split(",")[0]||"",100);
