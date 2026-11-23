@@ -1,5 +1,5 @@
 "use client";
-import {useState} from "react";
+import {useEffect,useRef,useState} from "react";
 import {fieldSections,assetCategories,completion} from "@/lib/field-playbook";
 import styles from "./field.module.css";
 
@@ -9,20 +9,117 @@ const blankAsset:Asset={category:"Laptop",manufacturer:"",model:"",serial:"",ass
 export default function FieldEditor({initial,token,mode="assessor",onSaved}:{initial:Assessment;token?:string;mode?:"assessor"|"intake";onSaved?:(x:Assessment)=>void}){
  const [a,setA]=useState<Assessment>(initial);
  const [tab,setTab]=useState("scope"),[busy,setBusy]=useState(false),[notice,setNotice]=useState(""),[menuOpen,setMenuOpen]=useState(false);
+ const [revision,setRevision]=useState(0);
+ const [saveState,setSaveState]=useState<"saved"|"unsaved"|"saving"|"error"|"recovered">("saved");
  const guest=Boolean(token),intake=guest&&mode==="intake",readOnly=guest&&a.status!=="draft";
  const sections=[...fieldSections,{id:"assets",title:"10 · Device logbook",description:"Inventory serials, locations, assignments and observed condition. Do not record passwords.",questions:[]}];
- function setAnswer(id:string,value:string){setA(prev=>({...prev,answers:{...prev.answers,[id]:value}}));}
- function setAsset(i:number,key:keyof Asset,value:string){setA(prev=>({...prev,assets:prev.assets.map((x,j)=>i===j?{...x,[key]:value}:x)}));}
- async function save(submit=false){
-  setBusy(true);setNotice("");
+ const draftKey="otl-field-unsaved:"+initial.id+":"+(guest?(mode+":"+token?.slice(0,12)):"owner");
+ const dataRef=useRef<Assessment>(initial);
+ const revisionRef=useRef(0);
+ const savedRevisionRef=useRef(0);
+ const inFlightRef=useRef<Promise<boolean>|null>(null);
+ const submitRef=useRef(false);
+ const mountedRef=useRef(false);
+
+ function updateDraft(updater:(prev:Assessment)=>Assessment){
+  setA(prev=>updater(prev));
+  revisionRef.current+=1;
+  setRevision(revisionRef.current);
+  setSaveState("unsaved");
+  setNotice("");
+ }
+ function setAnswer(id:string,value:string){updateDraft(prev=>({...prev,answers:{...prev.answers,[id]:value}}));}
+ function setAsset(i:number,key:keyof Asset,value:string){updateDraft(prev=>({...prev,assets:prev.assets.map((x,j)=>i===j?{...x,[key]:value}:x)}));}
+
+ // Only unfinished changes are cached locally. A confirmed server save removes the cache.
+ useEffect(()=>{
   try{
-   const req=guest?{url:intake?"/api/field/intake":"/api/field/guest",method:"POST",body:{token,answers:a.answers,assets:a.assets,assigned_to:a.assigned_to,submit}}:{url:"/api/field",method:"PATCH",body:{...a,status:submit?"submitted":a.status}};
-   const res=await fetch(req.url,{method:req.method,headers:{"Content-Type":"application/json"},body:JSON.stringify(req.body),cache:"no-store"});
-   const data=await res.json();if(!res.ok)throw new Error(data.error||"Save failed");
-   if(data.assessment){setA(data.assessment);onSaved?.(data.assessment);}
-   else if(submit)setA(prev=>({...prev,status:"submitted"}));
-   setNotice(submit?"Submitted for review.":"Saved successfully.");
-  }catch(e){setNotice(e instanceof Error?e.message:"Unable to save");}finally{setBusy(false);}
+   const raw=localStorage.getItem(draftKey);
+   if(raw && !readOnly){
+    const candidate=JSON.parse(raw) as {assessment?:Assessment};
+    if(candidate.assessment?.id===initial.id && candidate.assessment?.status==="draft"){
+     const restored:Assessment={...initial,answers:candidate.assessment.answers||{},assets:candidate.assessment.assets||[],assigned_to:candidate.assessment.assigned_to||initial.assigned_to};
+     if(!guest)Object.assign(restored,{client_name:candidate.assessment.client_name,site_name:candidate.assessment.site_name,address:candidate.assessment.address,contact_name:candidate.assessment.contact_name,contact_email:candidate.assessment.contact_email,visit_date:candidate.assessment.visit_date});
+     dataRef.current=restored;setA(restored);
+     revisionRef.current+=1;setRevision(revisionRef.current);setSaveState("recovered");
+     setNotice("Recovered unsaved answers from this device. They will sync automatically.");
+    }
+   }
+  }catch{/* Browser storage may be disabled; server-side saving still works. */}
+  mountedRef.current=true;
+ // Mount-only recovery for this assessment.
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ },[draftKey]);
+
+ useEffect(()=>{
+  dataRef.current=a;
+  if(!mountedRef.current || revision===0 || readOnly)return;
+  try{localStorage.setItem(draftKey,JSON.stringify({assessment:a,savedAt:Date.now()}));}catch{/* Continue with network autosave. */}
+ },[a,draftKey,revision,readOnly]);
+
+ async function persist(submit=false):Promise<boolean>{
+  if(readOnly || (submitRef.current && !submit))return false;
+  if(submit)submitRef.current=true;
+  if(inFlightRef.current)await inFlightRef.current;
+  if(!submit && savedRevisionRef.current>=revisionRef.current)return true;
+  const snapshot=dataRef.current, snapshotRevision=revisionRef.current;
+  setSaveState("saving");
+  if(submit)setBusy(true);
+  const operation=(async()=>{
+   try{
+    const req=guest?{url:intake?"/api/field/intake":"/api/field/guest",method:"POST",body:{token,answers:snapshot.answers,assets:snapshot.assets,assigned_to:snapshot.assigned_to,submit}}:{url:"/api/field",method:"PATCH",body:{...snapshot,status:submit?"submitted":snapshot.status}};
+    const res=await fetch(req.url,{method:req.method,headers:{"Content-Type":"application/json"},body:JSON.stringify(req.body),cache:"no-store",keepalive:true});
+    const data=await res.json();
+    if(!res.ok)throw new Error(data.error||"Save failed");
+    savedRevisionRef.current=Math.max(savedRevisionRef.current,snapshotRevision);
+    if(submit){
+     if(data.assessment){setA(data.assessment);dataRef.current=data.assessment;onSaved?.(data.assessment);}
+     else {setA(prev=>({...prev,status:"submitted"}));}
+     setNotice("Submitted successfully. Thank you!");
+     setSaveState("saved");
+     try{localStorage.removeItem(draftKey);}catch{}
+    }else if(snapshotRevision===revisionRef.current){
+     setSaveState("saved");
+     setNotice("");
+     try{localStorage.removeItem(draftKey);}catch{}
+     // Do not overwrite newer text in the editor with an older server response.
+     if(data.assessment)onSaved?.(data.assessment);
+    }else{
+     setSaveState("unsaved");
+    }
+    return true;
+   }catch(e){
+    setSaveState("error");
+    setNotice((e instanceof Error?e.message:"Unable to save")+" — your unsaved answers are retained on this device.");
+    return false;
+   }finally{
+    if(submit){setBusy(false);submitRef.current=false;}
+   }
+  })();
+  inFlightRef.current=operation;
+  const ok=await operation;
+  if(inFlightRef.current===operation)inFlightRef.current=null;
+  return ok;
+ }
+
+ useEffect(()=>{
+  if(revision===0 || readOnly || submitRef.current)return;
+  const timeout=window.setTimeout(()=>{void persist(false);},1100);
+  return ()=>window.clearTimeout(timeout);
+ // Changes to the form schedule a debounced save.
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ },[revision,readOnly]);
+
+ useEffect(()=>{
+  const flush=()=>{if(document.visibilityState==="hidden" && revisionRef.current>savedRevisionRef.current && !submitRef.current){void persist(false);}};
+  document.addEventListener("visibilitychange",flush);
+  return ()=>document.removeEventListener("visibilitychange",flush);
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ },[guest,intake,readOnly,draftKey]);
+
+ async function save(submit=false){
+  if(submit && !window.confirm("Submit your answers for review? You won't be able to edit them afterward."))return;
+  await persist(submit);
  }
  const percent=completion(a.answers,a.assets||[]);
  const currentIndex=sections.findIndex(s=>s.id===tab);
@@ -55,15 +152,15 @@ export default function FieldEditor({initial,token,mode="assessor",onSaved}:{ini
       {intake&&<p>This is the site you are reviewing. If any details are incorrect, note the correction below so we can update our records.</p>}
     </div>}
     {tab==="scope"&&!guest&&<div className={styles.twoCol}>
-     {([["client_name","Client / business"],["site_name","Location / site"],["address","Site address"],["contact_name","Contact person"],["contact_email","Contact email"],["visit_date","Visit date"],["assigned_to","Assessor"]] as const).map(([k,label])=><label className={styles.field} key={k}><span>{label}</span><input disabled={readOnly} type={k==="visit_date"?"date":"text"} value={String(a[k]||"")} onChange={e=>setA(prev=>({...prev,[k]:e.target.value}))}/></label>)}
+     {([["client_name","Client / business"],["site_name","Location / site"],["address","Site address"],["contact_name","Contact person"],["contact_email","Contact email"],["visit_date","Visit date"],["assigned_to","Assessor"]] as const).map(([k,label])=><label className={styles.field} key={k}><span>{label}</span><input disabled={readOnly} type={k==="visit_date"?"date":"text"} value={String(a[k]||"")} onChange={e=>updateDraft(prev=>({...prev,[k]:e.target.value}))}/></label>)}
     </div>}
     {tab==="scope"&&intake&&<label className={styles.field}><span>Corrections to site details (optional)</span><textarea disabled={readOnly} rows={2} value={a.answers?.site_corrections||""} onChange={e=>setAnswer("site_corrections",e.target.value)} placeholder="Anything we should correct about this site?"/></label>}
-    {tab==="scope"&&guest&&!intake&&<label className={styles.field}><span>Assessor name</span><input disabled={readOnly} value={a.assigned_to||""} onChange={e=>setA(prev=>({...prev,assigned_to:e.target.value}))}/></label>}
+    {tab==="scope"&&guest&&!intake&&<label className={styles.field}><span>Assessor name</span><input disabled={readOnly} value={a.assigned_to||""} onChange={e=>updateDraft(prev=>({...prev,assigned_to:e.target.value}))}/></label>}
     {s.questions.map(q=><label className={styles.field} key={q.id}><span>{q.label}</span><textarea disabled={readOnly} rows={3} value={a.answers?.[q.id]||""} onChange={e=>setAnswer(q.id,e.target.value)} placeholder={intake?"Share what you know (optional)":"Observations, evidence, follow-up, owner and next action..."}/></label>)}
     {tab==="assets"&&<div className={styles.assets}>
-      <div className={styles.assetHeading}><strong>{a.assets?.length||0} recorded devices</strong><button disabled={readOnly} type="button" onClick={()=>setA(prev=>({...prev,assets:[...(prev.assets||[]),{...blankAsset}]}))}>+ Add device</button></div>
+      <div className={styles.assetHeading}><strong>{a.assets?.length||0} recorded devices</strong><button disabled={readOnly} type="button" onClick={()=>updateDraft(prev=>({...prev,assets:[...(prev.assets||[]),{...blankAsset}]}))}>+ Add device</button></div>
       {(a.assets||[]).map((asset,i)=><article className={styles.assetCard} key={i}>
-       <header><b>Device {i+1}</b><button type="button" disabled={readOnly} onClick={()=>setA(prev=>({...prev,assets:prev.assets.filter((_,j)=>i!==j)}))}>Remove</button></header>
+       <header><b>Device {i+1}</b><button type="button" disabled={readOnly} onClick={()=>updateDraft(prev=>({...prev,assets:prev.assets.filter((_,j)=>i!==j)}))}>Remove</button></header>
        <div className={styles.twoCol}>{(Object.keys(blankAsset) as (keyof Asset)[]).map(k=><label className={styles.field} key={k}><span>{k.replaceAll("_"," ")}</span>{k==="category"?<select disabled={readOnly} value={asset[k]} onChange={e=>setAsset(i,k,e.target.value)}>{assetCategories.map(x=><option key={x}>{x}</option>)}</select>:<input disabled={readOnly} value={asset[k]||""} onChange={e=>setAsset(i,k,e.target.value)}/>}</label>)}</div>
       </article>)}
     </div>}
@@ -73,7 +170,7 @@ export default function FieldEditor({initial,token,mode="assessor",onSaved}:{ini
     <span>{currentIndex+1} / {sections.length}</span>
     <button type="button" disabled={currentIndex===sections.length-1} onClick={()=>goTo(currentIndex+1)}>{currentIndex===sections.length-2?"Device logbook →":"Next section →"}</button>
    </div>
-   <div className={styles.editorFooter}><span role="status">{notice}</span><div><button disabled={busy||readOnly} onClick={()=>save(false)} type="button">{busy?"Saving…":"Save progress"}</button>{guest&&!readOnly&&<button disabled={busy} className={styles.primary} onClick={()=>save(true)} type="button">{intake?"Submit answers":"Submit for review"}</button>}</div></div>
+   <div className={styles.editorFooter}><span role="status">{notice||({saved:"✓ All changes saved",unsaved:"Changes pending…",saving:"Saving changes…",error:"Save failed — retry below",recovered:"Recovered local draft — syncing…"}[saveState])}</span><div><button disabled={busy||readOnly} onClick={()=>void save(false)} type="button">{saveState==="saving"?"Saving…":saveState==="error"?"Retry save":"Save now"}</button>{guest&&!readOnly&&<button disabled={busy||saveState==="saving"} className={styles.primary} onClick={()=>void save(true)} type="button">{intake?"Submit answers":"Submit for review"}</button>}</div></div>
   </section>
  </div>;
 }
