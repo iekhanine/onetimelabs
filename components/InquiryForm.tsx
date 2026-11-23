@@ -13,6 +13,7 @@ const productOptions = [
 ];
 
 const topicOptions = [
+  { value: "private-it", label: "Private Client IT Concierge / Executive Technology" },
   { value: "itam", label: "IT asset management / CMDB / SAM" },
   { value: "general-inventory", label: "Warehouse, retail or general asset inventory" },
   { value: "business", label: "Business solutions consultation" },
