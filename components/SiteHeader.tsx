@@ -16,6 +16,7 @@ export function SiteHeader() {
           <Link href="/experience">Experience</Link>
           <Link href="/business">Other Solutions</Link>
           <Link href="/itam">ITAM Toolkit</Link>
+          <Link href="/support">Help Desk</Link>
         </nav>
         <div className="otl-compact-header-actions">
           <Link href="/contact?topic=itam">Discuss a Project</Link>
