@@ -114,7 +114,7 @@ export default function Home() {
 
         <section className={s.finalCta}><div className={s.container}><div><p className={s.label}>LET'S TALK ABOUT YOUR ENVIRONMENT</p><h2>{siteCopy.closingHeadline}</h2><p>{siteCopy.closingBody}</p></div><Link href="/contact?topic=itam" className={s.primaryCta}>Start a conversation <ArrowUpRight size={18}/></Link></div></section>
       </main>
-      <footer className={s.footer}><div className={s.container}><div className={s.footerLeft}><Image src="/brand/otl-mark.png" width={31} height={31} alt=""/><div><b>OneTime Labs</b><span>{siteCopy.specialty}</span></div></div><nav aria-label="Footer links"><Link href="/services/itam">ITAM</Link><Link href="/itam">30-day ITAM checklist</Link><Link href="/business">Other services</Link><Link href="/contact">Contact</Link><Link href="/privacy">Privacy</Link></nav><small>© {new Date().getFullYear()} OneTime Labs</small></div></footer>
+      <footer className={s.footer}><div className={s.container}><div className={s.footerLeft}><Image src="/brand/otl-mark.png" width={31} height={31} alt=""/><div><b>OneTime Labs</b><span>{siteCopy.specialty}</span></div></div><nav aria-label="Footer links"><Link href="/services/itam">ITAM</Link><Link href="/itam">30-day ITAM checklist</Link><Link href="/business">Other services</Link><Link href="/support">Help Desk</Link><Link href="/contact">Contact</Link><Link href="/privacy">Privacy</Link></nav><small>© {new Date().getFullYear()} OneTime Labs</small></div></footer>
     </div>
   );
 }
