@@ -37,7 +37,7 @@ export default function FieldEditor({initial,token,onSaved}:{initial:Assessment;
     <div className={styles.smallCaption}>SITE ASSESSMENT / {a.client_name}</div>
     <h2>{s.title}</h2><p className={styles.description}>{s.description}</p>
     {tab==="scope"&&<div className={styles.twoCol}>
-     {([["client_name","Client / business"],["site_name","Location / site"],["address","Site address"],["contact_name","Contact person"],["contact_email","Contact email"],["visit_date","Visit date"],["assigned_to","Assessor"]] as const).map(([k,label])=><label className={styles.field} key={k}><span>{label}</span><input disabled={guest||readOnly} type={k==="visit_date"?"date":"text"} value={String(a[k]||"")} onChange={e=>setA(prev=>({...prev,[k]:e.target.value}))}/></label>)}
+     {([["client_name","Client / business"],["site_name","Location / site"],["address","Site address"],["contact_name","Contact person"],["contact_email","Contact email"],["visit_date","Visit date"],["assigned_to","Assessor"]] as const).map(([k,label])=><label className={styles.field} key={k}><span>{label}</span><input disabled={(guest&&k!=="assigned_to")||readOnly} type={k==="visit_date"?"date":"text"} value={String(a[k]||"")} onChange={e=>setA(prev=>({...prev,[k]:e.target.value}))}/></label>)}
     </div>}
     {s.questions.map(q=><label className={styles.field} key={q.id}><span>{q.label}</span><textarea disabled={readOnly} rows={3} value={a.answers?.[q.id]||""} onChange={e=>setAnswer(q.id,e.target.value)} placeholder="Observations, evidence, follow-up, owner and next action..."/></label>)}
     {tab==="assets"&&<div className={styles.assets}>
