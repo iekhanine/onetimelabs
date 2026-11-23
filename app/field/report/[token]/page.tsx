@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import {accessFromToken,fieldDb} from "@/lib/field";
 import {notFound} from "next/navigation";
-import {fieldSections} from "@/lib/field-playbook";
+import PrintButton from "../../PrintButton";
 import "../../field.css";
 import styles from "../../field.module.css";
 export const metadata:Metadata={title:"Site Overview | OneTime Labs",robots:{index:false,follow:false}};
@@ -16,6 +16,6 @@ export default async function PublicOverview({params}:{params:Promise<{token:str
  <section><h3>Recommendations</h3><p>{answers.recommendations||"Recommendations pending."}</p></section>
  <section><h3>Next steps</h3><p>{answers.next_steps||"Follow-up to be agreed."}</p></section>
  <p className={styles.reportNote}>This client overview is intentionally limited. Detailed asset serial numbers, contact details, internal notes, and security observations are excluded.</p>
- <button className={styles.printButton} onClick={undefined} hidden>Export</button>
+ <PrintButton/>
  </div></main>;
 }
