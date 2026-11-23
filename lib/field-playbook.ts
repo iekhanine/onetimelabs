@@ -54,7 +54,18 @@ export const fieldSections:FieldSection[]=[
  {id:"helpdesk",label:"How are requests, incidents and change approvals tracked?"},
  {id:"refresh",label:"What replacement/refresh standards and budgets exist?"},
  {id:"quick_wins",label:"What low-effort improvements can be completed immediately?"}]},
- {id:"closeout",title:"08 · Findings & closeout",description:"Turn observations into a usable assessment deliverable.",questions:[
+ {id:"documents",title:"08 · Evidence & deliverables",description:"Register which documents exist, what must be created, and who owns the missing evidence. Do not paste credentials or private keys.",questions:[
+ {id:"doc_asset_register",label:"Asset register: source, coverage, owner, last reconciliation, and export location?"},
+ {id:"doc_network_map",label:"Network topology and annotated floor plan: available or needs creating?"},
+ {id:"doc_vendor_register",label:"Vendor, contract, warranty, licensing, and renewal register: who owns it?"},
+ {id:"doc_identity_access",label:"Account and privileged-access process: documentation and gaps?"},
+ {id:"doc_recovery",label:"Backup and disaster recovery runbook: current version, owner, and last test?"},
+ {id:"doc_lifecycle",label:"Asset procurement, tagging, assignment, movement, and disposal procedures?"},
+ {id:"doc_risks",label:"Risk register: issue, severity, evidence reference, action owner, target date?"},
+ {id:"doc_photo_log",label:"Photo/evidence log: file reference, location, date, and approval to capture?"},
+ {id:"doc_support",label:"Service desk contacts, vendor escalation matrix, and site support instructions?"},
+ {id:"doc_handoff",label:"Deliverable handoff checklist, recipient, and required approval/sign-off?"}]},
+ {id:"closeout",title:"09 · Findings & closeout",description:"Turn observations into a usable assessment deliverable.",questions:[
  {id:"high_risk",label:"Critical issues, severity, affected systems and business impact?"},
  {id:"gaps",label:"Missing evidence, access limitations and follow-up questions?"},
  {id:"recommendations",label:"Prioritized recommendations: immediate, 30-day, 90-day?"},
