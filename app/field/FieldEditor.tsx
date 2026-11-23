@@ -6,17 +6,17 @@ import styles from "./field.module.css";
 export type Asset={category:string;manufacturer:string;model:string;serial:string;asset_tag:string;location:string;assigned_to:string;condition:string;notes:string};
 export type Assessment={id:string;client_name:string;site_name:string;address:string;contact_name?:string;contact_email?:string;visit_date?:string|null;assigned_to?:string;admin_notes?:string;status:string;answers:Record<string,string>;assets:Asset[]};
 const blankAsset:Asset={category:"Laptop",manufacturer:"",model:"",serial:"",asset_tag:"",location:"",assigned_to:"",condition:"",notes:""};
-export default function FieldEditor({initial,token,onSaved}:{initial:Assessment;token?:string;onSaved?:(x:Assessment)=>void}){
+export default function FieldEditor({initial,token,mode="assessor",onSaved}:{initial:Assessment;token?:string;mode?:"assessor"|"intake";onSaved?:(x:Assessment)=>void}){
  const [a,setA]=useState<Assessment>(initial);
  const [tab,setTab]=useState("scope"),[busy,setBusy]=useState(false),[notice,setNotice]=useState(""),[menuOpen,setMenuOpen]=useState(false);
- const guest=Boolean(token),readOnly=guest&&a.status!=="draft";
+ const guest=Boolean(token),intake=guest&&mode==="intake",readOnly=guest&&a.status!=="draft";
  const sections=[...fieldSections,{id:"assets",title:"10 · Device logbook",description:"Inventory serials, locations, assignments and observed condition. Do not record passwords.",questions:[]}];
  function setAnswer(id:string,value:string){setA(prev=>({...prev,answers:{...prev.answers,[id]:value}}));}
  function setAsset(i:number,key:keyof Asset,value:string){setA(prev=>({...prev,assets:prev.assets.map((x,j)=>i===j?{...x,[key]:value}:x)}));}
  async function save(submit=false){
   setBusy(true);setNotice("");
   try{
-   const req=guest?{url:"/api/field/guest",method:"POST",body:{token,answers:a.answers,assets:a.assets,assigned_to:a.assigned_to,submit}}:{url:"/api/field",method:"PATCH",body:{...a,status:submit?"submitted":a.status}};
+   const req=guest?{url:intake?"/api/field/intake":"/api/field/guest",method:"POST",body:{token,answers:a.answers,assets:a.assets,assigned_to:a.assigned_to,submit}}:{url:"/api/field",method:"PATCH",body:{...a,status:submit?"submitted":a.status}};
    const res=await fetch(req.url,{method:req.method,headers:{"Content-Type":"application/json"},body:JSON.stringify(req.body),cache:"no-store"});
    const data=await res.json();if(!res.ok)throw new Error(data.error||"Save failed");
    if(data.assessment){setA(data.assessment);onSaved?.(data.assessment);}
@@ -29,19 +29,21 @@ export default function FieldEditor({initial,token,onSaved}:{initial:Assessment;
   <button type="button" className={styles.fieldMenuButton} onClick={()=>setMenuOpen(true)}>☰  Playbook sections</button>
   {menuOpen&&<button type="button" aria-label="Close section menu" className={styles.mobileBackdrop} onClick={()=>setMenuOpen(false)}/>}
   <aside className={styles.editorNav+" "+(menuOpen?styles.mobileOpen:"")}>
-   <div className={styles.smallCaption}>FIELD PLAYBOOK</div>
+   <div className={styles.smallCaption}>{intake?"OPTIONAL IT QUESTIONNAIRE":"FIELD PLAYBOOK"}</div>
    <div className={styles.progressLine}><strong>{percent}%</strong><span>complete</span></div>
    <div className={styles.progressTrack}><div style={{width:percent+"%"}}/></div>
    <div className={styles.mobileNav}>{sections.map(s=><button type="button" key={s.id} className={tab===s.id?styles.active:""} onClick={()=>{setTab(s.id);setMenuOpen(false);}}>{s.title}</button>)}</div>
   </aside>
   <section className={styles.editorContent}>
    {sections.filter(s=>s.id===tab).map(s=><div key={s.id}>
-    <div className={styles.smallCaption}>SITE ASSESSMENT / {a.client_name}</div>
+    <div className={styles.smallCaption}>{intake?"IT PRE-ASSESSMENT":"SITE ASSESSMENT"} / {a.client_name}</div>
     <h2>{s.title}</h2><p className={styles.description}>{s.description}</p>
+    {intake&&<p className={styles.intakeHint}>All questions are optional. Skip anything you don't know. Please don't enter passwords, private keys, or other credentials.</p>}
+    {intake&&tab==="scope"&&<div className={styles.twoCol}>{([["respondent_name","Your name (optional)"],["respondent_email","Your work email (optional)"]] as const).map(([key,label])=><label className={styles.field} key={key}><span>{label}</span><input disabled={readOnly} value={a.answers?.[key]||""} onChange={e=>setAnswer(key,e.target.value)} placeholder="Optional"/></label>)}</div>}
     {tab==="scope"&&<div className={styles.twoCol}>
-     {([["client_name","Client / business"],["site_name","Location / site"],["address","Site address"],["contact_name","Contact person"],["contact_email","Contact email"],["visit_date","Visit date"],["assigned_to","Assessor"]] as const).map(([k,label])=><label className={styles.field} key={k}><span>{label}</span><input disabled={(guest&&k!=="assigned_to")||readOnly} type={k==="visit_date"?"date":"text"} value={String(a[k]||"")} onChange={e=>setA(prev=>({...prev,[k]:e.target.value}))}/></label>)}
+     {([["client_name","Client / business"],["site_name","Location / site"],["address","Site address"],["contact_name","Contact person"],["contact_email","Contact email"],["visit_date","Visit date"],["assigned_to","Assessor"]] as const).map(([k,label])=><label className={styles.field} key={k}><span>{label}</span><input disabled={(guest&&(intake||k!=="assigned_to"))||readOnly} type={k==="visit_date"?"date":"text"} value={String(a[k]||"")} onChange={e=>setA(prev=>({...prev,[k]:e.target.value}))}/></label>)}
     </div>}
-    {s.questions.map(q=><label className={styles.field} key={q.id}><span>{q.label}</span><textarea disabled={readOnly} rows={3} value={a.answers?.[q.id]||""} onChange={e=>setAnswer(q.id,e.target.value)} placeholder="Observations, evidence, follow-up, owner and next action..."/></label>)}
+    {s.questions.map(q=><label className={styles.field} key={q.id}><span>{q.label}</span><textarea disabled={readOnly} rows={3} value={a.answers?.[q.id]||""} onChange={e=>setAnswer(q.id,e.target.value)} placeholder={intake?"Share what you know (optional)":"Observations, evidence, follow-up, owner and next action..."}/></label>)}
     {tab==="assets"&&<div className={styles.assets}>
       <div className={styles.assetHeading}><strong>{a.assets?.length||0} recorded devices</strong><button disabled={readOnly} type="button" onClick={()=>setA(prev=>({...prev,assets:[...(prev.assets||[]),{...blankAsset}]}))}>+ Add device</button></div>
       {(a.assets||[]).map((asset,i)=><article className={styles.assetCard} key={i}>
@@ -50,7 +52,7 @@ export default function FieldEditor({initial,token,onSaved}:{initial:Assessment;
       </article>)}
     </div>}
    </div>)}
-   <div className={styles.editorFooter}><span role="status">{notice}</span><div><button disabled={busy||readOnly} onClick={()=>save(false)} type="button">{busy?"Saving…":"Save progress"}</button>{guest&&a.status!=="submitted"&&<button disabled={busy} className={styles.primary} onClick={()=>save(true)} type="button">Submit for review</button>}</div></div>
+   <div className={styles.editorFooter}><span role="status">{notice}</span><div><button disabled={busy||readOnly} onClick={()=>save(false)} type="button">{busy?"Saving…":"Save progress"}</button>{guest&&!readOnly&&<button disabled={busy} className={styles.primary} onClick={()=>save(true)} type="button">{intake?"Submit answers":"Submit for review"}</button>}</div></div>
   </section>
  </div>;
 }
