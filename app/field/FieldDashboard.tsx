@@ -1,7 +1,6 @@
 "use client";
 import {useEffect,useState} from "react";
 import FieldEditor,{type Assessment} from "./FieldEditor";
-import SupportDesk from "./SupportDesk";
 import {completion} from "@/lib/field-playbook";
 import styles from "./field.module.css";
 export default function FieldDashboard(){
@@ -28,13 +27,13 @@ export default function FieldDashboard(){
   <div className={styles.cards}>{items.map(a=><button type="button" className={styles.siteCard} key={a.id} onClick={()=>{setActive(a.id);setNav("editor");setLink("");}}><span className={styles.smallCaption}>{a.status.replaceAll("_"," ").toUpperCase()}</span><strong>{a.client_name}</strong><span>{a.site_name||"Site not named"}</span><div className={styles.progressTrack}><div style={{width:completion(a.answers||{},a.assets||[])+"%"}}/></div><small>{completion(a.answers||{},a.assets||[])}% complete · {(a.assets||[]).length} devices</small></button>)}</div></div>;}
  return <main className={styles.app}>
   <aside className={styles.sidebar}><div className={styles.logo}>◈ <span>OneTime Labs<small>FIELD OPERATIONS</small></span></div><div className={styles.smallCaption}>WORKSPACE</div>
-   {[["assessments","▦","Assessments"],["editor","▤","Playbook"],["review","✓","Review & publish"],["support","⌁","Help desk"]].map(([key,icon,label])=><button type="button" key={key} className={nav===key?styles.active:""} onClick={()=>setNav(key)}>{icon} <span>{label}</span></button>)}
+   {[["assessments","▦","Assessments"],["editor","▤","Playbook"],["review","✓","Review & publish"]].map(([key,icon,label])=><button type="button" key={key} className={nav===key?styles.active:""} onClick={()=>setNav(key)}>{icon} <span>{label}</span></button>)}
    <div className={styles.sidebarBottom}><button onClick={async()=>{await fetch("/api/field/auth/logout",{method:"POST"});window.location.href="/login";}}>Sign out ↗</button></div>
   </aside>
   <div className={styles.main}><header className={styles.top}><div><span className={styles.smallCaption}>PRIVATE / OWNER ACCESS</span><strong>{nav==="assessments"?"Assessment overview":nav==="editor"?"Field playbook":nav==="support"?"Help desk":"Review center"}</strong></div><button onClick={()=>{setActive(null);setNav("assessments");}}>All sites</button></header>
    <div className={styles.body}>{notice&&<p className={styles.notice} role="status">{notice}</p>}
     {nav==="assessments"&&renderList()}
-    {nav==="support"&&<SupportDesk/>}
+    
     {nav==="editor"&&(selected?<><div className={styles.sectionTitle}><div><h1>{selected.client_name}</h1><p>{selected.site_name}</p></div><button onClick={()=>setNav("review")}>Share / Review →</button></div><FieldEditor key={selected.id} initial={selected} onSaved={updated=>setItems(prev=>prev.map(x=>x.id===updated.id?updated:x))}/></>:renderList())}
     {nav==="review"&&<><div className={styles.sectionTitle}><div><span className={styles.smallCaption}>REVIEW & CONTROL</span><h1>Share, review & publish</h1></div></div>
      <div className={styles.cards}>{items.map(x=><button key={x.id} className={styles.siteCard} onClick={()=>setActive(x.id)}><strong>{x.client_name}</strong><span>{x.status.replaceAll("_"," ")}</span><small>{completion(x.answers||{},x.assets||[])}% complete</small></button>)}</div>
