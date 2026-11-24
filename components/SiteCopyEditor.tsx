@@ -19,6 +19,7 @@ export default function SiteCopyEditor(){
  const [googleToken,setGoogleToken]=useState("");
  const edits=useRef<Map<string,CopyItem>>(new Map());
  const originals=useRef(new WeakMap<Text,{text:string;lead:string;trail:string}>());
+ const managed=useRef(new WeakMap<Text,string>());
  const ignorePage=excluded(pathname);
  const apply=useCallback(()=>{
   if(typeof document==="undefined"||excluded(pathname))return;
@@ -28,14 +29,20 @@ export default function SiteCopyEditor(){
    let base=originals.current.get(n);
    if(!base){base=parts(n);originals.current.set(n,base);}
    const key=sourceKey(base.text),saved=edits.current.get(key);
-   const replacement=saved?.original_text===base.text?saved.replacement_text:base.text;
-   const wanted=base.lead+replacement+base.trail;
-   if(n.textContent!==wanted)n.textContent=wanted;
+   if(saved?.original_text===base.text){
+    const wanted=base.lead+saved.replacement_text+base.trail;
+    managed.current.set(n,wanted);
+    if(n.textContent!==wanted)n.textContent=wanted;
+   }else if(managed.current.get(n)===n.textContent){
+    const wanted=base.lead+base.text+base.trail;
+    managed.current.delete(n);
+    if(n.textContent!==wanted)n.textContent=wanted;
+   }
   }
  },[pathname]);
  useEffect(()=>{
   if(ignorePage)return;
-  let active=true;edits.current=new Map();originals.current=new WeakMap();setSelected(null);setMode(false);setNotice("");
+  let active=true;edits.current=new Map();originals.current=new WeakMap();managed.current=new WeakMap();setSelected(null);setMode(false);setNotice("");
   fetch("/api/site-copy?path="+encodeURIComponent(pathname),{cache:"no-store"}).then(r=>r.json()).then(j=>{if(!active)return;edits.current=new Map((j.items||[]).map((x:CopyItem)=>[x.source_key,x]));apply()}).catch(()=>{});
   return()=>{active=false};
  },[pathname,ignorePage,apply]);
