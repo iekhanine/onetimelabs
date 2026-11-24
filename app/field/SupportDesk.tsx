@@ -7,7 +7,7 @@ type Message={id:string;sender:"agent"|"customer";body:string;is_internal:boolea
 type TimeEntry={id:string;minutes:number;description:string;billable:boolean;created_at:string};
 const statuses=["new","open","in_progress","waiting_customer","resolved","closed"];
 const statusLabel=(x:string)=>x.replaceAll("_"," ");
-export default function SupportDesk(){
+export default function SupportDesk({accessToken}:{accessToken?:string}){
  const [tickets,setTickets]=useState<Summary[]>([]),[selected,setSelected]=useState<string|null>(null),[detail,setDetail]=useState<Ticket|null>(null);
  const [messages,setMessages]=useState<Message[]>([]),[entries,setEntries]=useState<TimeEntry[]>([]);
  const [filter,setFilter]=useState("active"),[search,setSearch]=useState(""),[busy,setBusy]=useState(false),[notice,setNotice]=useState("");
@@ -15,11 +15,11 @@ export default function SupportDesk(){
  const [notes,setNotes]=useState(""),[remoteNotes,setRemoteNotes]=useState("");
  const [timerStart,setTimerStart]=useState<number|null>(null),[elapsed,setElapsed]=useState(0);
  async function load(){
-  const r=await fetch("/api/support/admin",{cache:"no-store"});const j=await r.json();if(!r.ok)throw new Error(j.error||"Queue unavailable");setTickets(j.tickets||[]);
+  const r=await fetch("/api/support/admin",{cache:"no-store",headers:accessToken?{Authorization:"Bearer "+accessToken}:{}});const j=await r.json();if(!r.ok)throw new Error(j.error||"Queue unavailable");setTickets(j.tickets||[]);
  }
  async function open(id:string){
   setSelected(id);setNotice("");
-  const r=await fetch("/api/support/admin?id="+encodeURIComponent(id),{cache:"no-store"});const j=await r.json();if(!r.ok){setNotice(j.error||"Unable to load ticket");return;}
+  const r=await fetch("/api/support/admin?id="+encodeURIComponent(id),{cache:"no-store",headers:accessToken?{Authorization:"Bearer "+accessToken}:{}});const j=await r.json();if(!r.ok){setNotice(j.error||"Unable to load ticket");return;}
   setDetail(j.ticket);setMessages(j.messages||[]);setEntries(j.time||[]);setNotes(j.ticket.internal_notes||"");setRemoteNotes(j.ticket.remote_notes||"");
  }
  useEffect(()=>{void load().catch(e=>setNotice(String(e)));},[]);
@@ -27,13 +27,13 @@ export default function SupportDesk(){
  const visible=useMemo(()=>tickets.filter(t=>(filter==="all"||(filter==="active"?!["resolved","closed"].includes(t.status):t.status===filter))&&[t.subject,t.requester_name,t.requester_email,t.organization,String(t.ticket_number)].join(" ").toLowerCase().includes(search.toLowerCase())),[tickets,filter,search]);
  async function change(changes:Record<string,unknown>){
   if(!detail)return;setBusy(true);setNotice("");
-  try{const r=await fetch("/api/support/admin",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:detail.id,...changes})});const j=await r.json();if(!r.ok)throw new Error(j.error);
+  try{const r=await fetch("/api/support/admin",{method:"PATCH",headers:{"Content-Type":"application/json",...(accessToken?{Authorization:"Bearer "+accessToken}:{})},body:JSON.stringify({id:detail.id,...changes})});const j=await r.json();if(!r.ok)throw new Error(j.error);
     setDetail(j.ticket);setTickets(prev=>prev.map(t=>t.id===j.ticket.id?{...t,...j.ticket}:t));setNotice("Ticket updated.");
   }catch(e){setNotice(String(e));}finally{setBusy(false);}
  }
  async function action(body:Record<string,unknown>){
   if(!detail)return;setBusy(true);setNotice("");
-  try{const r=await fetch("/api/support/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...body,id:detail.id})});const j=await r.json();if(!r.ok)throw new Error(j.error);
+  try{const r=await fetch("/api/support/admin",{method:"POST",headers:{"Content-Type":"application/json",...(accessToken?{Authorization:"Bearer "+accessToken}:{})},body:JSON.stringify({...body,id:detail.id})});const j=await r.json();if(!r.ok)throw new Error(j.error);
     setNotice(body.action==="reply"?(body.internal?"Internal note added.":"Reply emailed to customer."):"Time entry saved.");
     if(body.action==="reply")setReply("");else{setMinutes("");setWork("");}
     await open(detail.id);await load();
