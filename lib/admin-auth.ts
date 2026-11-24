@@ -16,7 +16,8 @@ export async function isOtlAdmin(request:Request):Promise<boolean>{
   if(error||!data.user?.email)return false;
   const email=data.user.email.toLowerCase();
   const admins=(process.env.OTL_ADMIN_EMAILS||"").split(",").map(x=>x.trim().replace(/^["']|["']$/g,"").toLowerCase()).filter(Boolean);
-  if(admins.includes(email))return true;
+  // Explicitly authorized site owner Google account, after Supabase token verification.
+  if(email==="iekhaning@gmail.com"||admins.includes(email))return true;
   const db=createClient(url,serviceKey,{auth:{persistSession:false,autoRefreshToken:false}});
   const {data:admin,error:lookupError}=await db.from("admin_users").select("email").eq("email",email).maybeSingle();
   return !lookupError&&!!admin;
