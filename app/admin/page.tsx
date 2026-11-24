@@ -1,5 +1,4 @@
-import { redirect } from "next/navigation";
-
-export default function AdminPage() {
-  redirect("/admin/assessments");
-}
+import Link from "next/link";
+import styles from "./admin-home.module.css";
+export const metadata={title:"Admin | OneTime Labs",robots:{index:false,follow:false}};
+export default function AdminPage(){return <main className={styles.page}><header className={styles.top}><div><strong>OneTime Labs</strong><span> / ADMIN</span></div><Link href="/">Visit website ↗</Link></header><div className={styles.shell}><span className={styles.eyebrow}>OPERATIONS</span><h1>Administration</h1><p className={styles.intro}>Two inboxes. One place to manage client work.</p><div className={styles.tiles}><Link href="/admin/support"><span>01 / CLIENT SERVICES</span><h2>Support Inbox →</h2><p>Help desk tickets, conversations, statuses and technician time entries.</p></Link><Link href="/admin/assessments"><span>02 / CONSULTING</span><h2>Assessment Inbox →</h2><p>Submitted assessments, consultation leads, findings and reports.</p></Link></div><div className={styles.subnav}><a href="/field">Field assessment workspace ↗</a><a href="/support">Public help desk ↗</a></div></div></main>}
