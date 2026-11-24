@@ -14,7 +14,7 @@ export default function AssessmentAdminPage() {
       <header className={styles.topbar}>
         <div className={styles.topbarInner}>
           <div className={styles.brand}>OneTime Labs <span>ADMIN</span></div>
-          <Link href="/assess"><ArrowLeft size={14} /> Back to assessments</Link>
+          <nav style={{display:"flex",gap:18,alignItems:"center"}}><Link href="/admin/support">Support Inbox</Link><Link href="/admin"><ArrowLeft size={14} /> Admin dashboard</Link></nav>
         </div>
       </header>
       <div className={styles.shell}>
