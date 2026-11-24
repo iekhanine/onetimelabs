@@ -1,10 +1,11 @@
-import {fieldDb,isFieldOwner,normalize,jsonError,emailCustomer,supportOrigin} from "@/lib/support";
+import {isOtlAdmin} from "@/lib/admin-auth";
+import {fieldDb,normalize,jsonError,emailCustomer,supportOrigin} from "@/lib/support";
 export const runtime="nodejs";export const dynamic="force-dynamic";
 const statuses=["new","open","waiting_customer","in_progress","resolved","closed"];
 const priorities=["low","normal","high","urgent"];
-async function owner(){return await isFieldOwner();}
+async function owner(req:Request){return await isOtlAdmin(req);}
 export async function GET(req:Request){
- if(!await owner())return jsonError("Unauthorized",401);
+ if(!await owner(req))return jsonError("Unauthorized",401);
  try{
   const db=fieldDb(),id=new URL(req.url).searchParams.get("id");
   if(!id){
@@ -22,7 +23,7 @@ export async function GET(req:Request){
  }catch(e){console.error("Ticket admin get",e);return jsonError("Unable to load support tickets.",500);}
 }
 export async function PATCH(req:Request){
- if(!await owner())return jsonError("Unauthorized",401);
+ if(!await owner(req))return jsonError("Unauthorized",401);
  try{
   const b=await req.json();if(!/^[\da-f-]{36}$/i.test(b.id||""))return jsonError("Invalid ticket",400);
   const changes:Record<string,unknown>={updated_at:new Date().toISOString()};
@@ -35,7 +36,7 @@ export async function PATCH(req:Request){
  }catch{return jsonError("Unable to update ticket.",500);}
 }
 export async function POST(req:Request){
- if(!await owner())return jsonError("Unauthorized",401);
+ if(!await owner(req))return jsonError("Unauthorized",401);
  try{
   const b=await req.json();if(!/^[\da-f-]{36}$/i.test(b.id||""))return jsonError("Invalid ticket",400);
   const db=fieldDb();const {data:t,error:e}=await db.from("otl_support_tickets").select("id,ticket_number,requester_email,subject,status").eq("id",b.id).single();
