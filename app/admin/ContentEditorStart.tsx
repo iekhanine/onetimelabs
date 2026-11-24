@@ -2,7 +2,7 @@
 import {useEffect,useState} from "react";
 import Link from "next/link";
 import {createClient} from "@/lib/supabase/client";
-import styles from "../admin-home.module.css";
+import styles from "./admin-home.module.css";
 export default function ContentEditorStart(){
  const [ready,setReady]=useState(false),[allowed,setAllowed]=useState(false),[error,setError]=useState("");
  const [auth,setAuth]=useState<ReturnType<typeof createClient>|null>(null);
