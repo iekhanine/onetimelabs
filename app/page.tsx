@@ -1,120 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight, ArrowUpRight, Box, CheckCircle2, ClipboardCheck,
-  Database, HardDrive, Layers3, ScanLine, ShieldCheck, Workflow,
-} from "lucide-react";
-import s from "./home.module.css";
-import {
-  companyTagline, siteCopy, itamServices, recordOptions,
-  deliverySteps, founderMetrics, founderExperience,
-  adjacentServices, adjacentLinks,
-} from "@/lib/itam-site-copy";
+import {ArrowUpRight,Check,ClipboardCheck,Database,HardDrive,Headphones,RefreshCcw,ShieldCheck} from "lucide-react";
+import s from "./home-simple.module.css";
 
-const serviceIcons = [HardDrive, ShieldCheck, Database, ScanLine, Workflow, ClipboardCheck];
-
-export default function Home() {
-  return (
-    <div className={s.page}>
-      <header className={s.header}>
-        <div className={s.container}>
-          <Link className={s.brand} href="/" aria-label="OneTime Labs — home">
-            <Image src="/brand/otl-mark.png" alt="" width={40} height={40} priority />
-            <span>OneTime <b>Labs</b></span>
-          </Link>
-          <nav className={s.nav} aria-label="Primary navigation">
-            <a href="#itam">ITAM services</a>
-            <a href="#approach">How we work</a>
-            <a href="#experience">Experience</a>
-            <a href="#other-services">Other services</a>
-          </nav>
-          <Link href="/contact?topic=itam" className={s.headerCta}>Let's talk <ArrowUpRight size={16} /></Link>
-        </div>
-      </header>
-
-      <main>
-        <section className={s.hero}>
-          <div className={s.container}>
-            <div className={s.heroText}>
-              <p className={s.eyebrow}>{siteCopy.eyebrow}</p>
-              {companyTagline ? <p className={s.tagline}>{companyTagline}</p> : null}
-              <h1>{siteCopy.heroTitle}</h1>
-              <p className={s.heroDescription}>{siteCopy.heroDescription}</p>
-              <div className={s.actions}>
-                <Link className={s.primaryCta} href="/contact?topic=itam">{siteCopy.heroPrimary}<ArrowUpRight size={18}/></Link>
-                <a className={s.secondaryCta} href="#itam">{siteCopy.heroSecondary}<ArrowRight size={16}/></a>
-              </div>
-              <p className={s.heroNote}><CheckCircle2 size={15} /> Work in your existing systems, or build an asset register that fits.</p>
-            </div>
-            <aside className={s.heroVisual} aria-label="Illustration of managed asset lifecycle">
-              <div className={s.heroVisualTop}><span>WHAT WE MANAGE</span><span>01 — 05</span></div>
-              <div className={s.heroVisualTitle}>The full asset lifecycle.</div>
-              <div className={s.lifecycle}>
-                {[
-                  {n:"01",title:"Acquire",sub:"Request · purchase · receive"},
-                  {n:"02",title:"Deploy",sub:"Tag · configure · assign"},
-                  {n:"03",title:"Maintain",sub:"Verify · reconcile · repair"},
-                  {n:"04",title:"Recover",sub:"Transfer · reclaim · refresh"},
-                  {n:"05",title:"Retire",sub:"Sanitize · dispose · evidence"},
-                ].map((x,i)=><div className={s.lifecycleRow} key={x.n}><span className={s.lifecycleNum}>{x.n}</span><span className={s.lifecycleRule} aria-hidden="true"/><div><strong>{x.title}</strong><small>{x.sub}</small></div><span className={s.lifecycleDot} aria-hidden="true"/>{i<4?<span className={s.lifecycleLine} aria-hidden="true"/>:null}</div>)}
-              </div>
-              <div className={s.heroVisualBottom}><Database size={16}/><span>Asset records, ownership & evidence stay in a governed system of record.</span></div>
-            </aside>
-          </div>
-        </section>
-
-        <section className={s.metrics} aria-label="Founder's past enterprise experience metrics">
-          <div className={s.container}>
-            <div className={s.metricsHeading}><span className={s.label}>FOUNDER EXPERIENCE</span><p>Selected results from hands-on enterprise technology experience.</p></div>
-            <div className={s.metricsGrid}>{founderMetrics.map(m=><div className={s.metric} key={m.value}><strong>{m.value}</strong><span>{m.label}</span><small>{m.source}</small></div>)}</div>
-          </div>
-        </section>
-
-        <section className={s.services} id="itam">
-          <div className={s.container}>
-            <div className={s.sectionHeading}>
-              <div><p className={s.label}>OUR PRIMARY FOCUS / ITAM</p><h2>{siteCopy.capabilityHeadline}</h2></div>
-              <p>{siteCopy.capabilityIntro}</p>
-            </div>
-            <div className={s.serviceGrid}>
-              {itamServices.map((service,i)=>{const Icon=serviceIcons[i];return <article className={s.serviceCard} key={service.number}>
-                <div className={s.serviceMeta}><span>{service.number}</span><Icon size={21} strokeWidth={1.55}/></div>
-                <h3>{service.title}</h3>
-                <p className={s.serviceShort}>{service.short}</p>
-                <p className={s.serviceDetail}>{service.detail}</p>
-                <div className={s.serviceTasks}><strong>Typical work</strong>{service.tasks.map(task=><div key={task}><span className={s.taskDot}/>{task}</div>)}</div>
-                <p className={s.serviceOutput}><span>RESULT</span>{service.output}</p>
-              </article>})}
-            </div>
-            <div className={s.serviceBottom}><span>Need an asset program built or repaired end to end?</span><Link href="/services/itam">Explore our ITAM approach <ArrowUpRight size={17}/></Link></div>
-          </div>
-        </section>
-
-        <section className={s.platform} id="platform">
-          <div className={s.container}>
-            <div className={s.platformIntro}><p className={s.label}>SYSTEMS & IMPLEMENTATION</p><h2>{siteCopy.platformHeadline}</h2><p>{siteCopy.platformIntro}</p><div className={s.platformStack}><span>ServiceNow</span><span>Flexera</span><span>Intune</span><span>ITSM / CMDB</span><span>Asset databases</span><span>Integrations</span></div><small>Platforms represent professional experience or implementation options, not vendor partnerships.</small></div>
-            <div className={s.platformOptions}>{recordOptions.map((x,i)=><article key={x.title}><div className={s.optionHeader}><span>0{i+1}</span>{i===0?<Layers3 size={23}/>:<Database size={23}/>}</div><h3>{x.title}</h3><p>{x.body}</p><div className={s.optionNote}>{x.note}</div></article>)}</div>
-          </div>
-        </section>
-
-        <section className={s.process} id="approach">
-          <div className={s.container}><div className={s.sectionHeading}><div><p className={s.label}>HOW WE WORK</p><h2>{siteCopy.processHeadline}</h2></div><p>Assessments are the starting point—not the end product. The objective is a system and operating process that your team can maintain.</p></div><div className={s.processSteps}>{deliverySteps.map(x=><div key={x.step}><span>{x.step}</span><h3>{x.title}</h3><p>{x.body}</p></div>)}</div></div>
-        </section>
-
-        <section className={s.experience} id="experience">
-          <div className={s.container}>
-            <div className={s.experienceHeading}><div><p className={s.label}>THE EXPERIENCE BEHIND THE WORK</p><h2>Enterprise-scale experience. Applied where it counts.</h2><p>Hands-on experience across complex enterprise environments, spanning asset management, software licensing, infrastructure, and operational delivery.</p></div><Link href="/experience">More about our experience <ArrowUpRight size={16}/></Link></div>
-            <div className={s.experienceList}>{founderExperience.map(x=><article key={x.organization}><div><strong>{x.organization}</strong><span>{x.context}</span></div><p>{x.detail}</p></article>)}</div>
-          </div>
-        </section>
-
-        <section className={s.adjacent} id="other-services">
-          <div className={s.container}><div className={s.sectionHeading}><div><p className={s.label}>BEYOND ITAM</p><h2>{siteCopy.adjacentHeadline}</h2></div><p>{siteCopy.adjacentIntro}</p></div><div className={s.adjacentGrid}>{adjacentServices.map((x,i)=><article key={x.title}><span>0{i+1}</span><h3>{x.title}</h3><p>{x.body}</p></article>)}</div><div className={s.extraLinks}>{adjacentLinks.map(x=><Link href={x.href} key={x.href}>{x.label}<ArrowUpRight size={15}/></Link>)}</div></div>
-        </section>
-
-        <section className={s.finalCta}><div className={s.container}><div><p className={s.label}>LET'S TALK ABOUT YOUR ENVIRONMENT</p><h2>{siteCopy.closingHeadline}</h2><p>{siteCopy.closingBody}</p></div><Link href="/contact?topic=itam" className={s.primaryCta}>Start a conversation <ArrowUpRight size={18}/></Link></div></section>
-      </main>
-      <footer className={s.footer}><div className={s.container}><div className={s.footerLeft}><Image src="/brand/otl-mark.png" width={31} height={31} alt=""/><div><b>OneTime Labs</b><span>{siteCopy.specialty}</span></div></div><nav aria-label="Footer links"><Link href="/services/itam">ITAM</Link><Link href="/itam">30-day ITAM checklist</Link><Link href="/business">Other services</Link><Link href="/support">Help Desk</Link><Link href="/contact">Contact</Link><Link href="/privacy">Privacy</Link></nav><small>© {new Date().getFullYear()} OneTime Labs</small></div></footer>
-    </div>
-  );
-}
+const services=[
+ {icon:HardDrive,title:"IT asset inventory",problem:"Equipment is missing, duplicated, unassigned or poorly tracked.",work:"We compare physical assets with existing records, verify ownership and location, then correct the inventory.",result:"A reconciled asset register and a list of exceptions that still need action."},
+ {icon:ShieldCheck,title:"Software & license management",problem:"Installed software, purchasing and license entitlements don't agree.",work:"We reconcile discovery, deployment and entitlement data, identify unused licenses and document compliance gaps.",result:"License positions, recovery opportunities and an actionable remediation list."},
+ {icon:Database,title:"ServiceNow & CMDB",problem:"Your CMDB is full of stale, duplicate or disconnected records.",work:"We review sources, identifiers and lifecycle rules, then clean data and establish sustainable update workflows.",result:"More reliable assets and configuration items with documented ownership."},
+ {icon:Headphones,title:"Technical support",problem:"You need hands-on help with a computer, application, network or printer.",work:"Open a support ticket. We review the issue, reply through your private ticket, and arrange attended remote support when useful.",result:"A documented resolution, support history and follow-up actions."}
+];
+const steps=[
+ {n:"01",title:"Show us the problem",detail:"Tell us what isn't working, or complete a focused assessment of your IT environment."},
+ {n:"02",title:"We verify it",detail:"We inspect the relevant tools, inventory records and actual devices, with your authorization."},
+ {n:"03",title:"We fix the gaps",detail:"We correct data, implement controls, troubleshoot systems and document changes."},
+ {n:"04",title:"You get the handoff",detail:"You receive updated records, a clear issue list, recommendations and a practical next-step plan."}
+];
+export default function Home(){return <div className={s.page}>
+<header className={s.header}><div className={s.wrap}><Link href="/" className={s.brand}><Image src="/brand/otl-mark.png" alt="" width={36} height={36} priority/><span>OneTime <strong>Labs</strong></span></Link><nav aria-label="Main navigation"><a href="#services">Services</a><a href="#process">How it works</a><Link href="/support">Help Desk</Link></nav><Link href="/contact" className={s.headerAction}>Contact <ArrowUpRight size={15}/></Link></div></header>
+<main>
+<section className={s.hero}><div className={s.wrap}><div className={s.heroCopy}><div className={s.eyebrow}>IT ASSET MANAGEMENT · SYSTEMS · SUPPORT</div><h1>We find what's wrong with your IT environment. Then we help fix it.</h1><p>OneTime Labs works with businesses to verify hardware, reconcile software licenses, clean up ServiceNow/CMDB records and resolve technical problems. Practical implementation—not just an assessment report.</p><div className={s.actions}><Link href="/contact" className={s.primary}>Discuss a project <ArrowUpRight size={16}/></Link><Link href="/support" className={s.secondary}>Open a support ticket</Link></div></div><div className={s.example}><div className={s.exampleHead}><ClipboardCheck size={18}/><strong>What a typical engagement looks like</strong></div><div className={s.exampleRow}><span>Problem</span><p>Asset records don't match devices in use.</p></div><div className={s.exampleRow}><span>Our work</span><p>Inventory, cross-check, investigate and correct discrepancies.</p></div><div className={s.exampleRow}><span>Deliverable</span><p>Updated register, exception log and ongoing process controls.</p></div><div className={s.exampleFoot}><Check size={17}/> Work inside your existing environment where possible</div></div></div></section>
+<section className={s.services} id="services"><div className={s.wrap}><div className={s.sectionIntro}><span className={s.eyebrow}>WHAT WE DO</span><h2>Four ways we help.</h2><p>Each engagement starts with the issue you actually need solved.</p></div><div className={s.grid}>{services.map((x)=>{const Icon=x.icon;return <article key={x.title} className={s.service}><div className={s.serviceTitle}><Icon size={21}/><h3>{x.title}</h3></div><div className={s.line}><strong>The problem</strong><p>{x.problem}</p></div><div className={s.line}><strong>What we do</strong><p>{x.work}</p></div><div className={s.line}><strong>You receive</strong><p>{x.result}</p></div></article>})}</div><Link href="/services/itam" className={s.textLink}>More about enterprise ITAM services <ArrowUpRight size={16}/></Link></div></section>
+<section className={s.process} id="process"><div className={s.wrap}><div className={s.sectionIntro}><span className={s.eyebrow}>OUR PROCESS</span><h2>How we work together.</h2></div><div className={s.steps}>{steps.map(x=><div key={x.n}><span>{x.n}</span><h3>{x.title}</h3><p>{x.detail}</p></div>)}</div></div></section>
+<section className={s.bottom}><div className={s.wrap}><div><span className={s.eyebrow}>GET STARTED</span><h2>Need a specific IT problem solved?</h2><p>Tell us what you have, what's not working and what success would look like.</p></div><div className={s.bottomActions}><Link href="/contact" className={s.primary}>Request a consultation <ArrowUpRight size={16}/></Link><Link href="/assess" className={s.secondary}>Take an IT assessment</Link></div></div></section>
+</main><footer className={s.footer}><div className={s.wrap}><div className={s.brand}><Image src="/brand/otl-mark.png" width={28} height={28} alt=""/> OneTime Labs</div><nav><Link href="/services/itam">ITAM</Link><Link href="/support">Support</Link><Link href="/contact">Contact</Link><Link href="/privacy">Privacy</Link></nav><small>© {new Date().getFullYear()} OneTime Labs</small></div></footer>
+</div>}
