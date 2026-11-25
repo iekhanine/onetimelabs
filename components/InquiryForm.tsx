@@ -43,8 +43,8 @@ export function InquiryForm() {
   }, [searchParams]);
 
   const initialTopic = useMemo(() => {
-    const value = searchParams.get("topic") ?? "itam";
-    return topicOptions.some((option) => option.value === value) ? value : "itam";
+    const value = searchParams.get("topic") ?? "managed-print";
+    return topicOptions.some((option) => option.value === value) ? value : "managed-print";
   }, [searchParams]);
 
   const [status, setStatus] = useState<Status>("idle");
@@ -124,7 +124,7 @@ export function InquiryForm() {
         <label>
           <span>What is this about?</span>
           <select name="topic" defaultValue={initialTopic} required>
-            {topicOptions.map((option) => (
+            {topicOptions.filter(option => ["managed-print","vendor-migration","partnership","support","general"].includes(option.value)||option.value===initialTopic).map((option) => (
               <option key={option.value} value={option.value}>{option.label}</option>
             ))}
           </select>

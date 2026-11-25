@@ -17,7 +17,7 @@ export default function ContentEditorStart(){
  <p className={styles.intro}>Edit the visible text on any public OneTime Labs page. Changes save immediately to the database and remain after a deployment.</p>
  {!ready?<p>Checking your admin session…</p>:allowed?<><div className={styles.tiles}>
  <Link href="/"><span>START HERE</span><h2>Edit homepage →</h2><p>Open the site, click “Edit page text” in the bottom corner, then click the text you want to change.</p></Link>
- <Link href="/support"><span>CLIENT PORTAL</span><h2>Edit Help Desk →</h2><p>Change support page labels, headings and instructions directly on the page.</p></Link>
+ <Link href="/contact"><span>CONTACT</span><h2>Edit contact page →</h2><p>Change inquiry headings, labels and instructions.</p></Link><Link href="/support"><span>CLIENT PORTAL</span><h2>Edit Help Desk →</h2><p>Change support page labels and instructions.</p></Link><Link href="/privacy"><span>LEGAL</span><h2>Edit privacy page →</h2><p>Review and edit visible privacy copy.</p></Link>
  </div><p className={styles.intro}>The editor appears on other public pages too. You can restore any edited text using Reset.</p></>:<div className={styles.login}><h2>Sign in to edit</h2><p>Use your authorized Google admin account, or sign in to Field Operations with the owner Discord account first.</p><div style={{display:"flex",gap:12,flexWrap:"wrap"}}><button onClick={()=>void google()}>Google admin login</button><Link href="/login" style={{alignSelf:"center"}}>Discord owner login ↗</Link></div>{error&&<p role="alert">{error}</p>}</div>}
  </div>;
 }
