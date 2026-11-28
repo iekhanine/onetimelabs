@@ -11,7 +11,7 @@ function hash(s:string){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCo
 function sourceKey(s:string){return "t_"+hash(s)+"_"+s.length.toString(36);}
 function editable(node:Text){const p=node.parentElement;return !!p&&!p.closest(ignore)&&!!node.textContent?.trim()&&(node.textContent?.trim().length||0)<=2500;}
 function parts(n:Text){const raw=n.textContent||"";const text=raw.trim();return {text,lead:raw.slice(0,raw.indexOf(text)),trail:raw.slice(raw.indexOf(text)+text.length)};}
-const excluded=(path:string)=>/^\/(?:admin|api|field|login|auth)(?:\/|$)/.test(path)||path.startsWith("/support/t/");
+const excluded=(path:string)=>/^\/(?:admin|api|field|login|auth|display)(?:\/|$)/.test(path)||path.startsWith("/support/t/");
 export default function SiteCopyEditor(){
  const pathname=usePathname()||"/";
  const [admin,setAdmin]=useState(false),[mode,setMode]=useState(false),[selected,setSelected]=useState<Target|null>(null);
